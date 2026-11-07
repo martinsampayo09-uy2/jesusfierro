@@ -66,6 +66,9 @@ form label{font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;color:v
 form input,form textarea{width:100%;background:#0f1419;border:1px solid var(--borde);border-radius:8px;padding:12px 14px;color:var(--texto);font-family:inherit;font-size:.95rem;outline:none;transition:border.2s;}
 form input:focus,form textarea:focus{border-color:var(--acento);}
 form textarea{min-height:110px;resize:vertical;}
+form input[type="file"]{padding:10px;font-size:.85rem;cursor:pointer;color:var(--suave);}
+form input[type="file"]::file-selector-button{background:var(--acento);color:#0f1419;border:none;padding:8px 14px;border-radius:6px;font-family:inherit;font-size:.85rem;font-weight:bold;cursor:pointer;margin-right:10px;}
+.hint{font-size:.75rem;color:var(--suave);margin-top:-8px;line-height:1.4;}
 button[type="submit"]{background:var(--acento);color:#0f1419;border:none;padding:14px;border-radius:8px;font-family:inherit;font-size:1rem;font-weight:bold;letter-spacing:1px;cursor:pointer;transition:transform .15s, box-shadow .2s;margin-top:6px;}
 button[type="submit"]:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(201,168,106,.35);}
 button[type="submit"]:active{transform:translateY(0);}
@@ -175,19 +178,24 @@ form{padding:30px 26px;}
 <section id="enviar">
 <h2>Envía tu recuerdo</h2>
 <div class="form-wrap">
-<form action="https://formsubmit.co/Martinsampayo9@gmail.com" method="POST">
-<input type="hidden" name="_subject" value="¡Nuevo recuerdo para Jesús Alverto!">
+<form action="https://formsubmit.co/Martinsampayo9@gmail.com" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="_subject" value="Nuevo recuerdo para Jesús Alverto">
+<input type="hidden" name="_template" value="table">
 <input type="hidden" name="_captcha" value="false">
 <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
 <label for="nombre">Tu nombre</label>
-<input type="text" id="nombre" name="nombre" placeholder="¿Cómo te llamas?" required>
+<input type="text" id="nombre" name="Nombre" placeholder="¿Cómo te llamas?" required>
 
 <label for="relacion">Tu relación con Jesús</label>
-<input type="text" id="relacion" name="relacion" placeholder="Familiar, amigo, vecino...">
+<input type="text" id="relacion" name="Relación" placeholder="Familiar, amigo, vecino...">
 
 <label for="mensaje">Tu recuerdo</label>
-<textarea id="mensaje" name="recuerdo" placeholder="Escribe aquí lo que quieras compartir..." required></textarea>
+<textarea id="mensaje" name="Recuerdo" placeholder="Escribe aquí lo que quieras compartir..." required></textarea>
+
+<label for="archivo">Adjuntar foto o video (opcional)</label>
+<input type="file" id="archivo" name="attachment" accept="image/*,video/*">
+<p class="hint">Puedes adjuntar una foto o un video. Tamaño máximo recomendado: 10 MB.</p>
 
 <button type="submit">Enviar mi recuerdo ✉</button>
 </form>
@@ -256,7 +264,7 @@ document.body.classList.add('oculto');
 window.addEventListener('focus', () => {
 setTimeout(()=>document.body.classList.remove('oculto'), 80);
 });
-document.addEventListener('keyup', e => {
+window.addEventListener('keyup', e => {
 if(e.key === 'PrintScreen' || e.key === 'Snapshot'){
 navigator.clipboard.writeText('').catch(()=>{});
 mostrarAviso('🔒 Captura no permitida');
