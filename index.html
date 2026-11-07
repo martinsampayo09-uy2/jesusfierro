@@ -72,7 +72,6 @@ form input[type="file"]::file-selector-button{background:var(--acento);color:#0f
 button[type="submit"]{background:var(--acento);color:#0f1419;border:none;padding:14px;border-radius:8px;font-family:inherit;font-size:1rem;font-weight:bold;letter-spacing:1px;cursor:pointer;transition:transform .15s, box-shadow .2s;margin-top:6px;}
 button[type="submit"]:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(201,168,106,.35);}
 button[type="submit"]:active{transform:translateY(0);}
-button[type="submit"]:disabled{opacity:0.7;cursor:wait;}
 .aviso{font-size:.78rem;color:var(--suave);text-align:center;margin-top:10px;line-height:1.5;}
 footer{text-align:center;padding:26px 16px;color:var(--suave);font-size:.8rem;border-top:1px solid var(--borde);}
 footer strong{color:var(--acento);font-weight:normal;}
@@ -149,36 +148,40 @@ form{padding:30px 26px;}
 <section>
 <h2>Videos<p>su pasatiempo</p></h2>
 <div class="videos">
+
 <div class="video-item">
 <video controls preload="metadata" playsinline controlslist="nodownload noplaybackrate nofullscreen" disablepictureinpicture oncontextmenu="return false;">
 <source src="https://cdn.mp4tourl.com/video/free/c23ff2f9-28d8-46d9-8152-6ae6e42a021d.mp4" type="video/mp4">
 </video>
 <p>Un momento especial</p></div>
+
 <div class="video-item">
 <video controls preload="metadata" playsinline controlslist="nodownload noplaybackrate nofullscreen" disablepictureinpicture oncontextmenu="return false;">
 <source src="https://cdn.mp4tourl.com/video/free/1830d57d-6ef9-4733-84ef-66a21a1ee77a.mp4" type="video/mp4"></video><p>COPETENCIA</p></div>
+
 <div class="video-item">
 <video controls preload="metadata" playsinline controlslist="nodownload noplaybackrate nofullscreen" disablepictureinpicture oncontextmenu="return false;">
 <source src="videos/video3.mp4" type="video/mp4"></video><p>Una canción</p>
 </div>
+
 <div class="video-item">
 <video controls preload="metadata" playsinline controlslist="nodownload noplaybackrate nofullscreen" disablepictureinpicture oncontextmenu="return false;">
 <source src="https://cdn.mp4tourl.com/video/free/7f807305-9310-4e9a-b5b4-eee495321b71.mp4" type="video/mp4">
 </video><p>con pa</p></div>
 </div>
 </section>
+
 <section>
 <h2>Una carta para ti</h2>
 <div class="carta">
 <p>"Jesús, gracias por cada enseñanza, por cada abrazo y por cada palabra. Nos diste tanto sin pedir nada a cambio. Aunque ya no estés físicamente, tu esencia sigue viva en cada uno de nosotros. Te recordaremos siempre con una sonrisa."</p></div></section>
 <section id="enviar">
+    
 <h2>Envía tu recuerdo</h2>
 <div class="form-wrap">
-<form action="https://formsubmit.co/Martinsampayo9@gmail.com" method="POST" enctype="multipart/form-data" id="formRecuerdo">
+<!-- CAMBIO REALIZADO AQUÍ: Se actualizó la acción apuntando a Formspree con soporte para archivos -->
+<form action="https://formspree.io/f/xmwzaeyz" method="POST" enctype="multipart/form-data">
 <input type="hidden" name="_subject" value="Nuevo recuerdo para Jesús Alverto">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_next" value="#enviar">
 <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 <label for="nombre">Tu nombre</label>
 <input type="text" id="nombre" name="Nombre" placeholder="¿Cómo te llamas?" required>
@@ -189,7 +192,7 @@ form{padding:30px 26px;}
 <label for="archivo">Adjuntar foto o video (opcional)</label>
 <input type="file" id="archivo" name="attachment" accept="image/*,video/*">
 <p class="hint">Puedes adjuntar una foto o un video. Tamaño máximo recomendado: 10 MB.</p>
-<button type="submit" id="btnEnviar">Enviar mi recuerdo ✉</button>
+<button type="submit">Enviar mi recuerdo ✉</button>
 </form>
 <p class="aviso">
 Tu mensaje llegará directamente al correo de la familia.<br>
@@ -312,11 +315,6 @@ document.addEventListener('keydown', e => {
 if(e.key === 'Escape') cerrar();
 if(e.key === 'ArrowLeft') mover(-1);
 if(e.key === 'ArrowRight') mover(1);});
-document.getElementById('formRecuerdo').addEventListener('submit', function() {
-    const btn = document.getElementById('btnEnviar');
-    btn.innerHTML = 'Enviando... ⏳';
-    btn.disabled = true;
-});
 </script>
 </body>
 </html>
