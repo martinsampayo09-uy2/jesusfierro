@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>En memoria de Jesús Alverto Fierro Techera Sampayo</title>
+<meta name="description" content="Espacio en memoria de Jesús Alverto Fierro Techera Sampayo.">
+<meta name="theme-color" content="#0f1419">
+<style>
+:root{--fondo:#0f1419;--tarjeta:#1a2129;--texto:#e8e6e3;--suave:#9aa5b1;--acento:#c9a86a;--borde:#2a333d;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+*{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none;}
+img{-webkit-user-drag:none;pointer-events:auto;user-select:none;}
+input,textarea{-webkit-user-select:text !important;-moz-user-select:text !important;user-select:text !important;-webkit-touch-callout:default !important;-webkit-appearance:none;appearance:none;font-size:16px;}
+#antiCaptura{position:fixed;inset:0;z-index:99998;pointer-events:none;background:transparent;display:none;}
+body.capturando #antiCaptura{display:block;background:#0f1419;}
+body.capturando *{visibility:hidden !important;}
+body.capturando #antiCaptura{visibility:visible !important;}
+#avisoProtegido{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-150%);background:rgba(201,168,106,.95);color:#0f1419;padding:12px 22px;border-radius:30px;font-size:.85rem;font-weight:bold;z-index:99999;box-shadow:0 8px 25px rgba(0,0,0,.5);transition:transform .3s ease, opacity .3s ease;pointer-events:none;white-space:nowrap;max-width:90vw;text-align:center;opacity:0;}
+#avisoProtegido.visible{transform:translateX(-50%) translateY(0);opacity:1;}
+body.oculto{background:#000 !important;}
+body.oculto > *:not(#antiCaptura){opacity:0;transition:opacity .05s;}
+html{scroll-behavior:smooth;}
+body{font-family:Georgia,serif;background:var(--fondo);color:var(--texto);line-height:1.6;overflow-x:hidden;}
+header{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0;background:var(--fondo);border-bottom:1px solid var(--borde);overflow:hidden;}
+header .fondo-img{position:absolute;inset:0;background:url('https://i.ibb.co/zHsgHrmD/file-00000000e940820e836448998914c1f9.png') center center/contain no-repeat;background-color:#0a0f14;z-index:0;}
+header .capa{position:absolute;inset:0;background:linear-gradient(rgba(15,20,25,.35),rgba(15,20,25,.55));z-index:1;}
+header .contenido{position:relative;z-index:2;width:100%;min-height:clamp(320px, 62vh, 560px);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:50px 18px 45px;}
+header h1{font-size:clamp(1.3rem,5.5vw,2.4rem);font-weight:normal;letter-spacing:.5px;margin-bottom:6px;text-shadow:0 2px 14px rgba(0,0,0,.95), 0 0 30px rgba(0,0,0,.7);}
+header .fechas{color:var(--acento);font-size:.85rem;letter-spacing:3px;margin-bottom:14px;text-shadow:0 2px 10px rgba(0,0,0,.95);}
+header p{max-width:420px;color:#f2f0ee;font-style:italic;font-size:.9rem;text-shadow:0 2px 12px rgba(0,0,0,.95);}
+.scroll{margin-top:18px;color:#e8e6e3;font-size:.75rem;animation:flotar 2s infinite;text-shadow:0 2px 8px rgba(0,0,0,.9);}
+@keyframes flotar{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+section{max-width:1000px;margin:0 auto;padding:30px 16px;}
+section h2{font-size:1rem;font-weight:normal;text-align:center;color:var(--acento);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;}
+section h2::after{content:"";display:block;width:36px;height:1px;background:var(--acento);margin:8px auto 0;opacity:.6;}
+.carrusel{position:relative;overflow:hidden;border-radius:10px;background:#0a0f14;}
+.pista{display:flex;transition:transform .4s ease;will-change:transform;}
+.pista img{flex:0 0 100%;width:100%;height:420px;object-fit:contain;background:#0a0f14;cursor:pointer;user-select:none;padding:6px 0;pointer-events:auto;}
+.flecha{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;border:none;font-size:1.2rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);z-index:3;}
+.flecha:active{background:rgba(201,168,106,.7);}
+.flecha.izq{left:8px;}
+.flecha.der{right:8px;}
+.puntos{display:flex;justify-content:center;gap:6px;padding:10px 0;}
+.punto{width:6px;height:6px;border-radius:50%;background:#3a444f;transition:background .3s, transform .3s;}
+.punto.activo{background:var(--acento);transform:scale(1.4);}
+.palabras-wrap{position:relative;overflow:hidden;padding:4px 0;}
+.palabras-wrap::before,.palabras-wrap::after{content:"";position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none;}
+.palabras-wrap::before{left:0;background:linear-gradient(90deg,var(--fondo),transparent);}
+.palabras-wrap::after{right:0;background:linear-gradient(270deg,var(--fondo),transparent);}
+.palabras-track{display:flex;gap:14px;width:max-content;animation:palabrasMov 40s linear infinite;padding:6px 0;}
+.palabras-track:hover{animation-play-state:paused;}
+.palabra-card{background:var(--tarjeta);border:1px solid var(--borde);border-left:3px solid var(--acento);border-radius:10px;padding:16px 18px;width:300px;flex-shrink:0;display:flex;flex-direction:column;justify-content:space-between;font-size:.92rem;transition:.3s;}
+.palabra-card:hover{transform:translateY(-4px);border-color:var(--acento);box-shadow:0 10px 25px rgba(201,168,106,.15);}
+.palabra-card p{font-style:italic;color:var(--texto);line-height:1.5;margin-bottom:12px;}
+.palabra-card .autor{color:var(--acento);font-size:.8rem;letter-spacing:1px;font-style:normal;text-align:right;}
+@keyframes palabrasMov{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.videos{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.video-item{background:var(--tarjeta);border-radius:10px;overflow:hidden;position:relative;}
+.video-item video{width:100%;aspect-ratio:16/9;display:block;background:#000;object-fit:cover;cursor:pointer;}
+.video-item p{padding:8px 6px;font-size:.75rem;color:var(--suave);display:flex;justify-content:center;align-items:center;text-align:center;line-height:1.2;}
+.carta{max-width:600px;margin:0 auto;background:var(--tarjeta);padding:20px 18px;border-radius:10px;border-left:3px solid var(--acento);font-style:italic;font-size:.92rem;}
+.form-wrap{max-width:560px;margin:0 auto;}
+form{background:var(--tarjeta);padding:22px 18px;border-radius:12px;border:1px solid var(--borde);display:flex;flex-direction:column;gap:14px;}
+form label{font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--acento);margin-bottom:-6px;}
+form input,form textarea{width:100%;background:#0f1419;border:1px solid var(--borde);border-radius:8px;padding:12px 14px;color:var(--texto);font-family:inherit;font-size:.95rem;outline:none;transition:border.2s;}
+form input:focus,form textarea:focus{border-color:var(--acento);}
+form textarea{min-height:110px;resize:vertical;}
+form input[type="file"]{padding:10px;font-size:.85rem;cursor:pointer;color:var(--suave);}
+form input[type="file"]::file-selector-button{background:var(--acento);color:#0f1419;border:none;padding:8px 14px;border-radius:6px;font-family:inherit;font-size:.85rem;font-weight:bold;cursor:pointer;margin-right:10px;}
+.hint{font-size:.75rem;color:var(--suave);margin-top:-8px;line-height:1.4;}
+button[type="submit"]{background:var(--acento);color:#0f1419;border:none;padding:14px;border-radius:8px;font-family:inherit;font-size:1rem;font-weight:bold;letter-spacing:1px;cursor:pointer;transition:transform .15s, box-shadow .2s;margin-top:6px;}
+button[type="submit"]:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(201,168,106,.35);}
+button[type="submit"]:active{transform:translateY(0);}
+.aviso{font-size:.78rem;color:var(--suave);text-align:center;margin-top:10px;line-height:1.5;}
+footer{text-align:center;padding:26px 16px;color:var(--suave);font-size:.8rem;border-top:1px solid var(--borde);}
+footer strong{color:var(--acento);font-weight:normal;}
+#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:100;justify-content:center;align-items:center;padding:16px;}
+#lightbox.activo{display:flex;}
+#lightbox img{max-width:100%;max-height:90vh;border-radius:6px;object-fit:contain;pointer-events:none;}
+#cerrar{position:absolute;top:14px;right:20px;font-size:2.2rem;color:#fff;cursor:pointer;opacity:.8;line-height:1;}
+@media(min-width:700px){
+header .contenido{min-height:clamp(380px, 66vh, 620px);padding:60px 20px 55px;}
+header h1{font-size:2.6rem;}
+section{padding:48px 20px;}
+section h2{font-size:1.3rem;margin-bottom:28px;}
+.pista img{height:620px;}
+.videos{grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
+.video-item p{padding:10px 12px;font-size:.85rem;}
+form{padding:30px 26px;}
+.palabra-card{width:360px;font-size:1rem;}
+.palabras-track{animation-duration:50s;}
+}
+@media(max-width:380px){
+.pista img{height:340px;}
+.videos{grid-template-columns:repeat(3,1fr);gap:6px;}
+.video-item p{font-size:.65rem;padding:6px 4px;}
+}
+</style>
+</head>
+<body id="inicio">
+<div id="antiCaptura"></div>
+<div id="avisoProtegido">🔒 Contenido protegido</div>
+<header>
+<div class="fondo-img" aria-hidden="true"></div>
+<div class="capa" aria-hidden="true"></div>
+<div class="contenido">
+<h1>Jesús Alverto Fierro Techera Sampayo</h1>
+<div class="fechas">1993 — 2026</div>
+<p>"Tu recuerdo vive en cada uno de nosotros."</p>
+</div>
+</header>
+<section>
+<h2>Galería de recuerdos</h2>
+<div class="carrusel" id="carrusel">
+<div class="pista" id="pista">
+<img src="https://i.ibb.co/zHsgHrmD/file-00000000e940820e836448998914c1f9.png" alt="Jesús Alverto" onclick="abrir(this.src)" draggable="false">
+<img src="https://i.ibb.co/rKD6yCwC/Screenshot-20261107-014627-Photos.jpg" alt="Recuerdo 2" onclick="abrir(this.src)" draggable="false">
+<img src="https://i.ibb.co/JWjKq0fH/Screenshot-20261107-014605-Photos.jpg" alt="Recuerdo 3" onclick="abrir(this.src)" draggable="false">
+<img src="fotos/foto4.jpg" alt="Recuerdo 4" onclick="abrir(this.src)" draggable="false">
+<img src="fotos/foto5.jpg" alt="Recuerdo 5" onclick="abrir(this.src)" draggable="false">
+<img src="fotos/foto6.jpg" alt="Recuerdo 6" onclick="abrir(this.src)" draggable="false">
+</div>
+<button class="flecha izq" onclick="mover(-1)">‹</button>
+<button class="flecha der" onclick="mover(1)">›</button>
+<div class="puntos" id="puntos"></div>
+</div>
+</section>
+<section>
+<h2>Palabras que lo recuerdan</h2>
+<div class="palabras-wrap">
+<div class="palabras-track" id="palabrasTrack">
+<div class="palabra-card"><p>"Siempre recordaré su forma de reír y de hacer sentir bien a todos."</p><span class="autor">— Familia</span></div>
+<div class="palabra-card"><p>"Un hombre de palabra, con un corazón enorme. Nos enseñó con el ejemplo."</p><span class="autor">— Un amigo</span></div>
+<div class="palabra-card"><p>"Gracias por todo, magibert. Siempre estarás en nuestro corazón."</p><span class="autor">—colegas </span></div>
+<div class="palabra-card"><p>"Su alegría era contagiosa. Cada vez que lo recuerdo, sonrío."</p><span class="autor">— Su amiga</span></div>
+<div class="palabra-card"><p>"Un vecino ejemplar, siempre dispuesto a ayudar sin esperar nada."</p><span class="autor">— Los vecinos</span></div>
+<div class="palabra-card"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div>
+<div class="palabra-card"><p>"Siempre recordaré su forma de reír y de hacer sentir bien a todos."</p><span class="autor">— Familia</span></div>
+<div class="palabra-card"><p>"Un hombre de palabra, con un corazón enorme. Nos enseñó con el ejemplo."</p><span class="autor">— Un amigo</span></div>
+<div class="palabra-card"><p>"Gracias por todo, magibert. Siempre estarás en nuestro corazón."</p><span class="autor">— sus compañeros </span></div>
+<div class="palabra-card"><p>"Su alegría era contagiosa. Cada vez que lo recuerdo, sonrío."</p><span class="autor">— Su hija</span></div>
+<div class="palabra-card"><p>"Un vecino ejemplar, siempre dispuesto a ayudar sin esperar nada."</p><span class="autor">— Los vecinos</span></div>
+<div class="palabra-card"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div>
+</div>
+</div>
+</section>
+<section>
+<h2>Videos<p>su pasatiempo</p></h2>
+<div class="videos">
+
+<div class="video-item">
+<video controls preload="metadata" playsinline controlslist="nodownload noplaybackrate nofullscreen" disablepictureinpicture oncontextmenu="return false;">
+<source src="https://cdn.mp4tourl.com/video/free/c23ff2f9-28d8-46d9-8152-6ae6e42a021d.mp4" type="video/mp4">
+</video>
+<p>Un momento especial</p></div>
+
+<div class="video-item">
+<video controls preload="metadata" playsinline controlslist="nodownload noplaybackrate nofullscreen" disablepictureinpicture oncontextmenu="return false;">
+<source src="https://cdn.mp4tourl.com/video/free/1830d57d-6ef9-4733-84ef-66a21a1ee77a.mp4" type="video/mp4"></video><p>COPETENCIA</p></div>
+
+<div class="video-item">
+<video controls preload="metadata" playsinline controlslist="nodownload noplaybackrate nofullscreen" disablepictureinpicture oncontextmenu="return false;">
+<source src="videos/video3.mp4" type="video/mp4"></video><p>Una canción</p>
+</div>
+
+<div class="video-item">
+<video controls preload="metadata" playsinline controlslist="nodownload noplaybackrate nofullscreen" disablepictureinpicture oncontextmenu="return false;">
+<source src="https://cdn.mp4tourl.com/video/free/7f807305-9310-4e9a-b5b4-eee495321b71.mp4" type="video/mp4">
+</video><p>con pa</p></div>
+</div>
+</section>
+
+<section>
+<h2>Una carta para ti</h2>
+<div class="carta">
+<p>"Jesús, gracias por cada enseñanza, por cada abrazo y por cada palabra. Nos diste tanto sin pedir nada a cambio. Aunque ya no estés físicamente, tu esencia sigue viva en cada uno de nosotros. Te recordaremos siempre con una sonrisa."</p></div></section>
+<section id="enviar">
+    
+<h2>Envía tu recuerdo</h2>
+<div class="form-wrap">
+<form action="https://formsubmit.co/Martinsampayo9@gmail.com" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="_subject" value="Nuevo recuerdo para Jesús Alverto">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" value="#enviar">
+<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+<label for="nombre">Tu nombre</label>
+<input type="text" id="nombre" name="Nombre" placeholder="¿Cómo te llamas?" required>
+<label for="relacion">Tu relación con Jesús</label>
+<input type="text" id="relacion" name="Relación" placeholder="Familiar, amigo, vecino...">
+<label for="mensaje">Tu recuerdo</label>
+<textarea id="mensaje" name="Recuerdo" placeholder="Escribe aquí lo que quieras compartir..." required></textarea>
+<label for="archivo">Adjuntar foto o video (opcional)</label>
+<input type="file" id="archivo" name="attachment" accept="image/*,video/*">
+<p class="hint">Puedes adjuntar una foto o un video. Tamaño máximo recomendado: 10 MB.</p>
+<button type="submit">Enviar mi recuerdo ✉</button>
+</form>
+<p class="aviso">
+Tu mensaje llegará directamente al correo de la familia.<br>
+Gracias por compartir este momento con nosotros.
+</p>
+</div>
+</section>
+<footer>
+<p>En memoria de <strong>Jesús Alverto Fierro Techera Sampayo</strong></p>
+<p>Un espacio creado con amor por su familia.</p>
+</footer>
+<div id="lightbox" onclick="cerrar()">
+<span id="cerrar">&times;</span>
+<img id="imgGrande" src="" alt="Recuerdo">
+</div>
+<script>
+(function(){
+const aviso = document.getElementById('avisoProtegido');
+let timerAviso;
+function mostrarAviso(msg){
+aviso.textContent = msg;
+aviso.classList.add('visible');
+clearTimeout(timerAviso);
+timerAviso = setTimeout(()=>aviso.classList.remove('visible'), 1800);}
+document.addEventListener('contextmenu', e => {
+e.preventDefault();
+mostrarAviso('🔒 Clic derecho deshabilitado');
+return false;});
+document.addEventListener('keydown', e => {
+const k = e.key.toLowerCase();
+const bloqueado =
+e.key === 'F12' ||
+e.key === 'F8' ||
+(e.ctrlKey && e.shiftKey && (k === 'i' || k === 'j' || k === 'c')) ||
+(e.ctrlKey && (k === 'u' || k === 's' || k === 'p')) ||
+(e.metaKey && e.altKey && (k === 'i' || k === 'j' || k === 'c')) ||
+(e.metaKey && (k === 'u' || k === 's' || k === 'p'));
+if(bloqueado){
+e.preventDefault();
+e.stopPropagation();
+mostrarAviso('🔒 Atajo bloqueado');
+return false;}
+}, true);
+document.addEventListener('dragstart', e => {
+if(e.target.tagName === 'IMG'){
+e.preventDefault();
+mostrarAviso('🔒 No puedes arrastrar la imagen');
+return false;} });
+document.addEventListener('copy', e => {
+const sel = window.getSelection().toString();
+if(sel.length > 40){
+e.preventDefault();
+mostrarAviso('🔒 Copia bloqueada');} });
+document.addEventListener('visibilitychange', () => {
+if(document.hidden){
+document.body.classList.add('oculto');
+} else {
+setTimeout(()=>document.body.classList.remove('oculto'), 80);
+}
+});
+window.addEventListener('blur', () => {
+document.body.classList.add('oculto');
+});
+window.addEventListener('focus', () => {
+setTimeout(()=>document.body.classList.remove('oculto'), 80);
+});
+document.addEventListener('keyup', e => {
+if(e.key === 'PrintScreen' || e.key === 'Snapshot'){
+navigator.clipboard.writeText('').catch(()=>{});
+mostrarAviso('🔒 Captura no permitida');
+}
+});
+document.addEventListener('keydown', e => {
+if(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 's'){
+e.preventDefault();
+mostrarAviso('🔒 Captura no permitida');
+}
+});
+document.addEventListener('mousedown', e => {
+if(e.detail > 1 && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA'){
+e.preventDefault();
+}
+});
+})();
+const pista = document.getElementById('pista');
+const imgs = pista.querySelectorAll('img');
+const puntosCont = document.getElementById('puntos');
+let actual = 0;
+imgs.forEach((_, i) => {
+const d = document.createElement('div');
+d.className = 'punto' + (i === 0 ? ' activo' : '');
+d.onclick = () => ir(i);
+puntosCont.appendChild(d);
+});
+const puntos = puntosCont.querySelectorAll('.punto');
+function ir(i){
+actual = (i + imgs.length) % imgs.length;
+pista.style.transform = `translateX(-${actual * 100}%)`;
+puntos.forEach((p, idx) => p.classList.toggle('activo', idx === actual));
+}
+function mover(dir){ ir(actual + dir); }
+let inicioX = 0, moviendo = false;
+pista.addEventListener('touchstart', e => {
+inicioX = e.touches[0].clientX;
+moviendo = true;
+}, {passive:true});
+pista.addEventListener('touchend', e => {
+if(!moviendo) return;
+moviendo = false;
+const dif = e.changedTouches[0].clientX - inicioX;
+if(Math.abs(dif) > 40) mover(dif < 0 ? 1 : -1);
+});
+setInterval(() => { mover(1); }, 6000);
+function abrir(src){
+document.getElementById('imgGrande').src = src;
+document.getElementById('lightbox').classList.add('activo');}
+function cerrar(){
+document.getElementById('lightbox').classList.remove('activo');}
+document.addEventListener('keydown', e => {
+if(e.key === 'Escape') cerrar();
+if(e.key === 'ArrowLeft') mover(-1);
+if(e.key === 'ArrowRight') mover(1);});
+</script>
+</body>
+</html>
