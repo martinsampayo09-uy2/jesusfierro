@@ -179,19 +179,21 @@ form{padding:30px 26px;}
     
 <h2>Envía tu recuerdo</h2>
 <div class="form-wrap">
-<!-- CAMBIO REALIZADO AQUÍ: Se actualizó la acción apuntando a Formspree con soporte para archivos -->
-<form action="https://formspree.io/f/xmwzaeyz" method="POST" enctype="multipart/form-data">
-<input type="hidden" name="_subject" value="Nuevo recuerdo para Jesús Alverto">
-<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+<!-- Formulario directo a tu correo mediante mailto -->
+<form id="formRecuerdo">
 <label for="nombre">Tu nombre</label>
-<input type="text" id="nombre" name="Nombre" placeholder="¿Cómo te llamas?" required>
+<input type="text" id="nombre" name="nombre" placeholder="¿Cómo te llamas?" required>
+
 <label for="relacion">Tu relación con Jesús</label>
-<input type="text" id="relacion" name="Relación" placeholder="Familiar, amigo, vecino...">
+<input type="text" id="relacion" name="relacion" placeholder="Familiar, amigo, vecino...">
+
 <label for="mensaje">Tu recuerdo</label>
-<textarea id="mensaje" name="Recuerdo" placeholder="Escribe aquí lo que quieras compartir..." required></textarea>
+<textarea id="mensaje" name="mensaje" placeholder="Escribe aquí lo que quieras compartir..." required></textarea>
+
 <label for="archivo">Adjuntar foto o video (opcional)</label>
-<input type="file" id="archivo" name="attachment" accept="image/*,video/*">
-<p class="hint">Puedes adjuntar una foto o un video. Tamaño máximo recomendado: 10 MB.</p>
+<input type="file" id="archivo" name="archivo" accept="image/*,video/*">
+<p class="hint">Al enviar, se abrirá tu aplicación de correo para enviar el mensaje directamente a Martinsampayo9@gmail.com.</p>
+
 <button type="submit">Enviar mi recuerdo ✉</button>
 </form>
 <p class="aviso">
@@ -277,6 +279,20 @@ e.preventDefault();
 }
 });
 })();
+
+// Script para enviar los datos del formulario directo a Martinsampayo9@gmail.com
+document.getElementById('formRecuerdo').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('nombre').value;
+    const relacion = document.getElementById('relacion').value;
+    const mensaje = document.getElementById('mensaje').value;
+    
+    const asunto = encodeURIComponent("Nuevo recuerdo para Jesús Alverto de " + nombre);
+    const cuerpo = encodeURIComponent("Nombre: " + nombre + "\nRelación: " + relacion + "\n\nRecuerdo:\n" + mensaje);
+    
+    window.location.href = `mailto:Martinsampayo9@gmail.com?subject=${asunto}&body=${cuerpo}`;
+});
+
 const pista = document.getElementById('pista');
 const imgs = pista.querySelectorAll('img');
 const puntosCont = document.getElementById('puntos');
