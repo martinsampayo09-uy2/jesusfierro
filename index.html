@@ -63,7 +63,7 @@ section h2::after{content:"";display:block;width:36px;height:1px;background:var(
 .form-wrap{max-width:560px;margin:0 auto;}
 form{background:var(--tarjeta);padding:22px 18px;border-radius:12px;border:1px solid var(--borde);display:flex;flex-direction:column;gap:14px;}
 form label{font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--acento);margin-bottom:-6px;}
-form input,form textarea{width:100%;background:#0f1419;border:1px solid var(--borde);border-radius:8px;padding:12px 14px;color:var(--texto);font-family:inherit;font-size:.95rem;outline:none;transition:border.2s;}
+form input,form textarea{width:100%;background:#0f1419;border:1px solid var(--borde);border-radius:8px;padding:12px 14px;color:var(--texto);font-family:inherit;font-size:.95rem;outline:none;transition:border .2s;}
 form input:focus,form textarea:focus{border-color:var(--acento);}
 form textarea{min-height:110px;resize:vertical;}
 form input[type="file"]{padding:10px;font-size:.85rem;cursor:pointer;color:var(--suave);}
@@ -72,6 +72,7 @@ form input[type="file"]::file-selector-button{background:var(--acento);color:#0f
 button[type="submit"]{background:var(--acento);color:#0f1419;border:none;padding:14px;border-radius:8px;font-family:inherit;font-size:1rem;font-weight:bold;letter-spacing:1px;cursor:pointer;transition:transform .15s, box-shadow .2s;margin-top:6px;}
 button[type="submit"]:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(201,168,106,.35);}
 button[type="submit"]:active{transform:translateY(0);}
+button[type="submit"]:disabled{opacity:.7;cursor:wait;transform:none;}
 .aviso{font-size:.78rem;color:var(--suave);text-align:center;margin-top:10px;line-height:1.5;}
 footer{text-align:center;padding:26px 16px;color:var(--suave);font-size:.8rem;border-top:1px solid var(--borde);}
 footer strong{color:var(--acento);font-weight:normal;}
@@ -132,13 +133,13 @@ form{padding:30px 26px;}
 <div class="palabras-track" id="palabrasTrack">
 <div class="palabra-card"><p>"Siempre recordaré su forma de reír y de hacer sentir bien a todos."</p><span class="autor">— Familia</span></div>
 <div class="palabra-card"><p>"Un hombre de palabra, con un corazón enorme. Nos enseñó con el ejemplo."</p><span class="autor">— Un amigo</span></div>
-<div class="palabra-card"><p>"Gracias por todo, magibert. Siempre estarás en nuestro corazón."</p><span class="autor">—colegas </span></div>
+<div class="palabra-card"><p>"Gracias por todo, magibert. Siempre estarás en nuestro corazón."</p><span class="autor">— colegas</span></div>
 <div class="palabra-card"><p>"Su alegría era contagiosa. Cada vez que lo recuerdo, sonrío."</p><span class="autor">— Su amiga</span></div>
 <div class="palabra-card"><p>"Un vecino ejemplar, siempre dispuesto a ayudar sin esperar nada."</p><span class="autor">— Los vecinos</span></div>
 <div class="palabra-card"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div>
 <div class="palabra-card"><p>"Siempre recordaré su forma de reír y de hacer sentir bien a todos."</p><span class="autor">— Familia</span></div>
 <div class="palabra-card"><p>"Un hombre de palabra, con un corazón enorme. Nos enseñó con el ejemplo."</p><span class="autor">— Un amigo</span></div>
-<div class="palabra-card"><p>"Gracias por todo, magibert. Siempre estarás en nuestro corazón."</p><span class="autor">— sus compañeros </span></div>
+<div class="palabra-card"><p>"Gracias por todo, magibert. Siempre estarás en nuestro corazón."</p><span class="autor">— sus compañeros</span></div>
 <div class="palabra-card"><p>"Su alegría era contagiosa. Cada vez que lo recuerdo, sonrío."</p><span class="autor">— Su hija</span></div>
 <div class="palabra-card"><p>"Un vecino ejemplar, siempre dispuesto a ayudar sin esperar nada."</p><span class="autor">— Los vecinos</span></div>
 <div class="palabra-card"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div>
@@ -179,22 +180,30 @@ form{padding:30px 26px;}
     
 <h2>Envía tu recuerdo</h2>
 <div class="form-wrap">
-<!-- Formulario directo a tu correo mediante mailto -->
-<form id="formRecuerdo">
-<label for="nombre">Tu nombre</label>
-<input type="text" id="nombre" name="nombre" placeholder="¿Cómo te llamas?" required>
+<form id="formRecuerdo" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
 
-<label for="relacion">Tu relación con Jesús</label>
-<input type="text" id="relacion" name="relacion" placeholder="Familiar, amigo, vecino...">
+  <input type="hidden" name="access_key" value="9d5a45aa-efe7-47b2-8371-f1ba03d3a99c">
+  <input type="hidden" name="subject" value="Nuevo recuerdo para Jesús Alverto">
+  <input type="hidden" name="from_name" value="Memorial Jesús Alverto">
+  <!-- Cambia esta URL por la real donde publiques el sitio, o borra esta línea -->
+  <input type="hidden" name="redirect" value="https://TU_DOMINIO.com/index.html#enviar">
+  <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
-<label for="mensaje">Tu recuerdo</label>
-<textarea id="mensaje" name="mensaje" placeholder="Escribe aquí lo que quieras compartir..." required></textarea>
+  <label for="nombre">Tu nombre</label>
+  <input type="text" id="nombre" name="Nombre" placeholder="¿Cómo te llamas?" required>
 
-<label for="archivo">Adjuntar foto o video (opcional)</label>
-<input type="file" id="archivo" name="archivo" accept="image/*,video/*">
-<p class="hint">Al enviar, se abrirá tu aplicación de correo para enviar el mensaje directamente a Martinsampayo9@gmail.com.</p>
+  <label for="relacion">Tu relación con Jesús</label>
+  <input type="text" id="relacion" name="Relación" placeholder="Familiar, amigo, vecino...">
 
-<button type="submit">Enviar mi recuerdo ✉</button>
+  <label for="mensaje">Tu recuerdo</label>
+  <textarea id="mensaje" name="Recuerdo" placeholder="Escribe aquí lo que quieras compartir..." required></textarea>
+
+  <label for="archivo">Adjuntar foto o video (opcional)</label>
+  <input type="file" id="archivo" name="attachment" accept="image/*,video/*">
+  <p class="hint">Máximo 5 MB por archivo. Si tu video pesa más, súbelo a Google Drive y pega el enlace en el mensaje.</p>
+
+  <button type="submit" id="btnEnviar">Enviar mi recuerdo ✉</button>
+  <p id="estadoForm" style="text-align:center;font-size:.85rem;min-height:1.2em;margin-top:4px;"></p>
 </form>
 <p class="aviso">
 Tu mensaje llegará directamente al correo de la familia.<br>
@@ -279,20 +288,6 @@ e.preventDefault();
 }
 });
 })();
-
-// Script para enviar los datos del formulario directo a Martinsampayo9@gmail.com
-document.getElementById('formRecuerdo').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const nombre = document.getElementById('nombre').value;
-    const relacion = document.getElementById('relacion').value;
-    const mensaje = document.getElementById('mensaje').value;
-    
-    const asunto = encodeURIComponent("Nuevo recuerdo para Jesús Alverto de " + nombre);
-    const cuerpo = encodeURIComponent("Nombre: " + nombre + "\nRelación: " + relacion + "\n\nRecuerdo:\n" + mensaje);
-    
-    window.location.href = `mailto:Martinsampayo9@gmail.com?subject=${asunto}&body=${cuerpo}`;
-});
-
 const pista = document.getElementById('pista');
 const imgs = pista.querySelectorAll('img');
 const puntosCont = document.getElementById('puntos');
@@ -331,6 +326,49 @@ document.addEventListener('keydown', e => {
 if(e.key === 'Escape') cerrar();
 if(e.key === 'ArrowLeft') mover(-1);
 if(e.key === 'ArrowRight') mover(1);});
+
+/* ===== Formulario Web3Forms ===== */
+(function(){
+  const form = document.getElementById('formRecuerdo');
+  const btn = document.getElementById('btnEnviar');
+  const estado = document.getElementById('estadoForm');
+  const archivo = document.getElementById('archivo');
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+
+    if(archivo.files[0] && archivo.files[0].size > 5*1024*1024){
+      estado.textContent = '⚠ El archivo supera los 5 MB. Intenta con uno más pequeño o pega un enlace de Drive.';
+      estado.style.color = '#e0a96d';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    estado.textContent = '';
+    estado.style.color = '';
+
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+      const data = await res.json();
+
+      if(data.success){
+        estado.textContent = '✓ ¡Gracias! Tu recuerdo fue enviado a la familia.';
+        estado.style.color = '#c9a86a';
+        form.reset();
+      } else {
+        estado.textContent = '⚠ No se pudo enviar. Inténtalo de nuevo.';
+        estado.style.color = '#e07a5f';
+      }
+    } catch(err){
+      estado.textContent = '⚠ Error de conexión. Revisa tu internet e inténtalo otra vez.';
+      estado.style.color = '#e07a5f';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Enviar mi recuerdo ✉';
+    }
+  });
+})();
 </script>
 </body>
 </html>
