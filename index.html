@@ -47,7 +47,7 @@ section h2::after{content:"";display:block;width:36px;height:1px;background:var(
 section h2 .subtitulo{display:block;font-size:.7rem;color:var(--suave);letter-spacing:1px;margin-top:6px;text-transform:none;font-style:italic;font-weight:normal;}
 .carrusel{position:relative;overflow:hidden;border-radius:10px;background:#0a0f14;}
 .pista{display:flex;transition:transform .4s ease;will-change:transform;}
-.pista img{flex:0 0 100%;width:100%;height:420px;object-fit:contain;background:#0a0f14;cursor:pointer;user-select:none;padding:6px 0;pointer-events:auto;}
+.pista img{flex:0 0 100%;width:100%;height:420px;object-fit:contain;background:#0a0f14;user-select:none;padding:6px 0;pointer-events:auto;cursor:default;}
 .flecha{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;border:none;font-size:1.2rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);z-index:3;}
 .flecha:active{background:rgba(201,168,106,.7);}
 .flecha.izq{left:8px;}
@@ -91,10 +91,6 @@ button[type="submit"]:disabled{opacity:.7;cursor:wait;transform:none;}
 .aviso strong{color:var(--acento);}
 footer{text-align:center;padding:26px 16px;color:var(--suave);font-size:.8rem;border-top:1px solid var(--borde);}
 footer strong{color:var(--acento);font-weight:normal;}
-#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:100;justify-content:center;align-items:center;padding:16px;}
-#lightbox.activo{display:flex;}
-#lightbox img{max-width:100%;max-height:90vh;border-radius:6px;object-fit:contain;pointer-events:none;}
-#cerrar{position:absolute;top:14px;right:20px;font-size:2.2rem;color:#fff;cursor:pointer;opacity:.8;line-height:1;}
 
 /* ===== Botón compartir (elegante, paleta dorada) ===== */
 .compartir-wrap{max-width:560px;margin:24px auto 0;text-align:center;}
@@ -156,12 +152,23 @@ form{padding:30px 26px;}
 <h2>Galería de recuerdos</h2>
 <div class="carrusel" id="carrusel">
 <div class="pista" id="pista">
-<img src="https://i.ibb.co/zHsgHrmD/file-00000000e940820e836448998914c1f9.png" alt="Jesús Alverto" onclick="abrir(this.src)" draggable="false">
-<img src="https://i.ibb.co/rKD6yCwC/Screenshot-20261107-014627-Photos.jpg" alt="Recuerdo 2" onclick="abrir(this.src)" draggable="false">
-<img src="https://i.ibb.co/JWjKq0fH/Screenshot-20261107-014605-Photos.jpg" alt="Recuerdo 3" onclick="abrir(this.src)" draggable="false">
-<img src="fotos/foto4.jpg" alt="Recuerdo 4" onclick="abrir(this.src)" draggable="false">
-<img src="fotos/foto5.jpg" alt="Recuerdo 5" onclick="abrir(this.src)" draggable="false">
-<img src="fotos/foto6.jpg" alt="Recuerdo 6" onclick="abrir(this.src)" draggable="false">
+
+<img src="https://i.ibb.co/hx0LHDcd/Screenshot-20261107-033219-Facebook.jpg" alt="Recuerdo 1" draggable="false">
+
+<img src="https://i.ibb.co/rKD6yCwC/Screenshot-20261107-014627-Photos.jpg" alt="Recuerdo 2" draggable="false">
+
+<img src="https://i.ibb.co/JWjKq0fH/Screenshot-20261107-014605-Photos.jpg" alt="Recuerdo 3" draggable="false">
+
+<img src="https://i.ibb.co/zHsgHrmD/file-00000000e940820e836448998914c1f9.png" alt="Jesús Alverto" draggable="false">
+
+<img src="https://i.ibb.co/hRsDtRRw/Screenshot-20261107-033111-Facebook.jpg" alt="Recuerdo 5" draggable="false">
+
+<img src="https://i.ibb.co/Hph1D7J1/Screenshot-20261107-033139-Facebook.jpg" alt="Recuerdo 6" draggable="false">
+
+<img src="fotos/foto6.jpg" alt="Recuerdo 7" draggable="false">
+
+<img src="fotos/foto6.jpg" alt="Recuerdo 8" draggable="false">
+
 </div>
 <button class="flecha izq" onclick="mover(-1)" aria-label="Anterior">‹</button>
 <button class="flecha der" onclick="mover(1)" aria-label="Siguiente">›</button>
@@ -311,11 +318,6 @@ form{padding:30px 26px;}
   </div>
 </div>
 
-<div id="lightbox" onclick="cerrar()" role="dialog" aria-label="Imagen ampliada">
-<span id="cerrar" aria-label="Cerrar">&times;</span>
-<img id="imgGrande" src="" alt="Recuerdo">
-</div>
-
 <script>
 /* ===== Anti-captura y protección ===== */
 (function(){
@@ -387,7 +389,7 @@ e.preventDefault();
 });
 })();
 
-/* ===== Carrusel ===== */
+/* ===== Carrusel (sin ampliación de fotos) ===== */
 const pista = document.getElementById('pista');
 const imgs = pista.querySelectorAll('img');
 const puntosCont = document.getElementById('puntos');
@@ -417,15 +419,13 @@ const dif = e.changedTouches[0].clientX - inicioX;
 if(Math.abs(dif) > 40) mover(dif < 0 ? 1 : -1);
 });
 setInterval(() => { mover(1); }, 6000);
-function abrir(src){
-document.getElementById('imgGrande').src = src;
-document.getElementById('lightbox').classList.add('activo');
-}
-function cerrar(){
-document.getElementById('lightbox').classList.remove('activo');
-}
+
+/* Bloquear clic sobre las imágenes del carrusel (no ampliar) */
+pista.addEventListener('click', e => {
+  if(e.target.tagName === 'IMG') e.preventDefault();
+});
+
 document.addEventListener('keydown', e => {
-if(e.key === 'Escape') cerrar();
 if(e.key === 'ArrowLeft') mover(-1);
 if(e.key === 'ArrowRight') mover(1);
 });
