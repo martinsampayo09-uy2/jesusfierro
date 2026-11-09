@@ -67,8 +67,6 @@ section h2 .subtitulo{display:block;font-size:.7rem;color:var(--suave);letter-sp
 .indice img{width:60px;height:60px;flex:0 0 auto;object-fit:cover;border-radius:6px;cursor:pointer;opacity:.5;transition:opacity .25s,transform .2s,border .2s;border:2px solid transparent;}
 .indice img:hover{opacity:.85;transform:scale(1.05);}
 .indice img.activa{opacity:1;border-color:var(--acento);transform:scale(1.08);}
-
-/* ===== PALABRAS ===== */
 .palabras-wrap{position:relative;overflow:hidden;padding:4px 0;}
 .palabras-wrap::before,.palabras-wrap::after{content:"";position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none;}
 .palabras-wrap::before{left:0;background:linear-gradient(90deg,var(--fondo),transparent);}
@@ -80,13 +78,9 @@ section h2 .subtitulo{display:block;font-size:.7rem;color:var(--suave);letter-sp
 .palabra-card p{font-style:italic;color:var(--texto);line-height:1.5;margin-bottom:12px;}
 .palabra-card .autor{color:var(--acento);font-size:.8rem;letter-spacing:1px;font-style:normal;text-align:right;}
 @keyframes palabrasMov{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
-
-/* ===== VIDEOS ===== */
 .videos{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;align-items:stretch;}
 .video-item{background:var(--tarjeta);border-radius:10px;overflow:hidden;position:relative;display:flex;flex-direction:column;box-shadow:0 6px 18px rgba(0,0,0,.45);}
 .video-item video{width:100%;aspect-ratio:1/1;display:block;background:#000;object-fit:cover;cursor:pointer;border-radius:10px;}
-
-/* Sin capas extras, el video carga su propia imagen de inicio nativamente */
 .video-item .btn-ampliar{position:absolute;top:6px;right:6px;z-index:6;background:rgba(0,0,0,.6);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:5px 9px;font-size:.9rem;line-height:1;cursor:pointer;backdrop-filter:blur(3px);transition:.2s;}
 .video-item .btn-ampliar:hover{background:rgba(201,168,106,.9);color:#0f1419;border-color:var(--acento);}
 
@@ -95,8 +89,6 @@ section h2 .subtitulo{display:block;font-size:.7rem;color:var(--suave);letter-sp
 #modalVideo video{width:100%;max-width:1100px;max-height:90vh;background:#000;border-radius:8px;outline:none;}
 #cerrarModal{position:absolute;top:14px;right:16px;background:rgba(255,255,255,.12);color:#fff;border:none;width:42px;height:42px;border-radius:50%;font-size:1.4rem;line-height:1;cursor:pointer;z-index:2;}
 #cerrarModal:hover{background:var(--acento);color:#0f1419;}
-
-/* ===== PROTECCIÓN EXTRA DE VIDEO ===== */
 video{ -webkit-user-select:none; user-select:none; -webkit-user-drag:none; }
 video::-webkit-media-controls-download-button{display:none !important;}
 video::-webkit-media-controls-overflow-button{display:none !important;}
@@ -105,13 +97,9 @@ video::-webkit-media-controls-enclosure{overflow:hidden;}
 video::-webkit-media-controls-panel{background-image:none !important;}
 #videoAmpliado::-webkit-media-controls-download-button{display:none !important;}
 #videoAmpliado::-webkit-media-controls-overflow-button{display:none !important;}
-
-/* Ocultar botón de pantalla completa en los controles nativos */
 video::-webkit-media-controls-fullscreen-button{display:none !important;}
 #videoAmpliado::-webkit-media-controls-fullscreen-button{display:none !important;}
 video::-internal-media-controls-fullscreen-button{display:none !important;}
-
-/* ===== CARTA / FORM / FOOTER ===== */
 .carta{max-width:600px;margin:0 auto;background:var(--tarjeta);padding:20px 18px;border-radius:10px;border-left:3px solid var(--acento);font-style:italic;font-size:.92rem;}
 .form-wrap{max-width:560px;margin:0 auto;}
 form{background:var(--tarjeta);padding:22px 18px;border-radius:12px;border:1px solid var(--borde);display:flex;flex-direction:column;gap:14px;}
@@ -128,16 +116,12 @@ button[type="submit"]:active{transform:translateY(0);}
 button[type="submit"]:disabled{opacity:.7;cursor:wait;transform:none;}
 .aviso{font-size:.78rem;color:var(--suave);text-align:center;margin-top:10px;line-height:1.5;}
 .aviso strong{color:var(--acento);}
-
-/* ===== FOOTER ===== */
 footer{text-align:center;padding:30px 16px 26px;color:var(--suave);font-size:.8rem;border-top:1px solid var(--borde);}
 footer strong{color:var(--acento);font-weight:normal;}
 footer .legal-links{margin-top:16px;font-size:.8rem;}
 footer .legal-links button{background:none;border:none;color:var(--suave);font-family:inherit;font-size:inherit;cursor:pointer;padding:4px 0;text-decoration:underline;text-underline-offset:3px;transition:color .2s;}
 footer .legal-links button:hover{color:var(--acento);}
 footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
-
-/* ===== MODAL TÉRMINOS ===== */
 #modalLegal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:400;justify-content:center;align-items:center;padding:16px;backdrop-filter:blur(3px);}
 #modalLegal.activo{display:flex;}
 .legal-card{background:var(--tarjeta);border:1px solid var(--borde);border-radius:14px;width:100%;max-width:720px;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,.7);animation:subirLegal .3s ease;}
@@ -173,10 +157,8 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
 .menu-op svg{width:26px;height:26px;fill:currentColor;}
 .menu-cerrar{display:block;width:100%;margin-top:16px;padding:12px;background:transparent;border:1px solid var(--borde);color:var(--suave);border-radius:8px;font-family:inherit;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.2s;}
 .menu-cerrar:hover{color:var(--texto);border-color:var(--acento);}
-.menu-aviso{font-size:.75rem;color:var(--acento);text-align:center;margin-top:10px;min-height:1em;}
-
-@media(min-width:700px){
-  header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
+.menu-aviso{font-size:.75rem;color:var(--acento);text-align:center;margin-top:10px;min-height:1em;} @media(min-width:700px){
+header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
   header h1{font-size:2.6rem;}
   section{padding:48px 20px;}
   section h2{font-size:1.3rem;margin-bottom:28px;}
@@ -188,30 +170,23 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
   .palabra-card{width:360px;font-size:1rem;}
   .palabras-track{animation-duration:50s;}
   #menuCompartir{align-items:center;}
-  .legal-body{font-size:.95rem;padding:24px 30px 30px;}
-}
+  .legal-body{font-size:.95rem;padding:24px 30px 30px;} }
 @media(max-width:380px){
   .libro-flecha{width:36px;height:36px;font-size:1.2rem;}
   .videos{gap:6px;}
-  .video-item .btn-ampliar{padding:4px 7px;font-size:.8rem;}
-}
+  .video-item .btn-ampliar{padding:4px 7px;font-size:.8rem;} }
 </style>
 </head>
 <body id="inicio">
 <div id="antiCaptura"></div>
 <div id="avisoProtegido">🔒 Contenido protegido</div>
-
 <header>
 <div class="fondo-img" aria-hidden="true"></div>
 <div class="capa" aria-hidden="true"></div>
 <div class="contenido">
 <h1>Jesús Alberto Fierro Techera Sampayo</h1>
 <div class="fechas">1995 — 21/6/2026...</div>
-<p>"Tu recuerdo vive en cada uno de nosotros."</p>
-</div>
-</header>
-
-<!-- ===== LIBRO DE TODAS LAS FOTOS ===== -->
+<p>"Tu recuerdo vive en cada uno de nosotros."</p></div></header>
 <section>
 <h2>Libro de recuerdos <span class="subtitulo">desliza para pasar hoja</span></h2>
 <div class="libro-wrap">
@@ -227,8 +202,6 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
 </div>
 <div class="indice" id="indice"></div>
 </section>
-
-<!-- ===== PALABRAS ===== -->
 <section>
 <h2>Palabras que lo recuerdan</h2>
 <div class="palabras-wrap">
@@ -244,12 +217,7 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
 <div class="palabra-card"><p>"Gracias por todo, magibert. Siempre estarás en nuestro corazón."</p><span class="autor">— sus compañeros</span></div>
 <div class="palabra-card"><p>"Su alegría era contagiosa. Cada vez que lo recuerdo, sonrío."</p><span class="autor">— Su hija</span></div>
 <div class="palabra-card"><p>"Un vecino ejemplar, siempre dispuesto a ayudar sin esperar nada."</p><span class="autor">— Los vecinos</span></div>
-<div class="palabra-card"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div>
-</div>
-</div>
-</section>
-
-<!-- ===== VIDEOS ===== -->
+<div class="palabra-card"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div></div></div></section>
 <section>
 <h2>Videos <span class="subtitulo">su pasatiempo</span></h2>
 <div class="videos">
@@ -301,18 +269,12 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
   onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
   <source src="https://cdn.mp4tourl.com/video/free/7f807305-9310-4e9a-b5b4-eee495321b71.mp4" type="video/mp4">
 </video>
-<button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
-</div>
-</div>
-</section>
+<button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button></div></div></section>
 
-<!-- ===== CARTA ===== -->
 <section>
 <h2>Una carta para ti</h2>
-<div class="carta"><p>"Jesús, gracias por cada enseñanza, por cada abrazo y por cada palabra. Nos diste tanto sin pedir nada a cambio. Aunque ya no estés físicamente, tu esencia sigue viva en cada uno de nosotros. Te recordaremos siempre con una sonrisa."</p></div>
-</section>
+<div class="carta"><p>"Jesús, gracias por cada enseñanza, por cada abrazo y por cada palabra. Nos diste tanto sin pedir nada a cambio. Aunque ya no estés físicamente, tu esencia sigue viva en cada uno de nosotros. Te recordaremos siempre con una sonrisa."</p></div></section>
 
-<!-- ===== FORM ===== -->
 <section id="enviar">
 <h2>Envía tu recuerdo</h2>
 <div class="form-wrap">
@@ -337,22 +299,18 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
 <p class="aviso"><strong>Gracias por compartir este momento con nosotros.</strong></p>
 <div class="compartir-wrap">
 <button type="button" class="btn-compartir" onclick="abrirMenuCompartir()" aria-label="Compartir este memorial">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg> Compartir</button>
-</div>
-</div>
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg> Compartir</button></div></div>
 </section>
 
-<!-- ===== FOOTER ===== -->
+
 <footer>
 <p>En memoria de <strong>Jesús Alberto Fierro Techera Sampayo</strong></p>
 <p>Un espacio creado con amor por su familia</p>
 <div class="legal-links">
   <button type="button" onclick="abrirLegal()">Términos y condiciones</button>
 </div>
-<p class="legal-copy">© <span id="anioActual"></span> Memorial Jesús Alberto — Todos los derechos reservados.</p>
-</footer>
+<p class="legal-copy">© <span id="anioActual"></span> Memorial Jesús Alberto — Todos los derechos reservados.</p></footer>
 
-<!-- ===== MENÚ COMPARTIR ===== -->
 <div id="menuCompartir" onclick="if(event.target.id==='menuCompartir')cerrarMenuCompartir()">
 <div class="menu-card" onclick="event.stopPropagation()">
 <h3>Compartir este memorial</h3>
@@ -372,21 +330,16 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
 </div>
 <p class="menu-aviso" id="menuAviso"></p>
 <button type="button" class="menu-cerrar" onclick="cerrarMenuCompartir()">Cerrar</button>
-</div>
-</div>
+</div></div>
 
-<!-- ===== MODAL VIDEO ===== -->
 <div id="modalVideo" onclick="if(event.target.id==='modalVideo')cerrarModalVideo()">
 <button id="cerrarModal" onclick="cerrarModalVideo()" aria-label="Cerrar">✕</button>
-<video id="videoAmpliado" controls playsinline controlslist="nodownload noplaybackrate noremoteplayback nofullscreen" disablepictureinpicture oncontextmenu="return false;"></video>
-</div>
-
-<!-- ===== MODAL TÉRMINOS ===== -->
+<video id="videoAmpliado" controls playsinline controlslist="nodownload noplaybackrate noremoteplayback nofullscreen" disablepictureinpicture oncontextmenu="return false;"></video></div>
 <div id="modalLegal" onclick="if(event.target.id==='modalLegal')cerrarLegal()">
   <div class="legal-card" onclick="event.stopPropagation()">
     <div class="legal-head">
       <h3>Términos y condiciones</h3>
-      <button type="button" onclick="cerrarLegal()" aria-label="Cerrar">✕</button>
+<button type="button" onclick="cerrarLegal()" aria-label="Cerrar">✕</button>
     </div>
     <div class="legal-body">
       <p>Este sitio web es un <strong>espacio creado con amor por la familia de Jesús Alberto Fierro Techera Sampayo</strong>, con el único fin de recordarlo, honrar su memoria y compartir con familiares y amigos los momentos que vivimos junto a él.</p>
@@ -410,20 +363,14 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
 </div>
 
 <script>
-/* ===== AÑO AUTOMÁTICO ===== */
 document.getElementById('anioActual').textContent = new Date().getFullYear();
-
-/* ===== MODAL TÉRMINOS ===== */
 function abrirLegal(){
   document.getElementById('modalLegal').classList.add('activo');
   document.body.style.overflow = 'hidden';
 }
 function cerrarLegal(){
   document.getElementById('modalLegal').classList.remove('activo');
-  document.body.style.overflow = '';
-}
-
-/* ===== PROTECCIÓN GENERAL ===== */
+  document.body.style.overflow = ''; }
 (function(){
 const aviso=document.getElementById('avisoProtegido');let timerAviso;
 function mostrarAviso(msg){aviso.textContent=msg;aviso.classList.add('visible');clearTimeout(timerAviso);timerAviso=setTimeout(()=>aviso.classList.remove('visible'),1800);}
@@ -511,9 +458,8 @@ document.addEventListener('keydown', e => {
     return false;
   }
 }, true);
-
-/* ===== LIBRO DE FOTOS ===== */
 const FOTOS = [
+"https://i.ibb.co/G3sfJQDD/IMG-20261108-WA0012.jpg",
   "https://i.ibb.co/Gv8k97nR/IMG-20261108-WA0003.jpg",
   "https://i.ibb.co/SX3TWkM1/IMG-20261108-WA0006.jpg",
   "https://i.ibb.co/Wp3STtjt/file-000000005bf8820eacd701bfe7112498.png",
@@ -536,16 +482,16 @@ const FOTOS = [
   "https://i.ibb.co/n4Y57x6/FB-IMG-1794111159221.jpg",
   "https://i.ibb.co/4nrzyG3t/Screenshot-20261108-220334-Whats-App-Business.jpg",
   "https://i.ibb.co/fzZ7YhTf/Screenshot-20261108-102255-Whats-App-Business.jpg",
-  "https://i.ibb.co/Y42j04ct/facebook-1794116060458.jpg",
-  "https://i.ibb.co/1YX0pxM7/FB-IMG-1794112102489.jpg",
-  "https://i.ibb.co/YB47fP5m/FB-IMG-1794111639094.jpg",
-  
-  "https://i.ibb.co/m5KxtpfX/IMG-20261108-WA0011.jpg",
-  "https://i.ibb.co/VWzgMtg2/IMG-20261108-WA0012.jpg",
-  "https://i.ibb.co/GrstMmf/IMG-20261108-WA0009.jpg",
-  "https://i.ibb.co/gZFDwYPL/Screenshot-20261108-083253-Gallery.jpg"
-];
-
+"https://i.ibb.co/Y42j04ct/facebook-1794116060458.jpg",
+"https://i.ibb.co/1YX0pxM7/FB-IMG-1794112102489.jpg",
+"https://i.ibb.co/YB47fP5m/FB-IMG-1794111639094.jpg",
+"https://i.ibb.co/m5KxtpfX/IMG-20261108-WA0011.jpg",
+"https://i.ibb.co/VWzgMtg2/IMG-20261108-WA0012.jpg",
+"https://i.ibb.co/GrstMmf/IMG-20261108-WA0009.jpg",
+"https://i.ibb.co/gZFDwYPL/Screenshot-20261108-083253-Gallery.jpg",
+"https://i.ibb.co/3YhDGBFm/facebook-1794116106294.jpg",
+"https://i.ibb.co/0VV6zhdp/Screenshot-20261107-035056-Facebook.jpg",
+  ];
 const libroEscenario = document.getElementById('libroEscenario');
 const libroImg = document.getElementById('libroImg');
 const libroHojaActual = document.getElementById('libroHojaActual');
