@@ -93,6 +93,16 @@ section h2 .subtitulo{display:block;font-size:.7rem;color:var(--suave);letter-sp
 #cerrarModal{position:absolute;top:14px;right:16px;background:rgba(255,255,255,.12);color:#fff;border:none;width:42px;height:42px;border-radius:50%;font-size:1.4rem;line-height:1;cursor:pointer;z-index:2;}
 #cerrarModal:hover{background:var(--acento);color:#0f1419;}
 
+/* ===== PROTECCIÓN EXTRA DE VIDEO ===== */
+video{ -webkit-user-select:none; user-select:none; -webkit-user-drag:none; }
+video::-webkit-media-controls-download-button{display:none !important;}
+video::-webkit-media-controls-overflow-button{display:none !important;}
+video::-internal-media-controls-download-button{display:none !important;}
+video::-webkit-media-controls-enclosure{overflow:hidden;}
+video::-webkit-media-controls-panel{background-image:none !important;}
+#videoAmpliado::-webkit-media-controls-download-button{display:none !important;}
+#videoAmpliado::-webkit-media-controls-overflow-button{display:none !important;}
+
 /* ===== CARTA / FORM / FOOTER ===== */
 .carta{max-width:600px;margin:0 auto;background:var(--tarjeta);padding:20px 18px;border-radius:10px;border-left:3px solid var(--acento);font-style:italic;font-size:.92rem;}
 .form-wrap{max-width:560px;margin:0 auto;}
@@ -111,7 +121,7 @@ button[type="submit"]:disabled{opacity:.7;cursor:wait;transform:none;}
 .aviso{font-size:.78rem;color:var(--suave);text-align:center;margin-top:10px;line-height:1.5;}
 .aviso strong{color:var(--acento);}
 
-/* ===== FOOTER SIMPLE ===== */
+/* ===== FOOTER ===== */
 footer{text-align:center;padding:30px 16px 26px;color:var(--suave);font-size:.8rem;border-top:1px solid var(--borde);}
 footer strong{color:var(--acento);font-weight:normal;}
 footer .legal-links{margin-top:16px;font-size:.8rem;}
@@ -231,32 +241,32 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
 </div>
 </section>
 
-<!-- ===== VIDEOS ===== -->
+<!-- ===== VIDEOS PROTEGIDOS ===== -->
 <section>
 <h2>Videos <span class="subtitulo">su pasatiempo</span></h2>
 <div class="videos">
 <div class="video-item">
-<video controls preload="metadata" playsinline controlslist="nodownload noplaybackrate" disablepictureinpicture oncontextmenu="return false;">
+<video controls preload="none" playsinline controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture oncontextmenu="return false;" onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
 <source src="https://cdn.mp4tourl.com/video/free/c23ff2f9-28d8-46d9-8152-6ae6e42a021d.mp4" type="video/mp4"></video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
 </div>
 <div class="video-item">
-<video controls preload="metadata" playsinline controlslist="nodownload noplaybackrate" disablepictureinpicture oncontextmenu="return false;">
+<video controls preload="none" playsinline controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture oncontextmenu="return false;" onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
 <source src="https://cdn.mp4tourl.com/video/free/1cdebc6d-b1bf-4406-bea3-fde4e591cf20.mp4" type="video/mp4"></video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
 </div>
 <div class="video-item">
-<video controls preload="metadata" playsinline controlslist="nodownload noplaybackrate" disablepictureinpicture oncontextmenu="return false;">
+<video controls preload="none" playsinline controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture oncontextmenu="return false;" onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
 <source src="https://cdn.mp4tourl.com/video/free/007873e4-9d32-4f9e-a7e5-0bbc1eb9ca62.mp4" type="video/mp4"></video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
 </div>
 <div class="video-item">
-<video controls preload="metadata" playsinline controlslist="nodownload noplaybackrate" disablepictureinpicture oncontextmenu="return false;">
+<video controls preload="none" playsinline controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture oncontextmenu="return false;" onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
 <source src="https://cdn.mp4tourl.com/video/free/1830d57d-6ef9-4733-84ef-66a21a1ee77a.mp4" type="video/mp4"></video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
 </div>
 <div class="video-item">
-<video controls preload="metadata" playsinline controlslist="nodownload noplaybackrate" disablepictureinpicture oncontextmenu="return false;">
+<video controls preload="none" playsinline controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture oncontextmenu="return false;" onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
 <source src="https://cdn.mp4tourl.com/video/free/7f807305-9310-4e9a-b5b4-eee495321b71.mp4" type="video/mp4"></video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
 </div>
@@ -299,7 +309,7 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
 </div>
 </section>
 
-<!-- ===== FOOTER SIMPLE ===== -->
+<!-- ===== FOOTER ===== -->
 <footer>
 <p>En memoria de <strong>Jesús Alberto Fierro Techera Sampayo</strong></p>
 <p>Un espacio creado con amor por su familia</p>
@@ -335,13 +345,13 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
 <!-- ===== MODAL VIDEO ===== -->
 <div id="modalVideo" onclick="if(event.target.id==='modalVideo')cerrarModalVideo()">
 <button id="cerrarModal" onclick="cerrarModalVideo()" aria-label="Cerrar">✕</button>
-<video id="videoAmpliado" controls playsinline></video>
+<video id="videoAmpliado" controls playsinline controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture oncontextmenu="return false;"></video>
 </div>
 
 <!-- ===== MODAL TÉRMINOS ===== -->
 <div id="modalLegal" onclick="if(event.target.id==='modalLegal')cerrarLegal()">
   <div class="legal-card" onclick="event.stopPropagation()">
-   <div class="legal-head">
+    <div class="legal-head">
       <h3>Términos y condiciones</h3>
       <button type="button" onclick="cerrarLegal()" aria-label="Cerrar">✕</button>
     </div>
@@ -355,10 +365,10 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
       <p>Al enviar un recuerdo, mensaje, foto o video a través del formulario, confirmas que eres el autor del contenido o cuentas con autorización para compartirlo, y que autorizas a la familia a publicarlo en este memorial. La familia se reserva el derecho de revisar o eliminar cualquier contenido que no considere apropiado.</p>
 
       <h4>Uso del sitio</h4>
-      <p>Te pedimos un uso <strong>respetuoso</strong> de este espacio, acorde con su carácter íntimo y conmemorativo. Queda prohibido el uso comercial del sitio o de sus contenidos, así como la descarga, copia o redistribución de las imágenes sin autorización de la familia.</p>
+      <p>Te pedimos un uso <strong>respetuoso</strong> de este espacio, acorde con su carácter íntimo y conmemorativo. Queda prohibido el uso comercial del sitio o de sus contenidos, así como la descarga, copia o redistribución de las imágenes y videos sin autorización de la familia.</p>
 
       <h4>Derechos de imagen</h4>
-      <p>Si consideras que alguna imagen vulnera tus derechos, puedes solicitar su retirada escribiendo a:<b> con cualquiera de su familia</b> </a>. La familia actuará con la mayor celeridad posible.</p>
+      <p>Si consideras que alguna imagen o video vulnera tus derechos, puedes solicitar su retirada escribiendo a <a href="mailto:contacto@jesusfierro.vercel.app">contacto@jesusfierro.vercel.app</a>. La familia actuará con la mayor celeridad posible.</p>
 
       <h4>Un espacio para el recuerdo</h4>
       <p>Gracias por acompañarnos y por ayudar a mantener viva la memoria de Jesús. Cada visita, cada mensaje y cada recuerdo compartido son un homenaje a su vida.</p>
@@ -367,7 +377,7 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
 </div>
 
 <script>
-/* ===== AÑO AUTOMÁTICO FOOTER ===== */
+/* ===== AÑO AUTOMÁTICO ===== */
 document.getElementById('anioActual').textContent = new Date().getFullYear();
 
 /* ===== MODAL TÉRMINOS ===== */
@@ -380,13 +390,13 @@ function cerrarLegal(){
   document.body.style.overflow = '';
 }
 
-/* ===== PROTECCIÓN ===== */
+/* ===== PROTECCIÓN GENERAL ===== */
 (function(){
 const aviso=document.getElementById('avisoProtegido');let timerAviso;
 function mostrarAviso(msg){aviso.textContent=msg;aviso.classList.add('visible');clearTimeout(timerAviso);timerAviso=setTimeout(()=>aviso.classList.remove('visible'),1800);}
 document.addEventListener('contextmenu',e=>{e.preventDefault();mostrarAviso('🔒 Clic derecho deshabilitado');return false;});
 document.addEventListener('keydown',e=>{const k=e.key.toLowerCase();const bloqueado=e.key==='F12'||e.key==='F8'||(e.ctrlKey&&e.shiftKey&&(k==='i'||k==='j'||k==='c'))||(e.ctrlKey&&(k==='u'||k==='s'||k==='p'))||(e.metaKey&&e.altKey&&(k==='i'||k==='j'||k==='c'))||(e.metaKey&&(k==='u'||k==='s'||k==='p'));if(bloqueado){e.preventDefault();e.stopPropagation();mostrarAviso('🔒 Atajo bloqueado');return false;}},true);
-document.addEventListener('dragstart',e=>{if(e.target.tagName==='IMG'){e.preventDefault();mostrarAviso('🔒 No puedes arrastrar la imagen');return false;}});
+document.addEventListener('dragstart',e=>{if(e.target.tagName==='IMG'||e.target.tagName==='VIDEO'){e.preventDefault();mostrarAviso('🔒 No puedes arrastrar');return false;}});
 document.addEventListener('copy',e=>{const sel=window.getSelection().toString();if(sel.length>40){e.preventDefault();mostrarAviso('🔒 Copia bloqueada');}});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){document.body.classList.add('oculto');}else{setTimeout(()=>document.body.classList.remove('oculto'),80);}});
 window.addEventListener('blur',()=>{document.body.classList.add('oculto');});
@@ -400,22 +410,76 @@ document.addEventListener('mousedown',e=>{if(e.detail>1&&e.target.tagName!=='INP
 const observador=new IntersectionObserver((entries)=>{entries.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible');});},{threshold:0.08});
 document.querySelectorAll('section').forEach(s=>observador.observe(s));
 
-/* ===== VIDEOS AMPLIABLES ===== */
-const modalVideo=document.getElementById('modalVideo');
-const videoAmpliado=document.getElementById('videoAmpliado');
+/* ===== VIDEOS AMPLIABLES CON BLOB (URL oculta) ===== */
+const modalVideo = document.getElementById('modalVideo');
+const videoAmpliado = document.getElementById('videoAmpliado');
+
 function ampliarVideo(btn){
-  const video=btn.parentElement.querySelector('video');
-  const fuente=video.querySelector('source');
-  videoAmpliado.src=fuente?fuente.src:video.src;
+  const video = btn.parentElement.querySelector('video');
+  const fuente = video.querySelector('source');
+  const urlOriginal = fuente ? fuente.src : video.src;
+
+  // Intentar cargar como Blob para ocultar la URL real en el inspector
+  fetch(urlOriginal, {mode: 'cors'})
+    .then(r => {
+      if (!r.ok) throw new Error('fetch falló');
+      return r.blob();
+    })
+    .then(blob => {
+      const blobUrl = URL.createObjectURL(blob);
+      videoAmpliado.src = blobUrl;
+      videoAmpliado.dataset.blobUrl = blobUrl;
+      prepararVideoAmpliado();
+    })
+    .catch(() => {
+      // Fallback: URL directa con protecciones básicas
+      videoAmpliado.src = urlOriginal;
+      prepararVideoAmpliado();
+    });
+}
+
+function prepararVideoAmpliado(){
+  videoAmpliado.controls = true;
+  videoAmpliado.controlsList = 'nodownload noplaybackrate noremoteplayback';
+  videoAmpliado.disablePictureInPicture = true;
+  videoAmpliado.setAttribute('controlslist', 'nodownload noplaybackrate noremoteplayback');
+  videoAmpliado.setAttribute('disablepictureinpicture', '');
   videoAmpliado.play().catch(()=>{});
   modalVideo.classList.add('activo');
 }
+
 function cerrarModalVideo(){
   modalVideo.classList.remove('activo');
   videoAmpliado.pause();
+  if (videoAmpliado.dataset.blobUrl) {
+    URL.revokeObjectURL(videoAmpliado.dataset.blobUrl);
+    delete videoAmpliado.dataset.blobUrl;
+  }
   videoAmpliado.removeAttribute('src');
   videoAmpliado.load();
 }
+
+/* Bloquear clic derecho y arrastre en TODOS los videos */
+document.querySelectorAll('video').forEach(v => {
+  v.addEventListener('contextmenu', e => e.preventDefault());
+  v.addEventListener('dragstart', e => e.preventDefault());
+  // Reforzar controlslist cada vez que cargue
+  v.addEventListener('loadedmetadata', () => {
+    v.controlsList = 'nodownload noplaybackrate noremoteplayback';
+  });
+});
+
+/* Bloquear Ctrl+S / Cmd+S cuando hay un video reproduciéndose */
+document.addEventListener('keydown', e => {
+  const hayVideoActivo = modalVideo.classList.contains('activo') ||
+    [...document.querySelectorAll('video')].some(v => !v.paused);
+  if (!hayVideoActivo) return;
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+}, true);
 
 /* ===== LIBRO DE FOTOS ===== */
 const FOTOS = [
