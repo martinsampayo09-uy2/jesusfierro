@@ -7,7 +7,8 @@
 <meta property="og:image" content="https://i.ibb.co/zHsgHrmD/file-00000000e940820e836448998914c1f9.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://jesusfierro.vercel.app/">
-<meta name="twitter:card" content="summary_large_image"><style>
+<meta name="twitter:card" content="summary_large_image">
+<style>
 :root{--fondo:#0f1419;--tarjeta:#1a2129;--texto:#e8e6e3;--suave:#9aa5b1;--acento:#c9a86a;--borde:#2a333d;}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none;}
 img{-webkit-user-drag:none;pointer-events:auto;user-select:none;}
@@ -25,24 +26,122 @@ body{font-family:Georgia,serif;background:var(--fondo);color:var(--texto);line-h
 header{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0;background:var(--fondo);border-bottom:1px solid var(--borde);overflow:hidden;}
 header .fondo-img{position:absolute;inset:0;background:url('https://i.ibb.co/zHsgHrmD/file-00000000e940820e836448998914c1f9.png') center center/contain no-repeat;background-color:#0a0f14;z-index:0;}
 header .capa{position:absolute;inset:0;background:linear-gradient(rgba(15,20,25,.35),rgba(15,20,25,.55));z-index:1;}
-header .contenido{position:relative;z-index:2;width:100%;min-height:clamp(320px,62vh,560px);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:50px 18px 45px;} header h1{font-size:clamp(1.3rem,5.5vw,2.4rem);font-weight:normal;letter-spacing:.5px;margin-bottom:6px;text-shadow:0 2px 14px rgba(0,0,0,.95),0 0 30px rgba(0,0,0,.7);}
-header .fechas{color:var(--acento);font-size:.85rem;letter-spacing:3px;margin-bottom:14px;text-shadow:0 2px 10px rgba(0,0,0,.95);} header p{max-width:420px;color:#f2f0ee;font-style:italic;font-size:.9rem;text-shadow:0 2px 12px rgba(0,0,0,.95);}
-.scroll{margin-top:18px;color:#e8e6e3;font-size:.75rem;animation:flotar 2s infinite;text-shadow:0 2px 8px rgba(0,0,0,.9);}
-@keyframes flotar{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+header .contenido{position:relative;z-index:2;width:100%;min-height:clamp(320px,62vh,560px);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:50px 18px 45px;}
+header h1{font-size:clamp(1.3rem,5.5vw,2.4rem);font-weight:normal;letter-spacing:.5px;margin-bottom:6px;text-shadow:0 2px 14px rgba(0,0,0,.95),0 0 30px rgba(0,0,0,.7);}
+header .fechas{color:var(--acento);font-size:.85rem;letter-spacing:3px;margin-bottom:14px;text-shadow:0 2px 10px rgba(0,0,0,.95);}
+header p{max-width:420px;color:#f2f0ee;font-style:italic;font-size:.9rem;text-shadow:0 2px 12px rgba(0,0,0,.95);}
 section{max-width:1000px;margin:0 auto;padding:30px 16px;opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
-section.visible{opacity:1;transform:translateY(0);} section h2{font-size:1rem;font-weight:normal;text-align:center;color:var(--acento);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;}
+section.visible{opacity:1;transform:translateY(0);}
+section h2{font-size:1rem;font-weight:normal;text-align:center;color:var(--acento);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;}
 section h2::after{content:"";display:block;width:36px;height:1px;background:var(--acento);margin:8px auto 0;opacity:.6;}
 section h2 .subtitulo{display:block;font-size:.7rem;color:var(--suave);letter-spacing:1px;margin-top:6px;text-transform:none;font-style:italic;font-weight:normal;}
-.carrusel{position:relative;overflow:hidden;border-radius:10px;background:#0a0f14;}
-.pista{display:flex;transition:transform .4s ease;will-change:transform;}
-.pista img{flex:0 0 100%;width:100%;height:420px;object-fit:contain;background:#0a0f14;user-select:none;padding:6px 0;pointer-events:auto;cursor:default;}
-.flecha{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;border:none;font-size:1.2rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);z-index:3;}
-.flecha:active{background:rgba(201,168,106,.7);}
-.flecha.izq{left:8px;}
-.flecha.der{right:8px;}
-.puntos{display:flex;justify-content:center;gap:6px;padding:10px 0;}
-.punto{width:6px;height:6px;border-radius:50%;background:#3a444f;transition:background .3s,transform .3s;}
-.punto.activo{background:var(--acento);transform:scale(1.4);}
+
+/* ===== LIBRO / CARRUSEL DE TODAS LAS FOTOS ===== */
+.libro-wrap{
+  position:relative;width:100%;max-width:1000px;margin:0 auto;
+  perspective:1600px;
+}
+.libro-escenario{
+  position:relative;width:100%;height:clamp(340px,60vh,620px);
+  border-radius:12px;overflow:hidden;background:#0a0f14;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  touch-action:pan-y;
+}
+.libro-hoja{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  transform-origin:center center;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  will-change:transform,opacity;
+}
+.libro-hoja img{
+  max-width:100%;max-height:100%;object-fit:contain;
+  user-select:none;-webkit-user-drag:none;pointer-events:none;
+  transition:none;
+}
+.libro-hoja.arrastrando img{ filter:brightness(.85); }
+
+/* Animaciones al soltar */
+.libro-hoja.completar-izq{ animation:completarIzq .45s ease forwards; }
+.libro-hoja.completar-der{ animation:completarDer .45s ease forwards; }
+.libro-hoja.rebobinar{ animation:rebobinar .3s ease forwards; }
+@keyframes completarIzq{
+  0%{transform:translateX(var(--tx,0)) rotateY(var(--ry,0));opacity:1;}
+  100%{transform:translateX(-60%) rotateY(-75deg);opacity:0;}
+}
+@keyframes completarDer{
+  0%{transform:translateX(var(--tx,0)) rotateY(var(--ry,0));opacity:1;}
+  100%{transform:translateX(60%) rotateY(75deg);opacity:0;}
+}
+@keyframes rebobinar{
+  0%{transform:translateX(var(--tx,0)) rotateY(var(--ry,0));opacity:1;}
+  100%{transform:translateX(0) rotateY(0);opacity:1;}
+}
+
+.libro-hoja-entrante{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  will-change:transform,opacity;pointer-events:none;
+}
+.libro-hoja-entrante img{
+  max-width:100%;max-height:100%;object-fit:contain;
+  user-select:none;-webkit-user-drag:none;pointer-events:none;
+}
+.libro-hoja-entrante.entrando-izq{ animation:entrarIzq .45s ease forwards; }
+.libro-hoja-entrante.entrando-der{ animation:entrarDer .45s ease forwards; }
+@keyframes entrarIzq{
+  0%{transform:translateX(-60%) rotateY(-75deg);opacity:0;}
+  100%{transform:translateX(0) rotateY(0);opacity:1;}
+}
+@keyframes entrarDer{
+  0%{transform:translateX(60%) rotateY(75deg);opacity:0;}
+  100%{transform:translateX(0) rotateY(0);opacity:1;}
+}
+
+/* Flechas del libro */
+.libro-flecha{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.55);
+  color:#fff;border:1px solid rgba(255,255,255,.15);font-size:1.5rem;line-height:1;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(4px);z-index:5;transition:.2s;
+}
+.libro-flecha:hover{background:rgba(201,168,106,.85);color:#0f1419;border-color:var(--acento);}
+.libro-flecha.izq{left:10px;}
+.libro-flecha.der{right:10px;}
+
+/* Contador y hint */
+.libro-contador{
+  position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+  color:var(--acento);font-size:.85rem;letter-spacing:2px;
+  background:rgba(0,0,0,.6);padding:6px 16px;border-radius:20px;
+  pointer-events:none;z-index:5;
+}
+.libro-hint{
+  position:absolute;top:14px;left:50%;transform:translateX(-50%);
+  color:var(--suave);font-size:.72rem;letter-spacing:1px;
+  background:rgba(0,0,0,.55);padding:6px 14px;border-radius:20px;
+  pointer-events:none;opacity:.75;transition:opacity .5s;z-index:5;
+}
+.libro-hint.oculto{opacity:0;}
+
+/* Índice de miniaturas (para saltar rápido) */
+.indice{
+  display:flex;gap:6px;overflow-x:auto;padding:10px 4px;
+  scrollbar-width:thin;scrollbar-color:var(--acento) transparent;
+  -webkit-overflow-scrolling:touch;
+}
+.indice::-webkit-scrollbar{height:6px;}
+.indice::-webkit-scrollbar-thumb{background:var(--acento);border-radius:3px;}
+.indice::-webkit-scrollbar-track{background:transparent;}
+.indice img{
+  width:60px;height:60px;flex:0 0 auto;object-fit:cover;border-radius:6px;
+  cursor:pointer;opacity:.5;transition:opacity .25s,transform .2s,border .2s;
+  border:2px solid transparent;
+}
+.indice img:hover{opacity:.85;transform:scale(1.05);}
+.indice img.activa{opacity:1;border-color:var(--acento);transform:scale(1.08);}
+
+/* ===== PALABRAS ===== */
 .palabras-wrap{position:relative;overflow:hidden;padding:4px 0;}
 .palabras-wrap::before,.palabras-wrap::after{content:"";position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none;}
 .palabras-wrap::before{left:0;background:linear-gradient(90deg,var(--fondo),transparent);}
@@ -55,20 +154,19 @@ section h2 .subtitulo{display:block;font-size:.7rem;color:var(--suave);letter-sp
 .palabra-card .autor{color:var(--acento);font-size:.8rem;letter-spacing:1px;font-style:normal;text-align:right;}
 @keyframes palabrasMov{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
-/* ===== VIDEOS: doble columna, sin barras negras, grandes ===== */
+/* ===== VIDEOS ===== */
 .videos{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;align-items:stretch;}
 .video-item{background:var(--tarjeta);border-radius:10px;overflow:hidden;position:relative;display:flex;flex-direction:column;box-shadow:0 6px 18px rgba(0,0,0,.45);}
 .video-item video{width:100%;aspect-ratio:1/1;display:block;background:#000;object-fit:cover;cursor:pointer;border-radius:10px;}
 .video-item .btn-ampliar{position:absolute;top:6px;right:6px;z-index:5;background:rgba(0,0,0,.6);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:5px 9px;font-size:.9rem;line-height:1;cursor:pointer;backdrop-filter:blur(3px);transition:.2s;}
 .video-item .btn-ampliar:hover{background:rgba(201,168,106,.9);color:#0f1419;border-color:var(--acento);}
-
-/* Modal de video ampliado */
 #modalVideo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:200;justify-content:center;align-items:center;padding:10px;}
 #modalVideo.activo{display:flex;}
 #modalVideo video{width:100%;max-width:1100px;max-height:90vh;background:#000;border-radius:8px;outline:none;}
 #cerrarModal{position:absolute;top:14px;right:16px;background:rgba(255,255,255,.12);color:#fff;border:none;width:42px;height:42px;border-radius:50%;font-size:1.4rem;line-height:1;cursor:pointer;z-index:2;}
 #cerrarModal:hover{background:var(--acento);color:#0f1419;}
 
+/* ===== CARTA / FORM / FOOTER ===== */
 .carta{max-width:600px;margin:0 auto;background:var(--tarjeta);padding:20px 18px;border-radius:10px;border-left:3px solid var(--acento);font-style:italic;font-size:.92rem;}
 .form-wrap{max-width:560px;margin:0 auto;}
 form{background:var(--tarjeta);padding:22px 18px;border-radius:12px;border:1px solid var(--borde);display:flex;flex-direction:column;gap:14px;}
@@ -104,55 +202,63 @@ footer strong{color:var(--acento);font-weight:normal;}
 .menu-cerrar{display:block;width:100%;margin-top:16px;padding:12px;background:transparent;border:1px solid var(--borde);color:var(--suave);border-radius:8px;font-family:inherit;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.2s;}
 .menu-cerrar:hover{color:var(--texto);border-color:var(--acento);}
 .menu-aviso{font-size:.75rem;color:var(--acento);text-align:center;margin-top:10px;min-height:1em;}
-@media(min-width:700px){header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}header h1{font-size:2.6rem;}section{padding:48px 20px;}section h2{font-size:1.3rem;margin-bottom:28px;}.pista img{height:620px;}.videos{gap:22px;}.video-item video{aspect-ratio:16/10;}.palabra-card{width:360px;font-size:1rem;}.palabras-track{animation-duration:50s;}#menuCompartir{align-items:center;}}
-@media(max-width:380px){.pista img{height:340px;}.videos{gap:6px;}.video-item .btn-ampliar{padding:4px 7px;font-size:.8rem;}}
+
+@media(min-width:700px){
+  header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
+  header h1{font-size:2.6rem;}
+  section{padding:48px 20px;}
+  section h2{font-size:1.3rem;margin-bottom:28px;}
+  .libro-escenario{height:min(70vh,640px);}
+  .libro-flecha{width:52px;height:52px;font-size:1.8rem;}
+  .indice img{width:72px;height:72px;}
+  .videos{gap:22px;}
+  .video-item video{aspect-ratio:16/10;}
+  .palabra-card{width:360px;font-size:1rem;}
+  .palabras-track{animation-duration:50s;}
+  #menuCompartir{align-items:center;}
+}
+@media(max-width:380px){
+  .libro-flecha{width:36px;height:36px;font-size:1.2rem;}
+  .videos{gap:6px;}
+  .video-item .btn-ampliar{padding:4px 7px;font-size:.8rem;}
+}
 </style>
 </head>
 <body id="inicio">
 <div id="antiCaptura"></div>
 <div id="avisoProtegido">🔒 Contenido protegido</div>
+
 <header>
 <div class="fondo-img" aria-hidden="true"></div>
 <div class="capa" aria-hidden="true"></div>
 <div class="contenido">
 <h1>Jesús Alberto Fierro Techera Sampayo</h1>
 <div class="fechas">1995 — 21/6/2026...</div>
-<p>"Tu recuerdo vive en cada uno de nosotros."</p></div></header><section>
-<h2>Galería de recuerdos</h2>
-<div class="carrusel" id="carrusel">
-<div class="pista" id="pista">
-    <img src="https://i.ibb.co/Gv8k97nR/IMG-20261108-WA0003.jpg" alt="jime mati gus" draggable="false">
-    <img src="https://i.ibb.co/SX3TWkM1/IMG-20261108-WA0006.jpg" alt="otra" draggable="false">
-    <img src="https://i.ibb.co/Wp3STtjt/file-000000005bf8820eacd701bfe7112498.png" alt="Recuerdo 1" draggable="false">
-<img src="https://i.ibb.co/hx0LHDcd/Screenshot-20261107-033219-Facebook.jpg" alt="Recuerdo 1" draggable="false">
-<img src="https://i.ibb.co/rKD6yCwC/Screenshot-20261107-014627-Photos.jpg" alt="Recuerdo 2" draggable="false">
-<img src="https://i.ibb.co/JWjKq0fH/Screenshot-20261107-014605-Photos.jpg" alt="Recuerdo 3" draggable="false">
-<img src="https://i.ibb.co/zHsgHrmD/file-00000000e940820e836448998914c1f9.png" alt="Jesús Alberto" draggable="false">
-<img src="https://i.ibb.co/hRsDtRRw/Screenshot-20261107-033111-Facebook.jpg" alt="Recuerdo 5" draggable="false">
-<img src="https://i.ibb.co/Hph1D7J1/Screenshot-20261107-033139-Facebook.jpg" alt="Recuerdo 6" draggable="false">
-<img src="https://i.ibb.co/p6V2G1N2/Screenshot-20261107-194654-Whats-App-Business.jpg" alt="Recuerdo 7" draggable="false">
-<img src="https://i.ibb.co/6qGZMw4/Screenshot-20261107-033257-Facebook.jpg" alt="Recuerdo 9" draggable="false">
-<img src="https://i.ibb.co/xtbL3zCX/Screenshot-20261107-033234-Facebook.jpgp" alt="Recuerdo 8" draggable="false">
-<img src="https://i.ibb.co/GvC3X88H/Screenshot-20261107-033320-Facebook.jpg" alt="Recuerdo 10" draggable="false">
-<img src="https://i.ibb.co/1JZcCZvJ/Screenshot-20261107-194627-Whats-App-Business.jpg" alt="Recuerdo 11" draggable="false">
-<img src="https://i.ibb.co/9myjmW1x/Screenshot-20261107-194636-Whats-App-Business.jpg" alt="Recuerdo 12" draggable="false">
-<img src="https://i.ibb.co/zhwKsZkj/Screenshot-20261107-194641-Whats-App-Business.jpg" alt="Recuerdo 13" draggable="false">
-<img src="https://i.ibb.co/gLqSKZyh/IMG-20261107-WA0026.jpg" alt="Recuerdo 11" draggable="false">
-<img src="https://i.ibb.co/Zz8kPr1b/Screenshot-20261107-014658-Photos.jpg" alt="con el jofo" draggable="false">
-<img src="https://i.ibb.co/p66fqWC1/Screenshot-20261107-194647-Whats-App-Business.jpg" alt="Recuerdo 15" draggable="false">
-<img src="https://i.ibb.co/n4Y57x6/FB-IMG-1794111159221.jpg" alt="con su amir" draggable="false">
-<img src="https://i.ibb.co/4nrzyG3t/Screenshot-20261108-220334-Whats-App-Business.jpg" alt="AGREGANDO..." draggable="false">
-<img src="https://i.ibb.co/fzZ7YhTf/Screenshot-20261108-102255-Whats-App-Business.jpg" alt="conmelek" draggable="false">
-<img src="https://i.ibb.co/Y42j04ct/facebook-1794116060458.jpg" alt="al monte" draggable="false">
-<img src="https://i.ibb.co/1YX0pxM7/FB-IMG-1794112102489.jpg" alt="replica" draggable="false">
-<img src="https://i.ibb.co/YB47fP5m/FB-IMG-1794111639094.jpg" alt="arenerosg" draggable="false">
-<img src="https://i.ibb.co/gZFDwYPL/Screenshot-20261108-083253-Gallery.jpg" alt="al monte" draggable="false">
-
+<p>"Tu recuerdo vive en cada uno de nosotros."</p>
 </div>
-<button class="flecha izq" onclick="mover(-1)" aria-label="Anterior">‹</button>
-<button class="flecha der" onclick="mover(1)" aria-label="Siguiente">›</button>
-<div class="puntos" id="puntos"></div>
-</div></section><section>
+</header>
+
+<!-- ===== LIBRO DE TODAS LAS FOTOS ===== -->
+<section>
+<h2>Libro de recuerdos <span class="subtitulo">desliza para pasar hoja</span></h2>
+<div class="libro-wrap">
+  <div class="libro-escenario" id="libroEscenario">
+    <div class="libro-hoja" id="libroHojaActual">
+      <img id="libroImg" src="" alt="">
+    </div>
+  </div>
+  <button class="libro-flecha izq" onclick="libroMover(-1)" aria-label="Anterior">‹</button>
+  <button class="libro-flecha der" onclick="libroMover(1)" aria-label="Siguiente">›</button>
+  <div class="libro-hint" id="libroHint">desliza para pasar hoja</div>
+  <div class="libro-contador" id="libroContador"></div>
+</div>
+
+<!-- Índice de miniaturas -->
+<div class="indice" id="indice"></div>
+</section>
+
+<!-- ===== PALABRAS ===== -->
+<section>
 <h2>Palabras que lo recuerdan</h2>
 <div class="palabras-wrap">
 <div class="palabras-track" id="palabrasTrack">
@@ -167,8 +273,12 @@ footer strong{color:var(--acento);font-weight:normal;}
 <div class="palabra-card"><p>"Gracias por todo, magibert. Siempre estarás en nuestro corazón."</p><span class="autor">— sus compañeros</span></div>
 <div class="palabra-card"><p>"Su alegría era contagiosa. Cada vez que lo recuerdo, sonrío."</p><span class="autor">— Su hija</span></div>
 <div class="palabra-card"><p>"Un vecino ejemplar, siempre dispuesto a ayudar sin esperar nada."</p><span class="autor">— Los vecinos</span></div>
-<div class="palabra-card"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div></div></div></section>
+<div class="palabra-card"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div>
+</div>
+</div>
+</section>
 
+<!-- ===== VIDEOS ===== -->
 <section>
 <h2>Videos <span class="subtitulo">su pasatiempo</span></h2>
 <div class="videos">
@@ -197,10 +307,16 @@ footer strong{color:var(--acento);font-weight:normal;}
 <source src="https://cdn.mp4tourl.com/video/free/7f807305-9310-4e9a-b5b4-eee495321b71.mp4" type="video/mp4"></video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
 </div>
-</div></section><section>
-    
+</div>
+</section>
+
+<!-- ===== CARTA ===== -->
+<section>
 <h2>Una carta para ti</h2>
-<div class="carta"><p>"Jesús, gracias por cada enseñanza, por cada abrazo y por cada palabra. Nos diste tanto sin pedir nada a cambio. Aunque ya no estés físicamente, tu esencia sigue viva en cada uno de nosotros. Te recordaremos siempre con una sonrisa."</p></div></section>
+<div class="carta"><p>"Jesús, gracias por cada enseñanza, por cada abrazo y por cada palabra. Nos diste tanto sin pedir nada a cambio. Aunque ya no estés físicamente, tu esencia sigue viva en cada uno de nosotros. Te recordaremos siempre con una sonrisa."</p></div>
+</section>
+
+<!-- ===== FORM ===== -->
 <section id="enviar">
 <h2>Envía tu recuerdo</h2>
 <div class="form-wrap">
@@ -220,15 +336,22 @@ footer strong{color:var(--acento);font-weight:normal;}
 <input type="file" id="archivo" name="attachment" accept="image/*,video/*">
 <p class="hint">Máximo 10 MB por archivo. Si tu video pesa más, súbelo a Google Drive y pega el enlace en el mensaje.</p>
 <button type="submit" id="btnEnviar">Enviar mi recuerdo ✉</button>
-<p id="estadoForm" style="text-align:center;font-size:.85rem;min-height:1.2em;margin-top:4px;"></p></form>
+<p id="estadoForm" style="text-align:center;font-size:.85rem;min-height:1.2em;margin-top:4px;"></p>
+</form>
 <p class="aviso"><strong>Gracias por compartir este momento con nosotros.</strong></p>
 <div class="compartir-wrap">
 <button type="button" class="btn-compartir" onclick="abrirMenuCompartir()" aria-label="Compartir este memorial">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg> Compartir</button></div></div></section>
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg> Compartir</button>
+</div>
+</div>
+</section>
+
 <footer>
 <p>En memoria de <strong>Jesús Alberto Fierro Techera Sampayo</strong></p>
 <p>Un espacio creado con amor por su familia</p>
 </footer>
+
+<!-- ===== MENÚ COMPARTIR ===== -->
 <div id="menuCompartir" onclick="if(event.target.id==='menuCompartir')cerrarMenuCompartir()">
 <div class="menu-card" onclick="event.stopPropagation()">
 <h3>Compartir este memorial</h3>
@@ -244,23 +367,39 @@ footer strong{color:var(--acento);font-weight:normal;}
 <a class="menu-op" id="opEmail">
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> Email</a>
 <button type="button" class="menu-op" id="opCopiar">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> Copiar</button></div>
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> Copiar</button>
+</div>
 <p class="menu-aviso" id="menuAviso"></p>
 <button type="button" class="menu-cerrar" onclick="cerrarMenuCompartir()">Cerrar</button>
-</div></div>
+</div>
+</div>
 
-<!-- Modal para ampliar video -->
+<!-- ===== MODAL VIDEO ===== -->
 <div id="modalVideo" onclick="if(event.target.id==='modalVideo')cerrarModalVideo()">
 <button id="cerrarModal" onclick="cerrarModalVideo()" aria-label="Cerrar">✕</button>
 <video id="videoAmpliado" controls playsinline></video>
 </div>
 
 <script>
-(function(){const aviso=document.getElementById('avisoProtegido');let timerAviso;function mostrarAviso(msg){aviso.textContent=msg;aviso.classList.add('visible');clearTimeout(timerAviso);timerAviso=setTimeout(()=>aviso.classList.remove('visible'),1800);}document.addEventListener('contextmenu',e=>{e.preventDefault();mostrarAviso('🔒 Clic derecho deshabilitado');return false;});document.addEventListener('keydown',e=>{const k=e.key.toLowerCase();const bloqueado=e.key==='F12'||e.key==='F8'||(e.ctrlKey&&e.shiftKey&&(k==='i'||k==='j'||k==='c'))||(e.ctrlKey&&(k==='u'||k==='s'||k==='p'))||(e.metaKey&&e.altKey&&(k==='i'||k==='j'||k==='c'))||(e.metaKey&&(k==='u'||k==='s'||k==='p'));if(bloqueado){e.preventDefault();e.stopPropagation();mostrarAviso('🔒 Atajo bloqueado');return false;}},true);document.addEventListener('dragstart',e=>{if(e.target.tagName==='IMG'){e.preventDefault();mostrarAviso('🔒 No puedes arrastrar la imagen');return false;}});document.addEventListener('copy',e=>{const sel=window.getSelection().toString();if(sel.length>40){e.preventDefault();mostrarAviso('🔒 Copia bloqueada');}});document.addEventListener('visibilitychange',()=>{if(document.hidden){document.body.classList.add('oculto');}else{setTimeout(()=>document.body.classList.remove('oculto'),80);}});window.addEventListener('blur',()=>{document.body.classList.add('oculto');});window.addEventListener('focus',()=>{setTimeout(()=>document.body.classList.remove('oculto'),80);});document.addEventListener('keyup',e=>{if(e.key==='PrintScreen'||e.key==='Snapshot'){navigator.clipboard.writeText('').catch(()=>{});mostrarAviso('🔒 Captura no permitida');}});document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key.toLowerCase()==='s'){e.preventDefault();mostrarAviso('🔒 Captura no permitida');}});document.addEventListener('mousedown',e=>{if(e.detail>1&&e.target.tagName!=='INPUT'&&e.target.tagName!=='TEXTAREA'){e.preventDefault();}});})();
+/* ===== PROTECCIÓN ===== */
+(function(){
+const aviso=document.getElementById('avisoProtegido');let timerAviso;
+function mostrarAviso(msg){aviso.textContent=msg;aviso.classList.add('visible');clearTimeout(timerAviso);timerAviso=setTimeout(()=>aviso.classList.remove('visible'),1800);}
+document.addEventListener('contextmenu',e=>{e.preventDefault();mostrarAviso('🔒 Clic derecho deshabilitado');return false;});
+document.addEventListener('keydown',e=>{const k=e.key.toLowerCase();const bloqueado=e.key==='F12'||e.key==='F8'||(e.ctrlKey&&e.shiftKey&&(k==='i'||k==='j'||k==='c'))||(e.ctrlKey&&(k==='u'||k==='s'||k==='p'))||(e.metaKey&&e.altKey&&(k==='i'||k==='j'||k==='c'))||(e.metaKey&&(k==='u'||k==='s'||k==='p'));if(bloqueado){e.preventDefault();e.stopPropagation();mostrarAviso('🔒 Atajo bloqueado');return false;}},true);
+document.addEventListener('dragstart',e=>{if(e.target.tagName==='IMG'){e.preventDefault();mostrarAviso('🔒 No puedes arrastrar la imagen');return false;}});
+document.addEventListener('copy',e=>{const sel=window.getSelection().toString();if(sel.length>40){e.preventDefault();mostrarAviso('🔒 Copia bloqueada');}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){document.body.classList.add('oculto');}else{setTimeout(()=>document.body.classList.remove('oculto'),80);}});
+window.addEventListener('blur',()=>{document.body.classList.add('oculto');});
+window.addEventListener('focus',()=>{setTimeout(()=>document.body.classList.remove('oculto'),80);});
+document.addEventListener('keyup',e=>{if(e.key==='PrintScreen'||e.key==='Snapshot'){navigator.clipboard.writeText('').catch(()=>{});mostrarAviso('🔒 Captura no permitida');}});
+document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key.toLowerCase()==='s'){e.preventDefault();mostrarAviso('🔒 Captura no permitida');}});
+document.addEventListener('mousedown',e=>{if(e.detail>1&&e.target.tagName!=='INPUT'&&e.target.tagName!=='TEXTAREA'){e.preventDefault();}});
+})();
 
-const pista=document.getElementById('pista');const imgs=pista.querySelectorAll('img');const puntosCont=document.getElementById('puntos');let actual=0;imgs.forEach((_,i)=>{const d=document.createElement('div');d.className='punto'+(i===0?' activo':'');d.onclick=()=>ir(i);puntosCont.appendChild(d);});const puntos=puntosCont.querySelectorAll('.punto');function ir(i){actual=(i+imgs.length)%imgs.length;pista.style.transform=`translateX(-${actual*100}%)`;puntos.forEach((p,idx)=>p.classList.toggle('activo',idx===actual));}function mover(dir){ir(actual+dir);}let inicioX=0,moviendo=false;pista.addEventListener('touchstart',e=>{inicioX=e.touches[0].clientX;moviendo=true;},{passive:true});pista.addEventListener('touchend',e=>{if(!moviendo)return;moviendo=false;const dif=e.changedTouches[0].clientX-inicioX;if(Math.abs(dif)>40)mover(dif<0?1:-1);});setInterval(()=>{mover(1);},6000);pista.addEventListener('click',e=>{if(e.target.tagName==='IMG')e.preventDefault();});document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')mover(-1);if(e.key==='ArrowRight')mover(1);});
-
-const observador=new IntersectionObserver((entries)=>{entries.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible');});},{threshold:0.08});document.querySelectorAll('section').forEach(s=>observador.observe(s));
+/* ===== OBSERVADOR SECTION ===== */
+const observador=new IntersectionObserver((entries)=>{entries.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible');});},{threshold:0.08});
+document.querySelectorAll('section').forEach(s=>observador.observe(s));
 
 /* ===== VIDEOS AMPLIABLES ===== */
 const modalVideo=document.getElementById('modalVideo');
@@ -278,8 +417,234 @@ function cerrarModalVideo(){
   videoAmpliado.removeAttribute('src');
   videoAmpliado.load();
 }
-document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrarModalVideo();});
 
-const TEXTO_COMPARTIR='';const URL_SITIO='https://jesusfierro.vercel.app/';function abrirMenuCompartir(){const url=URL_SITIO;const texto=encodeURIComponent(TEXTO_COMPARTIR+' '+url);document.getElementById('opWhatsApp').href='https://wa.me/?text='+texto;document.getElementById('opFacebook').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);document.getElementById('opTwitter').href='https://twitter.com/intent/tweet?text='+encodeURIComponent(TEXTO_COMPARTIR)+'&url='+encodeURIComponent(url);document.getElementById('opTelegram').href='https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(TEXTO_COMPARTIR);document.getElementById('opEmail').href='mailto:?subject='+encodeURIComponent('En memoria de Jesús Alberto')+'&body='+texto;document.getElementById('menuAviso').textContent='';document.getElementById('menuCompartir').classList.add('activo');}function cerrarMenuCompartir(){document.getElementById('menuCompartir').classList.remove('activo');}document.getElementById('opCopiar').addEventListener('click',async()=>{const url=URL_SITIO;const aviso=document.getElementById('menuAviso');try{await navigator.clipboard.writeText(url);aviso.textContent='✓ Enlace copiado al portapapeles';}catch(err){const tmp=document.createElement('textarea');tmp.value=url;document.body.appendChild(tmp);tmp.select();try{document.execCommand('copy');aviso.textContent='✓ Enlace copiado';}catch(e){aviso.textContent='⚠ No se pudo copiar. Copia el enlace manualmente.';}document.body.removeChild(tmp);}setTimeout(()=>{aviso.textContent='';},2500);});document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrarMenuCompartir();});
-(function(){const form=document.getElementById('formRecuerdo');const btn=document.getElementById('btnEnviar');const estado=document.getElementById('estadoForm');const archivo=document.getElementById('archivo');const MAX_MB=10;const MAX_BYTES=MAX_MB*1024*1024;archivo.addEventListener('change',()=>{if(archivo.files[0]&&archivo.files[0].size>MAX_BYTES){estado.textContent=`⚠ Este archivo pesa más de ${MAX_MB} MB. Súbelo a Google Drive y pega el enlace en el mensaje.`;estado.style.color='#e0a96d';archivo.value='';}else{estado.textContent='';estado.style.color='';}});form.addEventListener('submit',async function(e){e.preventDefault();if(archivo.files[0]&&archivo.files[0].size>MAX_BYTES){estado.textContent=`⚠ El archivo supera los ${MAX_MB} MB. Intenta con uno más pequeño o pega un enlace de Drive en el mensaje.`;estado.style.color='#e0a96d';return;}btn.disabled=true;btn.textContent='Enviando...';estado.textContent='';estado.style.color='';try{const res=await fetch(form.action,{method:'POST',body:new FormData(form)});const data=await res.json();if(data.success){estado.textContent='✓ ¡Gracias! Tu recuerdo fue enviado a la familia.';estado.style.color='#c9a86a';form.reset();}else{estado.textContent='⚠ No se pudo enviar. Inténtalo de nuevo.';estado.style.color='#e07a5f';}}catch(err){estado.textContent='⚠ Error de conexión. Revisa tu internet e inténtalo otra vez.';estado.style.color='#e07a5f';}finally{btn.disabled=false;btn.textContent='Enviar mi recuerdo ✉';}});})();
-</script></body></html>
+/* ===== LIBRO DE FOTOS ===== */
+const FOTOS = [
+  "https://i.ibb.co/Gv8k97nR/IMG-20261108-WA0003.jpg",
+  "https://i.ibb.co/SX3TWkM1/IMG-20261108-WA0006.jpg",
+  "https://i.ibb.co/Wp3STtjt/file-000000005bf8820eacd701bfe7112498.png",
+  "https://i.ibb.co/hx0LHDcd/Screenshot-20261107-033219-Facebook.jpg",
+  "https://i.ibb.co/rKD6yCwC/Screenshot-20261107-014627-Photos.jpg",
+  "https://i.ibb.co/JWjKq0fH/Screenshot-20261107-014605-Photos.jpg",
+  "https://i.ibb.co/zHsgHrmD/file-00000000e940820e836448998914c1f9.png",
+  "https://i.ibb.co/hRsDtRRw/Screenshot-20261107-033111-Facebook.jpg",
+  "https://i.ibb.co/Hph1D7J1/Screenshot-20261107-033139-Facebook.jpg",
+  "https://i.ibb.co/p6V2G1N2/Screenshot-20261107-194654-Whats-App-Business.jpg",
+  "https://i.ibb.co/6qGZMw4/Screenshot-20261107-033257-Facebook.jpg",
+  "https://i.ibb.co/xtbL3zCX/Screenshot-20261107-033234-Facebook.jpg",
+  "https://i.ibb.co/GvC3X88H/Screenshot-20261107-033320-Facebook.jpg",
+  "https://i.ibb.co/1JZcCZvJ/Screenshot-20261107-194627-Whats-App-Business.jpg",
+  "https://i.ibb.co/9myjmW1x/Screenshot-20261107-194636-Whats-App-Business.jpg",
+  "https://i.ibb.co/zhwKsZkj/Screenshot-20261107-194641-Whats-App-Business.jpg",
+  "https://i.ibb.co/gLqSKZyh/IMG-20261107-WA0026.jpg",
+  "https://i.ibb.co/Zz8kPr1b/Screenshot-20261107-014658-Photos.jpg",
+  "https://i.ibb.co/p66fqWC1/Screenshot-20261107-194647-Whats-App-Business.jpg",
+  "https://i.ibb.co/n4Y57x6/FB-IMG-1794111159221.jpg",
+  "https://i.ibb.co/4nrzyG3t/Screenshot-20261108-220334-Whats-App-Business.jpg",
+  "https://i.ibb.co/fzZ7YhTf/Screenshot-20261108-102255-Whats-App-Business.jpg",
+  "https://i.ibb.co/Y42j04ct/facebook-1794116060458.jpg",
+  "https://i.ibb.co/1YX0pxM7/FB-IMG-1794112102489.jpg",
+  "https://i.ibb.co/YB47fP5m/FB-IMG-1794111639094.jpg",
+  "https://i.ibb.co/gZFDwYPL/Screenshot-20261108-083253-Gallery.jpg"
+];
+
+const libroEscenario = document.getElementById('libroEscenario');
+const libroImg = document.getElementById('libroImg');
+const libroHojaActual = document.getElementById('libroHojaActual');
+const libroContador = document.getElementById('libroContador');
+const libroHint = document.getElementById('libroHint');
+const indice = document.getElementById('indice');
+
+let libroActual = 0;
+let animando = false;
+
+/* Construir índice de miniaturas */
+FOTOS.forEach((url, i) => {
+  const mini = document.createElement('img');
+  mini.src = url;
+  mini.loading = 'lazy';
+  mini.decoding = 'async';
+  mini.alt = 'Recuerdo ' + (i+1);
+  if (i === 0) mini.classList.add('activa');
+  mini.addEventListener('click', () => libroIr(i));
+  indice.appendChild(mini);
+});
+
+function libroPintarContador(){
+  libroContador.textContent = (libroActual + 1) + ' / ' + FOTOS.length;
+  [...indice.children].forEach((m, i) => m.classList.toggle('activa', i === libroActual));
+  // scroll del índice para que la activa quede visible
+  const activa = indice.children[libroActual];
+  if (activa) activa.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+}
+
+function libroInit(){
+  libroImg.src = FOTOS[libroActual];
+  libroPintarContador();
+  setTimeout(() => libroHint.classList.add('oculto'), 4000);
+}
+
+function libroIr(index){
+  if (animando || index === libroActual) return;
+  libroActual = index;
+  libroImg.src = FOTOS[libroActual];
+  libroPintarContador();
+}
+
+function libroCrearHojaEntrante(src){
+  const hoja = document.createElement('div');
+  hoja.className = 'libro-hoja-entrante';
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = '';
+  hoja.appendChild(img);
+  libroEscenario.appendChild(hoja);
+  return hoja;
+}
+
+function libroMover(dir, fromDrag){
+  if (animando) return;
+  if (FOTOS.length < 2) return;
+  animando = true;
+
+  const nuevoIndex = (libroActual + dir + FOTOS.length) % FOTOS.length;
+  const srcNuevo = FOTOS[nuevoIndex];
+
+  const hojaEntrante = libroCrearHojaEntrante(srcNuevo);
+  hojaEntrante.classList.add(dir > 0 ? 'entrando-der' : 'entrando-izq');
+
+  libroHojaActual.style.transform = '';
+  libroHojaActual.classList.remove('arrastrando','completar-izq','completar-der','rebobinar');
+  if (fromDrag) {
+    libroHojaActual.style.setProperty('--tx', fromDrag.tx + 'px');
+    libroHojaActual.style.setProperty('--ry', fromDrag.ry + 'deg');
+  }
+  void libroHojaActual.offsetWidth;
+  libroHojaActual.classList.add(dir > 0 ? 'completar-izq' : 'completar-der');
+
+  libroActual = nuevoIndex;
+  libroPintarContador();
+
+  setTimeout(() => {
+    libroImg.src = srcNuevo;
+    libroHojaActual.className = 'libro-hoja';
+    libroHojaActual.style.transform = '';
+    libroHojaActual.style.removeProperty('--tx');
+    libroHojaActual.style.removeProperty('--ry');
+    hojaEntrante.remove();
+    animando = false;
+  }, 460);
+}
+
+/* ===== ARRASTRE EN TIEMPO REAL ===== */
+let dragX0 = 0, dragY0 = 0, dragging = false;
+
+function iniciarDrag(x, y){
+  if (animando) return;
+  dragX0 = x; dragY0 = y; dragging = true;
+  libroHojaActual.classList.add('arrastrando');
+}
+function moverDrag(x, y){
+  if (!dragging) return;
+  const dx = x - dragX0;
+  const dy = y - dragY0;
+  if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 30) return;
+  const limit = 140;
+  const tx = Math.max(-limit, Math.min(limit, dx));
+  const ry = (tx / limit) * 70 * (dx < 0 ? -1 : 1);
+  libroHojaActual.style.transform = `translateX(${tx}px) rotateY(${ry}deg)`;
+  libroHojaActual.style.setProperty('--tx', tx + 'px');
+  libroHojaActual.style.setProperty('--ry', ry + 'deg');
+}
+function terminarDrag(x){
+  if (!dragging) return;
+  dragging = false;
+  libroHojaActual.classList.remove('arrastrando');
+  const dx = x - dragX0;
+  const umbral = 60;
+  if (Math.abs(dx) > umbral) {
+    const dir = dx < 0 ? 1 : -1;
+    const tx = dx < 0 ? -140 : 140;
+    const ry = dx < 0 ? -70 : 70;
+    libroHojaActual.style.setProperty('--tx', tx + 'px');
+    libroHojaActual.style.setProperty('--ry', ry + 'deg');
+    void libroHojaActual.offsetWidth;
+    libroHojaActual.style.transform = '';
+    animando = false;
+    libroMover(dir, {tx: tx, ry: ry});
+  } else {
+    libroHojaActual.classList.add('rebobinar');
+    setTimeout(() => {
+      libroHojaActual.style.transform = '';
+      libroHojaActual.classList.remove('rebobinar');
+      libroHojaActual.style.removeProperty('--tx');
+      libroHojaActual.style.removeProperty('--ry');
+    }, 300);
+  }
+}
+
+/* Touch */
+libroEscenario.addEventListener('touchstart', e => {
+  if (e.touches.length !== 1) return;
+  iniciarDrag(e.touches[0].clientX, e.touches[0].clientY);
+}, {passive:true});
+libroEscenario.addEventListener('touchmove', e => {
+  if (e.touches.length !== 1) return;
+  moverDrag(e.touches[0].clientX, e.touches[0].clientY);
+}, {passive:true});
+libroEscenario.addEventListener('touchend', e => {
+  if (e.changedTouches.length !== 1) return;
+  terminarDrag(e.changedTouches[0].clientX);
+}, {passive:true});
+
+/* Mouse */
+let mouseDown = false;
+libroEscenario.addEventListener('mousedown', e => {
+  if (e.target.closest('button')) return;
+  mouseDown = true;
+  iniciarDrag(e.clientX, e.clientY);
+});
+window.addEventListener('mousemove', e => {
+  if (!mouseDown) return;
+  moverDrag(e.clientX, e.clientY);
+});
+window.addEventListener('mouseup', e => {
+  if (!mouseDown) return;
+  mouseDown = false;
+  terminarDrag(e.clientX);
+});
+
+/* Teclado */
+document.addEventListener('keydown', e => {
+  if (modalVideo.classList.contains('activo')) {
+    if (e.key === 'Escape') cerrarModalVideo();
+    return;
+  }
+  if (e.key === 'ArrowLeft') libroMover(-1);
+  if (e.key === 'ArrowRight') libroMover(1);
+});
+
+/* Iniciar */
+libroInit();
+
+/* ===== COMPARTIR ===== */
+const TEXTO_COMPARTIR='';const URL_SITIO='https://jesusfierro.vercel.app/';
+function abrirMenuCompartir(){const url=URL_SITIO;const texto=encodeURIComponent(TEXTO_COMPARTIR+' '+url);document.getElementById('opWhatsApp').href='https://wa.me/?text='+texto;document.getElementById('opFacebook').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);document.getElementById('opTwitter').href='https://twitter.com/intent/tweet?text='+encodeURIComponent(TEXTO_COMPARTIR)+'&url='+encodeURIComponent(url);document.getElementById('opTelegram').href='https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(TEXTO_COMPARTIR);document.getElementById('opEmail').href='mailto:?subject='+encodeURIComponent('En memoria de Jesús Alberto')+'&body='+texto;document.getElementById('menuAviso').textContent='';document.getElementById('menuCompartir').classList.add('activo');}
+function cerrarMenuCompartir(){document.getElementById('menuCompartir').classList.remove('activo');}
+document.getElementById('opCopiar').addEventListener('click',async()=>{const url=URL_SITIO;const aviso=document.getElementById('menuAviso');try{await navigator.clipboard.writeText(url);aviso.textContent='✓ Enlace copiado al portapapeles';}catch(err){const tmp=document.createElement('textarea');tmp.value=url;document.body.appendChild(tmp);tmp.select();try{document.execCommand('copy');aviso.textContent='✓ Enlace copiado';}catch(e){aviso.textContent='⚠ No se pudo copiar.';}document.body.removeChild(tmp);}setTimeout(()=>{aviso.textContent='';},2500);});
+
+/* ===== FORMULARIO ===== */
+(function(){
+const form=document.getElementById('formRecuerdo');const btn=document.getElementById('btnEnviar');const estado=document.getElementById('estadoForm');const archivo=document.getElementById('archivo');const MAX_MB=10;const MAX_BYTES=MAX_MB*1024*1024;
+archivo.addEventListener('change',()=>{if(archivo.files[0]&&archivo.files[0].size>MAX_BYTES){estado.textContent=`⚠ Este archivo pesa más de ${MAX_MB} MB. Súbelo a Google Drive y pega el enlace.`;estado.style.color='#e0a96d';archivo.value='';}else{estado.textContent='';estado.style.color='';}});
+form.addEventListener('submit',async function(e){e.preventDefault();
+if(archivo.files[0]&&archivo.files[0].size>MAX_BYTES){estado.textContent=`⚠ El archivo supera los ${MAX_MB} MB.`;estado.style.color='#e0a96d';return;}
+btn.disabled=true;btn.textContent='Enviando...';estado.textContent='';estado.style.color='';
+try{const res=await fetch(form.action,{method:'POST',body:new FormData(form)});const data=await res.json();
+if(data.success){estado.textContent='✓ ¡Gracias! Tu recuerdo fue enviado a la familia.';estado.style.color='#c9a86a';form.reset();}
+else{estado.textContent='⚠ No se pudo enviar. Inténtalo de nuevo.';estado.style.color='#e07a5f';}}
+catch(err){estado.textContent='⚠ Error de conexión. Inténtalo otra vez.';estado.style.color='#e07a5f';}
+finally{btn.disabled=false;btn.textContent='Enviar mi recuerdo ✉';}});
+})();
+</script>
+</body></html>
