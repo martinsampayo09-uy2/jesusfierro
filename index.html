@@ -106,6 +106,11 @@ video::-webkit-media-controls-panel{background-image:none !important;}
 #videoAmpliado::-webkit-media-controls-download-button{display:none !important;}
 #videoAmpliado::-webkit-media-controls-overflow-button{display:none !important;}
 
+/* Ocultar botón de pantalla completa en los controles nativos */
+video::-webkit-media-controls-fullscreen-button{display:none !important;}
+#videoAmpliado::-webkit-media-controls-fullscreen-button{display:none !important;}
+video::-internal-media-controls-fullscreen-button{display:none !important;}
+
 /* ===== CARTA / FORM / FOOTER ===== */
 .carta{max-width:600px;margin:0 auto;background:var(--tarjeta);padding:20px 18px;border-radius:10px;border-left:3px solid var(--acento);font-style:italic;font-size:.92rem;}
 .form-wrap{max-width:560px;margin:0 auto;}
@@ -250,50 +255,50 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
 <div class="videos">
 <div class="video-item">
 <video controls preload="auto" playsinline
-  controlslist="nodownload noplaybackrate noremoteplayback"
+  controlslist="nodownload noplaybackrate noremoteplayback nofullscreen"
   disablepictureinpicture
   oncontextmenu="return false;"
-  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
+  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
   <source src="https://cdn.mp4tourl.com/video/free/c23ff2f9-28d8-46d9-8152-6ae6e42a021d.mp4" type="video/mp4">
 </video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
 </div>
 <div class="video-item">
 <video controls preload="auto" playsinline
-  controlslist="nodownload noplaybackrate noremoteplayback"
+  controlslist="nodownload noplaybackrate noremoteplayback nofullscreen"
   disablepictureinpicture
   oncontextmenu="return false;"
-  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
+  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
   <source src="https://cdn.mp4tourl.com/video/free/1cdebc6d-b1bf-4406-bea3-fde4e591cf20.mp4" type="video/mp4">
 </video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
 </div>
 <div class="video-item">
 <video controls preload="auto" playsinline
-  controlslist="nodownload noplaybackrate noremoteplayback"
+  controlslist="nodownload noplaybackrate noremoteplayback nofullscreen"
   disablepictureinpicture
   oncontextmenu="return false;"
-  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
+  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
   <source src="https://cdn.mp4tourl.com/video/free/007873e4-9d32-4f9e-a7e5-0bbc1eb9ca62.mp4" type="video/mp4">
 </video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
 </div>
 <div class="video-item">
 <video controls preload="auto" playsinline
-  controlslist="nodownload noplaybackrate noremoteplayback"
+  controlslist="nodownload noplaybackrate noremoteplayback nofullscreen"
   disablepictureinpicture
   oncontextmenu="return false;"
-  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
+  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
   <source src="https://cdn.mp4tourl.com/video/free/1830d57d-6ef9-4733-84ef-66a21a1ee77a.mp4" type="video/mp4">
 </video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
 </div>
 <div class="video-item">
 <video controls preload="auto" playsinline
-  controlslist="nodownload noplaybackrate noremoteplayback"
+  controlslist="nodownload noplaybackrate noremoteplayback nofullscreen"
   disablepictureinpicture
   oncontextmenu="return false;"
-  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
+  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
   <source src="https://cdn.mp4tourl.com/video/free/7f807305-9310-4e9a-b5b4-eee495321b71.mp4" type="video/mp4">
 </video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
@@ -373,7 +378,7 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
 <!-- ===== MODAL VIDEO ===== -->
 <div id="modalVideo" onclick="if(event.target.id==='modalVideo')cerrarModalVideo()">
 <button id="cerrarModal" onclick="cerrarModalVideo()" aria-label="Cerrar">✕</button>
-<video id="videoAmpliado" controls playsinline controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture oncontextmenu="return false;"></video>
+<video id="videoAmpliado" controls playsinline controlslist="nodownload noplaybackrate noremoteplayback nofullscreen" disablepictureinpicture oncontextmenu="return false;"></video>
 </div>
 
 <!-- ===== MODAL TÉRMINOS ===== -->
@@ -396,7 +401,7 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
       <p>Te pedimos un uso <strong>respetuoso</strong> de este espacio, acorde con su carácter íntimo y conmemorativo. Queda prohibido el uso comercial del sitio o de sus contenidos, así como la descarga, copia o redistribución de las imágenes y videos sin autorización de la familia.</p>
 
       <h4>Derechos de imagen</h4>
-      <p>Si consideras que alguna imagen o video vulnera tus derechos, puedes solicitar su retirada escribiendo a: <b>cualquiera de su familiar</b></a>. La familia actuará con la mayor celeridad posible.</p>
+      <p>Si consideras que alguna imagen o video vulnera tus derechos, puedes solicitar su retirada escribiendo a: <b>cualquiera de su familiar</b>. La familia actuará con la mayor celeridad posible.</p>
 
       <h4>Un espacio para el recuerdo</h4>
       <p>Gracias por acompañarnos y por ayudar a mantener viva la memoria de Jesús. Cada visita, cada mensaje y cada recuerdo compartido son un homenaje a su vida.</p>
@@ -467,9 +472,9 @@ function ampliarVideo(btn){
 
 function prepararVideoAmpliado(){
   videoAmpliado.controls = true;
-  videoAmpliado.controlsList = 'nodownload noplaybackrate noremoteplayback';
+  videoAmpliado.controlsList = 'nodownload noplaybackrate noremoteplayback nofullscreen';
   videoAmpliado.disablePictureInPicture = true;
-  videoAmpliado.setAttribute('controlslist', 'nodownload noplaybackrate noremoteplayback');
+  videoAmpliado.setAttribute('controlslist', 'nodownload noplaybackrate noremoteplayback nofullscreen');
   videoAmpliado.setAttribute('disablepictureinpicture', '');
   videoAmpliado.play().catch(()=>{});
   modalVideo.classList.add('activo');
@@ -491,7 +496,7 @@ document.querySelectorAll('video').forEach(v => {
   v.addEventListener('contextmenu', e => e.preventDefault());
   v.addEventListener('dragstart', e => e.preventDefault());
   v.addEventListener('loadedmetadata', () => {
-    v.controlsList = 'nodownload noplaybackrate noremoteplayback';
+    v.controlsList = 'nodownload noplaybackrate noremoteplayback nofullscreen';
   });
 });
 
