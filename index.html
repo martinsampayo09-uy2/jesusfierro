@@ -85,8 +85,11 @@ section h2 .subtitulo{display:block;font-size:.7rem;color:var(--suave);letter-sp
 .videos{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;align-items:stretch;}
 .video-item{background:var(--tarjeta);border-radius:10px;overflow:hidden;position:relative;display:flex;flex-direction:column;box-shadow:0 6px 18px rgba(0,0,0,.45);}
 .video-item video{width:100%;aspect-ratio:1/1;display:block;background:#000;object-fit:cover;cursor:pointer;border-radius:10px;}
-.video-item .btn-ampliar{position:absolute;top:6px;right:6px;z-index:5;background:rgba(0,0,0,.6);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:5px 9px;font-size:.9rem;line-height:1;cursor:pointer;backdrop-filter:blur(3px);transition:.2s;}
+
+/* Sin capas extras, el video carga su propia imagen de inicio nativamente */
+.video-item .btn-ampliar{position:absolute;top:6px;right:6px;z-index:6;background:rgba(0,0,0,.6);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:5px 9px;font-size:.9rem;line-height:1;cursor:pointer;backdrop-filter:blur(3px);transition:.2s;}
 .video-item .btn-ampliar:hover{background:rgba(201,168,106,.9);color:#0f1419;border-color:var(--acento);}
+
 #modalVideo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:200;justify-content:center;align-items:center;padding:10px;}
 #modalVideo.activo{display:flex;}
 #modalVideo video{width:100%;max-width:1100px;max-height:90vh;background:#000;border-radius:8px;outline:none;}
@@ -241,33 +244,58 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
 </div>
 </section>
 
-<!-- ===== VIDEOS PROTEGIDOS ===== -->
+<!-- ===== VIDEOS ===== -->
 <section>
 <h2>Videos <span class="subtitulo">su pasatiempo</span></h2>
 <div class="videos">
 <div class="video-item">
-<video controls preload="none" playsinline controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture oncontextmenu="return false;" onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
-<source src="https://cdn.mp4tourl.com/video/free/c23ff2f9-28d8-46d9-8152-6ae6e42a021d.mp4" type="video/mp4"></video>
+<video controls preload="auto" playsinline
+  controlslist="nodownload noplaybackrate noremoteplayback"
+  disablepictureinpicture
+  oncontextmenu="return false;"
+  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
+  <source src="https://cdn.mp4tourl.com/video/free/c23ff2f9-28d8-46d9-8152-6ae6e42a021d.mp4" type="video/mp4">
+</video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
 </div>
 <div class="video-item">
-<video controls preload="none" playsinline controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture oncontextmenu="return false;" onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
-<source src="https://cdn.mp4tourl.com/video/free/1cdebc6d-b1bf-4406-bea3-fde4e591cf20.mp4" type="video/mp4"></video>
+<video controls preload="auto" playsinline
+  controlslist="nodownload noplaybackrate noremoteplayback"
+  disablepictureinpicture
+  oncontextmenu="return false;"
+  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
+  <source src="https://cdn.mp4tourl.com/video/free/1cdebc6d-b1bf-4406-bea3-fde4e591cf20.mp4" type="video/mp4">
+</video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
 </div>
 <div class="video-item">
-<video controls preload="none" playsinline controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture oncontextmenu="return false;" onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
-<source src="https://cdn.mp4tourl.com/video/free/007873e4-9d32-4f9e-a7e5-0bbc1eb9ca62.mp4" type="video/mp4"></video>
+<video controls preload="auto" playsinline
+  controlslist="nodownload noplaybackrate noremoteplayback"
+  disablepictureinpicture
+  oncontextmenu="return false;"
+  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
+  <source src="https://cdn.mp4tourl.com/video/free/007873e4-9d32-4f9e-a7e5-0bbc1eb9ca62.mp4" type="video/mp4">
+</video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
 </div>
 <div class="video-item">
-<video controls preload="none" playsinline controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture oncontextmenu="return false;" onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
-<source src="https://cdn.mp4tourl.com/video/free/1830d57d-6ef9-4733-84ef-66a21a1ee77a.mp4" type="video/mp4"></video>
+<video controls preload="auto" playsinline
+  controlslist="nodownload noplaybackrate noremoteplayback"
+  disablepictureinpicture
+  oncontextmenu="return false;"
+  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
+  <source src="https://cdn.mp4tourl.com/video/free/1830d57d-6ef9-4733-84ef-66a21a1ee77a.mp4" type="video/mp4">
+</video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
 </div>
 <div class="video-item">
-<video controls preload="none" playsinline controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture oncontextmenu="return false;" onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
-<source src="https://cdn.mp4tourl.com/video/free/7f807305-9310-4e9a-b5b4-eee495321b71.mp4" type="video/mp4"></video>
+<video controls preload="auto" playsinline
+  controlslist="nodownload noplaybackrate noremoteplayback"
+  disablepictureinpicture
+  oncontextmenu="return false;"
+  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback';">
+  <source src="https://cdn.mp4tourl.com/video/free/7f807305-9310-4e9a-b5b4-eee495321b71.mp4" type="video/mp4">
+</video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
 </div>
 </div>
@@ -403,23 +431,23 @@ window.addEventListener('blur',()=>{document.body.classList.add('oculto');});
 window.addEventListener('focus',()=>{setTimeout(()=>document.body.classList.remove('oculto'),80);});
 document.addEventListener('keyup',e=>{if(e.key==='PrintScreen'||e.key==='Snapshot'){navigator.clipboard.writeText('').catch(()=>{});mostrarAviso('🔒 Captura no permitida');}});
 document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key.toLowerCase()==='s'){e.preventDefault();mostrarAviso('🔒 Captura no permitida');}});
-document.addEventListener('mousedown',e=>{if(e.detail>1&&e.target.tagName!=='INPUT'&&e.target.tagName!=='TEXTAREA'){e.preventDefault();}});
+document.addEventListener('mousedown',e=>{if(e.detail>2&&e.target.tagName!=='INPUT'&&e.target.tagName!=='TEXTAREA'){e.preventDefault();}});
 })();
 
 /* ===== OBSERVADOR SECTION ===== */
 const observador=new IntersectionObserver((entries)=>{entries.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible');});},{threshold:0.08});
 document.querySelectorAll('section').forEach(s=>observador.observe(s));
 
-/* ===== VIDEOS AMPLIABLES CON BLOB (URL oculta) ===== */
+/* ===== VIDEOS AMPLIABLES CON BLOB ===== */
 const modalVideo = document.getElementById('modalVideo');
 const videoAmpliado = document.getElementById('videoAmpliado');
 
 function ampliarVideo(btn){
-  const video = btn.parentElement.querySelector('video');
+  const contenedor = btn.parentElement;
+  const video = contenedor.querySelector('video');
   const fuente = video.querySelector('source');
   const urlOriginal = fuente ? fuente.src : video.src;
 
-  // Intentar cargar como Blob para ocultar la URL real en el inspector
   fetch(urlOriginal, {mode: 'cors'})
     .then(r => {
       if (!r.ok) throw new Error('fetch falló');
@@ -432,7 +460,6 @@ function ampliarVideo(btn){
       prepararVideoAmpliado();
     })
     .catch(() => {
-      // Fallback: URL directa con protecciones básicas
       videoAmpliado.src = urlOriginal;
       prepararVideoAmpliado();
     });
@@ -463,13 +490,12 @@ function cerrarModalVideo(){
 document.querySelectorAll('video').forEach(v => {
   v.addEventListener('contextmenu', e => e.preventDefault());
   v.addEventListener('dragstart', e => e.preventDefault());
-  // Reforzar controlslist cada vez que cargue
   v.addEventListener('loadedmetadata', () => {
     v.controlsList = 'nodownload noplaybackrate noremoteplayback';
   });
 });
 
-/* Bloquear Ctrl+S / Cmd+S cuando hay un video reproduciéndose */
+/* Bloquear Ctrl+S cuando hay video activo */
 document.addEventListener('keydown', e => {
   const hayVideoActivo = modalVideo.classList.contains('activo') ||
     [...document.querySelectorAll('video')].some(v => !v.paused);
