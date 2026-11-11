@@ -46,10 +46,11 @@ section.visible{opacity:1;transform:translateY(0);}
 section h2{font-size:1rem;font-weight:normal;text-align:center;color:var(--acento);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;}
 section h2::after{content:"";display:block;width:36px;height:1px;background:var(--acento);margin:8px auto 0;opacity:.6;}
 section h2 .subtitulo{display:block;font-size:.7rem;color:var(--suave);letter-spacing:1px;margin-top:6px;text-transform:none;font-style:italic;font-weight:normal;}
+section h2 .subtitulo b{font-weight:bold;color:var(--acento);}
 .libro-wrap{position:relative;width:100%;max-width:1000px;margin:0 auto;perspective:1600px;}
 .libro-escenario{position:relative;width:100%;height:clamp(340px,60vh,620px);border-radius:12px;overflow:hidden;background:#0a0f14;box-shadow:0 20px 60px rgba(0,0,0,.6);touch-action:pan-y;}
-.libro-hoja{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transform-origin:center center;backface-visibility:hidden;-webkit-backface-visibility:hidden;will-change:transform,opacity;}
-.libro-hoja img{max-width:100%;max-height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none;pointer-events:none;transition:none;}
+.libro-hoja{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transform-origin:center center;backface-visibility:hidden;-webkit-backface-visibility:hidden;will-change:transform,opacity;background:#0a0f14;z-index:2;}
+.libro-hoja img{max-width:100%;max-height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none;pointer-events:none;transition:none;display:block;}
 .libro-hoja.arrastrando img{filter:brightness(.85);}
 .libro-hoja.completar-izq{animation:completarIzq .45s ease forwards;}
 .libro-hoja.completar-der{animation:completarDer .45s ease forwards;}
@@ -57,8 +58,8 @@ section h2 .subtitulo{display:block;font-size:.7rem;color:var(--suave);letter-sp
 @keyframes completarIzq{0%{transform:translateX(var(--tx,0)) rotateY(var(--ry,0));opacity:1;}100%{transform:translateX(-60%) rotateY(-75deg);opacity:0;}}
 @keyframes completarDer{0%{transform:translateX(var(--tx,0)) rotateY(var(--ry,0));opacity:1;}100%{transform:translateX(60%) rotateY(75deg);opacity:0;}}
 @keyframes rebobinar{0%{transform:translateX(var(--tx,0)) rotateY(var(--ry,0));opacity:1;}100%{transform:translateX(0) rotateY(0);opacity:1;}}
-.libro-hoja-entrante{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;will-change:transform,opacity;pointer-events:none;}
-.libro-hoja-entrante img{max-width:100%;max-height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none;pointer-events:none;}
+.libro-hoja-entrante{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;will-change:transform,opacity;pointer-events:none;background:#0a0f14;z-index:3;}
+.libro-hoja-entrante img{max-width:100%;max-height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none;pointer-events:none;display:block;}
 .libro-hoja-entrante.entrando-izq{animation:entrarIzq .45s ease forwards;}
 .libro-hoja-entrante.entrando-der{animation:entrarDer .45s ease forwards;}
 @keyframes entrarIzq{0%{transform:translateX(-60%) rotateY(-75deg);opacity:0;}100%{transform:translateX(0) rotateY(0);opacity:1;}}
@@ -192,7 +193,7 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
 <h1>Jesús Alberto Fierro Techera Sampayo</h1>
 <p>"Tu recuerdo vive en cada uno de nosotros."</p></div></header>
 <section>
-<h2>Libro de recuerdos <span class="subtitulo">desliza para pasar hoja</span></h2>
+<h2>Libro de recuerdos <span class="subtitulo"><b>desliza para pasar hoja</b></span></h2>
 <div class="libro-wrap">
   <div class="libro-escenario" id="libroEscenario">
     <div class="libro-hoja" id="libroHojaActual">
@@ -429,6 +430,9 @@ document.addEventListener('keydown', e => {
     e.stopPropagation();
     return false;  } }, true);
 const FOTOS = [
+
+"https://i.ibb.co/8n4G0ydw/Screenshot-20261110-221539-Whats-App-Business.jpg",
+
 "https://i.ibb.co/G3sfJQDD/IMG-20261108-WA0012.jpg",
 
 "https://i.ibb.co/MDy3kgNt/Screenshot-20261110-144138-Whats-App-Business.jpg",
@@ -436,10 +440,15 @@ const FOTOS = [
 "https://i.ibb.co/WWXZnFMx/Screenshot-20261109-200937-Instagram.jpg",
 
 "https://i.ibb.co/Gv8k97nR/IMG-20261108-WA0003.jpg",
+
 "https://i.ibb.co/SX3TWkM1/IMG-20261108-WA0006.jpg",
+
 "https://i.ibb.co/Wp3STtjt/file-000000005bf8820eacd701bfe7112498.png",
+
 "https://i.ibb.co/hx0LHDcd/Screenshot-20261107-033219-Facebook.jpg",
+
 "https://i.ibb.co/rKD6yCwC/Screenshot-20261107-014627-Photos.jpg",
+
 "https://i.ibb.co/JWjKq0fH/Screenshot-20261107-014605-Photos.jpg",
   "https://i.ibb.co/zHsgHrmD/file-00000000e940820e836448998914c1f9.png",
   "https://i.ibb.co/hRsDtRRw/Screenshot-20261107-033111-Facebook.jpg",
@@ -475,7 +484,21 @@ const indice = document.getElementById('indice');
 let libroActual = 0;
 let animando = false;
 let autoplayTimer = null;
-const AUTOPLAY_INTERVAL = 4000; // 4 segundos
+const AUTOPLAY_INTERVAL = 4000;
+
+// Precarga de imágenes
+const cacheImagenes = {};
+function precargarImagen(url){
+  if (cacheImagenes[url]) return cacheImagenes[url];
+  const p = new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = url;
+  });
+  cacheImagenes[url] = p;
+  return p;
+}
 
 FOTOS.forEach((url, i) => {
   const mini = document.createElement('img');
@@ -498,6 +521,9 @@ function libroPintarContador(){
   if (activa) activa.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'}); }
 
 function libroInit(){
+  // Precargar primeras 2 imágenes
+  precargarImagen(FOTOS[0]);
+  if (FOTOS.length > 1) precargarImagen(FOTOS[1]);
   libroImg.src = FOTOS[libroActual];
   libroPintarContador();
   setTimeout(() => libroHint.classList.add('oculto'), 4000);
@@ -511,12 +537,14 @@ function libroIr(index){
   libroPintarContador();
 }
 
-function libroCrearHojaEntrante(src){
+function libroCrearHojaEntrante(src, onReady){
   const hoja = document.createElement('div');
   hoja.className = 'libro-hoja-entrante';
   const img = document.createElement('img');
-  img.src = src;
   img.alt = '';
+  img.onload = () => { if (onReady) onReady(); };
+  img.onerror = () => { if (onReady) onReady(); };
+  img.src = src;
   hoja.appendChild(img);
   libroEscenario.appendChild(hoja);
   return hoja;
@@ -528,34 +556,59 @@ function libroMover(dir, fromDrag){
   animando = true;
   const nuevoIndex = (libroActual + dir + FOTOS.length) % FOTOS.length;
   const srcNuevo = FOTOS[nuevoIndex];
-  const hojaEntrante = libroCrearHojaEntrante(srcNuevo);
-  hojaEntrante.classList.add(dir > 0 ? 'entrando-der' : 'entrando-izq');
-  libroHojaActual.style.transform = '';
-  libroHojaActual.classList.remove('arrastrando','completar-izq','completar-der','rebobinar');
-  if (fromDrag) {
-    libroHojaActual.style.setProperty('--tx', fromDrag.tx + 'px');
-    libroHojaActual.style.setProperty('--ry', fromDrag.ry + 'deg');
-  }
-  void libroHojaActual.offsetWidth;
-  libroHojaActual.classList.add(dir > 0 ? 'completar-izq' : 'completar-der');
-  libroActual = nuevoIndex;
-  libroPintarContador();
-  setTimeout(() => {
-    libroImg.src = srcNuevo;
-    libroHojaActual.className = 'libro-hoja';
+
+  // Precargar la imagen siguiente también
+  const siguienteIndex = (nuevoIndex + 1) % FOTOS.length;
+  precargarImagen(FOTOS[siguienteIndex]);
+
+  // Crear hoja entrante y esperar a que la imagen cargue antes de animar
+  let yaAnimado = false;
+  const ejecutarAnimacion = () => {
+    if (yaAnimado) return;
+    yaAnimado = true;
+
+    hojaEntrante.classList.add(dir > 0 ? 'entrando-der' : 'entrando-izq');
     libroHojaActual.style.transform = '';
-    libroHojaActual.style.removeProperty('--tx');
-    libroHojaActual.style.removeProperty('--ry');
-    hojaEntrante.remove();
-    animando = false;
-  }, 460);
+    libroHojaActual.classList.remove('arrastrando','completar-izq','completar-der','rebobinar');
+    if (fromDrag) {
+      libroHojaActual.style.setProperty('--tx', fromDrag.tx + 'px');
+      libroHojaActual.style.setProperty('--ry', fromDrag.ry + 'deg');
+    }
+    void libroHojaActual.offsetWidth;
+    libroHojaActual.classList.add(dir > 0 ? 'completar-izq' : 'completar-der');
+    libroActual = nuevoIndex;
+    libroPintarContador();
+
+    setTimeout(() => {
+      libroImg.src = srcNuevo;
+      libroHojaActual.className = 'libro-hoja';
+      libroHojaActual.style.transform = '';
+      libroHojaActual.style.removeProperty('--tx');
+      libroHojaActual.style.removeProperty('--ry');
+      hojaEntrante.remove();
+      animando = false;
+    }, 460);
+  };
+
+  const hojaEntrante = libroCrearHojaEntrante(srcNuevo, ejecutarAnimacion);
+
+  // Si la imagen ya estaba cacheada, el onload puede no dispararse;
+  // forzamos con un pequeño timeout por si acaso
+  setTimeout(() => {
+    const img = hojaEntrante.querySelector('img');
+    if (img && img.complete) {
+      ejecutarAnimacion();
+    }
+  }, 50);
+  // Fallback por si tarda demasiado
+  setTimeout(ejecutarAnimacion, 1500);
 }
 
 // Autoplay
 function iniciarAutoplay(){
   detenerAutoplay();
   autoplayTimer = setInterval(() => {
-    if (!animando) {
+    if (!animando && !document.hidden) {
       libroMover(1);
     }
   }, AUTOPLAY_INTERVAL);
@@ -573,10 +626,9 @@ function reiniciarAutoplayDespuesDeInteraccion(){
     if (!document.hidden) {
       iniciarAutoplay();
     }
-  }, 8000); // 8 segundos después de la última interacción se reanuda
+  }, 8000);
 }
 
-// Pausar autoplay cuando la pestaña no está visible
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) {
     detenerAutoplay();
@@ -630,7 +682,6 @@ function terminarDrag(x){
       libroHojaActual.style.removeProperty('--ry');
     }, 300);
   }
-  // Reanudar autoplay después de la interacción (con retraso)
   reiniciarAutoplayDespuesDeInteraccion();
 }
 libroEscenario.addEventListener('touchstart', e => {
