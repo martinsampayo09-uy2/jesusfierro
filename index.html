@@ -20,7 +20,6 @@
 <meta name="twitter:description" content="Un espacio creado con amor para recordarlo y compartir sus recuerdos.">
 <meta name="twitter:image" content="https://i.ibb.co/ZRMqmpMb/file-00000000e940820e836448998914c1f9.png">
 <meta name="twitter:image:alt" content="En memoria de Jesús Alberto">
-<!-- ✅ MEJORA: bloqueo de restauración de scroll lo antes posible -->
 <script>
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 </script>
@@ -197,6 +196,7 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
 <div class="contenido">
 <h1>Jesús Alberto Fierro Techera Sampayo</h1>
 <p>"Tu recuerdo vive en cada uno de nosotros."</p></div></header>
+
 <section>
 <h2>Libro de recuerdos <span class="subtitulo"><b>desliza para pasar hoja</b></span></h2>
 <div class="libro-wrap">
@@ -210,6 +210,23 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
 </div>
 <div class="indice" id="indice"></div>
 </section>
+
+<section>
+<h2>Palabras que lo recuerdan</h2>
+<div class="palabras-wrap">
+<div class="palabras-track" id="palabrasTrack">
+<div class="palabra-card"><p>"Siempre recordaré su forma de reír y de hacer sentir bien a todos."</p><span class="autor">— Familia</span></div>
+<div class="palabra-card"><p>"Un hombre de palabra, con un corazón enorme. Nos enseñó con el ejemplo."</p><span class="autor">— Un amigo</span></div>
+<div class="palabra-card"><p>"Gracias por todo, magibert. Siempre estarás en nuestro corazón."</p><span class="autor">— colegas</span></div>
+<div class="palabra-card"><p>"Su alegría era contagiosa. Cada vez que lo recuerdo, sonrío."</p><span class="autor">— Su amiga</span></div>
+<div class="palabra-card"><p>"Un vecino ejemplar, siempre dispuesto a ayudar sin esperar nada."</p><span class="autor">— Los vecinos</span></div>
+<div class="palabra-card"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div>
+<div class="palabra-card"><p>"Siempre recordaré su forma de reír y de hacer sentir bien a todos."</p><span class="autor">— Familia</span></div>
+<div class="palabra-card"><p>"Un hombre de palabra, con un corazón enorme. Nos enseñó con el ejemplo."</p><span class="autor">— Un amigo</span></div>
+<div class="palabra-card"><p>"Gracias por todo, magibert. Siempre estarás en nuestro corazón."</p><span class="autor">— sus compañeros</span></div>
+<div class="palabra-card"><p>"Su alegría era contagiosa. Cada vez que lo recuerdo, sonrío."</p><span class="autor">— Su hija</span></div>
+<div class="palabra-card"><p>"Un vecino ejemplar, siempre dispuesto a ayudar sin esperar nada."</p><span class="autor">— Los vecinos</span></div>
+<div class="palabra-card"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div></div></div></section>
 
 <section>
 <h2>Videos <span class="subtitulo">su pasatiempo</span></h2>
@@ -285,30 +302,29 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
 <div class="compartir-wrap">
 <button type="button" class="btn-compartir" onclick="abrirMenuCompartir()" aria-label="Compartir este memorial">
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg> Compartir</button></div></div>
-</section>
 
 
-<section>
-<h2>Palabras que lo recuerdan</h2>
-<div class="palabras-wrap">
-<div class="palabras-track" id="palabrasTrack">
-<div class="palabra-card"><p>"Siempre recordaré su forma de reír y de hacer sentir bien a todos."</p><span class="autor">— Familia</span></div>
-<div class="palabra-card"><p>"Un hombre de palabra, con un corazón enorme. Nos enseñó con el ejemplo."</p><span class="autor">— Un amigo</span></div>
-<div class="palabra-card"><p>"Gracias por todo, magibert. Siempre estarás en nuestro corazón."</p><span class="autor">— colegas</span></div>
-<div class="palabra-card"><p>"Su alegría era contagiosa. Cada vez que lo recuerdo, sonrío."</p><span class="autor">— Su amiga</span></div>
-<div class="palabra-card"><p>"Un vecino ejemplar, siempre dispuesto a ayudar sin esperar nada."</p><span class="autor">— Los vecinos</span></div>
-<div class="palabra-card"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div>
-<div class="palabra-card"><p>"Siempre recordaré su forma de reír y de hacer sentir bien a todos."</p><span class="autor">— Familia</span></div>
-<div class="palabra-card"><p>"Un hombre de palabra, con un corazón enorme. Nos enseñó con el ejemplo."</p><span class="autor">— Un amigo</span></div>
-<div class="palabra-card"><p>"Gracias por todo, magibert. Siempre estarás en nuestro corazón."</p><span class="autor">— sus compañeros</span></div>
-<div class="palabra-card"><p>"Su alegría era contagiosa. Cada vez que lo recuerdo, sonrío."</p><span class="autor">— Su hija</span></div>
-<div class="palabra-card"><p>"Un vecino ejemplar, siempre dispuesto a ayudar sin esperar nada."</p><span class="autor">— Los vecinos</span></div>
-<div class="palabra-card"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div></div></div></section>
-
-
-
-
-
+<section id="enviar">
+<h2>Envía tu recuerdo</h2>
+<div class="form-wrap">
+<form id="formRecuerdo" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="access_key" value="9d5a45aa-efe7-47b2-8371-f1ba03d3a99c">
+<input type="hidden" name="subject" value="Nuevo recuerdo para Jesús Alberto">
+<input type="hidden" name="from_name" value="Memorial Jesús Alberto">
+<input type="hidden" name="redirect" value="https://jesusfierro.vercel.app/#enviar">
+<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+<label for="nombre">Tu nombre</label>
+<input type="text" id="nombre" name="Nombre" placeholder="¿Cómo te llamas?" required>
+<label for="relacion">Tu relación con Jesús</label>
+<input type="text" id="relacion" name="Relación" placeholder="Familiar, amigo, vecino...">
+<label for="mensaje">Tu recuerdo</label>
+<textarea id="mensaje" name="Recuerdo" placeholder="Escribe aquí lo que quieras compartir..." required></textarea>
+<label for="archivo">Adjuntar foto o video (opcional)</label>
+<input type="file" id="archivo" name="attachment" accept="image/*,video/*">
+<p class="hint">Máximo 10 MB por archivo. Si tu video pesa más, súbelo a Google Drive y pega el enlace en el mensaje.</p>
+<button type="submit" id="btnEnviar">Enviar mi recuerdo ✉</button>
+<p id="estadoForm" style="text-align:center;font-size:.85rem;min-height:1.2em;margin-top:4px;"></p>
+</form></seccion></br>
 
 
 <footer>
@@ -519,22 +535,25 @@ FOTOS.forEach((url, i) => {
     reiniciarAutoplayDespuesDeInteraccion();
   });
   indice.appendChild(mini); });
+
 function libroPintarContador(){
   libroContador.textContent = (libroActual + 1) + ' / ' + FOTOS.length;
   [...indice.children].forEach((m, i) => m.classList.toggle('activa', i === libroActual));
   const activa = indice.children[libroActual];
-  if (activa) activa.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'}); }
+  if (activa) {
+    // Solución: Desplaza ÚNICAMENTE las miniaturas de forma horizontal sin mover el scroll de la página
+    const destino = activa.offsetLeft - (indice.clientWidth / 2) + (activa.clientWidth / 2);
+    indice.scrollTo({ left: destino, behavior: 'smooth' });
+  }
+}
+
 function libroInit(){
   precargarImagen(FOTOS[0]);
   if (FOTOS.length > 1) precargarImagen(FOTOS[1]);
   libroImg.src = FOTOS[libroActual];
   libroPintarContador();
   setTimeout(() => libroHint.classList.add('oculto'), 4000);
-  // ✅ MEJORA: autoplay con refuerzo de scroll al inicio
-  setTimeout(() => {
-    iniciarAutoplay();
-    window.scrollTo(0, 0);
-  }, 800);
+  iniciarAutoplay();
 }
 function libroIr(index){
   if (animando || index === libroActual) return;
@@ -710,21 +729,6 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') { detenerAutoplay(); libroMover(-1); reiniciarAutoplayDespuesDeInteraccion(); }
   if (e.key === 'ArrowRight') { detenerAutoplay(); libroMover(1); reiniciarAutoplayDespuesDeInteraccion(); }
 });
-
-// ✅ MEJORA: Forzar scroll al inicio de forma robusta
-function forzarInicio() {
-  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-}
-if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-forzarInicio();
-window.addEventListener('DOMContentLoaded', forzarInicio);
-window.addEventListener('load', forzarInicio);
-window.addEventListener('pageshow', forzarInicio);
-setTimeout(forzarInicio, 100);
-setTimeout(forzarInicio, 500);
-setTimeout(forzarInicio, 1200);
-window.addEventListener('beforeunload', () => { window.scrollTo(0, 0); });
-// ✅ FIN MEJORA
 
 libroInit();
 const TEXTO_COMPARTIR='';const URL_SITIO='https://jesusfierro.vercel.app/';
