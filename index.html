@@ -41,8 +41,7 @@ header .capa{position:absolute;inset:0;background:linear-gradient(rgba(15,20,25,
 header .contenido{position:relative;z-index:2;width:100%;min-height:clamp(320px,62vh,560px);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:50px 18px 45px;}
 header h1{font-size:clamp(1.3rem,5.5vw,2.4rem);font-weight:normal;letter-spacing:.5px;margin-bottom:16px;text-shadow:0 2px 14px rgba(0,0,0,.95),0 0 30px rgba(0,0,0,.7);}
 header p{max-width:420px;color:#f2f0ee;font-style:italic;font-size:.9rem;text-shadow:0 2px 12px rgba(0,0,0,.95);}
-section{max-width:1000px;margin:0 auto;padding:30px 16px;opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
-section.visible{opacity:1;transform:translateY(0);}
+section{max-width:1000px;margin:0 auto;padding:30px 16px;}
 section h2{font-size:1rem;font-weight:normal;text-align:center;color:var(--acento);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;}
 section h2::after{content:"";display:block;width:36px;height:1px;background:var(--acento);margin:8px auto 0;opacity:.6;}
 section h2 .subtitulo{display:block;font-size:.7rem;color:var(--suave);letter-spacing:1px;margin-top:6px;text-transform:none;font-style:italic;font-weight:normal;}
@@ -64,6 +63,10 @@ section h2 .subtitulo b{font-weight:bold;color:var(--acento);}
 .libro-hoja-entrante.entrando-der{animation:entrarDer .45s ease forwards;}
 @keyframes entrarIzq{0%{transform:translateX(-60%) rotateY(-75deg);opacity:0;}100%{transform:translateX(0) rotateY(0);opacity:1;}}
 @keyframes entrarDer{0%{transform:translateX(60%) rotateY(75deg);opacity:0;}100%{transform:translateX(0) rotateY(0);opacity:1;}}
+.libro-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:6;width:38px;height:38px;border-radius:50%;border:1px solid rgba(201,168,106,.45);background:rgba(15,20,25,.68);color:var(--acento);font-size:1.3rem;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,transform .2s,border-color .2s;}
+.libro-btn:hover{background:var(--acento);color:#0f1419;border-color:var(--acento);}
+.libro-btn.prev{left:10px;}
+.libro-btn.next{right:10px;}
 .libro-contador{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);color:var(--acento);font-size:.85rem;letter-spacing:2px;background:rgba(0,0,0,.6);padding:6px 16px;border-radius:20px;pointer-events:none;z-index:5;}
 .libro-hint{position:absolute;top:14px;left:50%;transform:translateX(-50%);color:var(--suave);font-size:.72rem;letter-spacing:1px;background:rgba(0,0,0,.55);padding:6px 14px;border-radius:20px;pointer-events:none;opacity:.75;transition:opacity .5s;z-index:5;}
 .libro-hint.oculto{opacity:0;}
@@ -74,18 +77,15 @@ section h2 .subtitulo b{font-weight:bold;color:var(--acento);}
 .indice img{width:60px;height:60px;flex:0 0 auto;object-fit:cover;border-radius:6px;cursor:pointer;opacity:.5;transition:opacity .25s,transform .2s,border .2s;border:2px solid transparent;}
 .indice img:hover{opacity:.85;transform:scale(1.05);}
 .indice img.activa{opacity:1;border-color:var(--acento);transform:scale(1.08);}
-.palabras-wrap{position:relative;overflow:hidden;padding:4px 0;}
-.palabras-wrap::before,.palabras-wrap::after{content:"";position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none;}
-.palabras-wrap::before{left:0;background:linear-gradient(90deg,var(--fondo),transparent);}
-.palabras-wrap::after{right:0;background:linear-gradient(270deg,var(--fondo),transparent);}
-.palabras-track{display:flex;gap:14px;width:max-content;animation:palabrasMov 40s linear infinite;padding:6px 0;}
-.palabras-track:hover{animation-play-state:paused;}
-.palabra-card{background:var(--tarjeta);border:1px solid var(--borde);border-left:3px solid var(--acento);border-radius:10px;padding:16px 18px;width:300px;flex-shrink:0;display:flex;flex-direction:column;justify-content:space-between;font-size:.92rem;transition:.3s;}
-.palabra-card:hover{transform:translateY(-4px);border-color:var(--acento);box-shadow:0 10px 25px rgba(201,168,106,.15);}
+.palabras-wrap{position:relative;overflow-x:auto;overflow-y:hidden;padding:4px 0;scrollbar-width:thin;scrollbar-color:var(--acento) transparent;-webkit-overflow-scrolling:touch;}
+.palabras-wrap::-webkit-scrollbar{height:6px;}
+.palabras-wrap::-webkit-scrollbar-thumb{background:var(--acento);border-radius:3px;}
+.palabras-track{display:flex;gap:14px;width:max-content;padding:6px 0;}
+.palabra-card{background:var(--tarjeta);border:1px solid var(--borde);border-left:3px solid var(--acento);border-radius:10px;padding:16px 18px;width:300px;flex-shrink:0;display:flex;flex-direction:column;justify-content:space-between;font-size:.92rem;transition:.25s;}
+.palabra-card:hover{border-color:var(--acento);box-shadow:0 8px 20px rgba(0,0,0,.35);}
 .palabra-card .palabra-img{width:100%;height:150px;object-fit:cover;border-radius:8px;margin-bottom:12px;border:1px solid var(--borde);background:#0a0f14;display:block;}
 .palabra-card p{font-style:italic;color:var(--texto);line-height:1.5;margin-bottom:12px;}
 .palabra-card .autor{color:var(--acento);font-size:.8rem;letter-spacing:1px;font-style:normal;text-align:right;}
-@keyframes palabrasMov{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 .videos{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;align-items:stretch;}
 .video-item{background:var(--tarjeta);border-radius:10px;overflow:hidden;position:relative;display:flex;flex-direction:column;box-shadow:0 6px 18px rgba(0,0,0,.45);}
 .video-item video{width:100%;aspect-ratio:1/1;display:block;background:#000;object-fit:cover;cursor:pointer;border-radius:10px;}
@@ -108,19 +108,6 @@ video::-webkit-media-controls-fullscreen-button{display:none !important;}
 #videoAmpliado::-webkit-media-controls-fullscreen-button{display:none !important;}
 video::-internal-media-controls-fullscreen-button{display:none !important;}
 .carta{max-width:600px;margin:0 auto;background:var(--tarjeta);padding:20px 18px;border-radius:10px;border-left:3px solid var(--acento);font-style:italic;font-size:.92rem;}
-.form-wrap{max-width:560px;margin:0 auto;}
-form{background:var(--tarjeta);padding:22px 18px;border-radius:12px;border:1px solid var(--borde);display:flex;flex-direction:column;gap:14px;}
-form label{font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--acento);margin-bottom:-6px;}
-form input,form textarea{width:100%;background:#0f1419;border:1px solid var(--borde);border-radius:8px;padding:12px 14px;color:var(--texto);font-family:inherit;font-size:.95rem;outline:none;transition:border .2s;}
-form input:focus,form textarea:focus{border-color:var(--acento);}
-form textarea{min-height:110px;resize:vertical;}
-form input[type="file"]{padding:10px;font-size:.85rem;cursor:pointer;color:var(--suave);}
-form input[type="file"]::file-selector-button{background:var(--acento);color:#0f1419;border:none;padding:8px 14px;border-radius:6px;font-family:inherit;font-size:.85rem;font-weight:bold;cursor:pointer;margin-right:10px;}
-.hint{font-size:.75rem;color:var(--suave);margin-top:-8px;line-height:1.4;}
-button[type="submit"]{background:var(--acento);color:#0f1419;border:none;padding:14px;border-radius:8px;font-family:inherit;font-size:1rem;font-weight:bold;letter-spacing:1px;cursor:pointer;transition:transform .15s,box-shadow .2s;margin-top:6px;}
-button[type="submit"]:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(201,168,106,.35);}
-button[type="submit"]:active{transform:translateY(0);}
-button[type="submit"]:disabled{opacity:.7;cursor:wait;transform:none;}
 .aviso{font-size:.78rem;color:var(--suave);text-align:center;margin-top:10px;line-height:1.5;}
 .aviso strong{color:var(--acento);}
 footer{text-align:center;padding:30px 16px 26px;color:var(--suave);font-size:.8rem;border-top:1px solid var(--borde);}
@@ -170,12 +157,12 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
   section{padding:48px 20px;}
   section h2{font-size:1.3rem;margin-bottom:28px;}
   .libro-escenario{height:min(70vh,640px);}
+  .libro-btn{width:44px;height:44px;font-size:1.5rem;}
   .indice img{width:72px;height:72px;}
   .videos{gap:22px;}
   .video-item video{aspect-ratio:16/10;}
   .palabra-card{width:360px;font-size:1rem;}
   .palabra-card .palabra-img{height:175px;}
-  .palabras-track{animation-duration:50s;}
   #menuCompartir{align-items:center;}
   .legal-body{font-size:.95rem;padding:24px 30px 30px;} }
 @media(max-width:380px){
@@ -194,13 +181,15 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
 <p>"Tu recuerdo vive en cada uno de nosotros."</p></div></header>
 <section>
 <h2>Libro de recuerdos <span class="subtitulo"><b>desliza para pasar hoja</b></span></h2>
-<div class="libro-wrap">
+<div class="libro-wrap" id="libroWrap">
   <div class="libro-escenario" id="libroEscenario">
     <div class="libro-hoja" id="libroHojaActual">
       <img id="libroImg" src="" alt="">
     </div>
+    <button type="button" class="libro-btn prev" id="btnPrevFoto" aria-label="Foto anterior">‹</button>
+    <button type="button" class="libro-btn next" id="btnNextFoto" aria-label="Foto siguiente">›</button>
   </div>
-  <div class="libro-hint" id="libroHint">desliza para pasar hoja</div>
+  <div class="libro-hint" id="libroHint">desliza o usa las flechas</div>
   <div class="libro-contador" id="libroContador"></div>
 </div>
 <div class="indice" id="indice"></div>
@@ -215,12 +204,7 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
 <div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Su alegría era contagiosa. Cada vez que lo recuerdo, sonrío."</p><span class="autor">— Su amiga</span></div>
 <div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Un vecino ejemplar, siempre dispuesto a ayudar sin esperar nada."</p><span class="autor">— Los vecinos</span></div>
 <div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div>
-<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Siempre recordaré su forma de reír y de hacer sentir bien a todos."</p><span class="autor">— Familia</span></div>
-<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Un hombre de palabra, con un corazón enorme. Nos enseñó con el ejemplo."</p><span class="autor">— Un amigo</span></div>
-<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Gracias por todo, magibert. Siempre estarás en nuestro corazón."</p><span class="autor">— sus compañeros</span></div>
-<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Su alegría era contagiosa. Cada vez que lo recuerdo, sonrío."</p><span class="autor">— Su hija</span></div>
-<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Un vecino ejemplar, siempre dispuesto a ayudar sin esperar nada."</p><span class="autor">— Los vecinos</span></div>
-<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div></div></div></section>
+</div></div></section>
 <section>
 <h2>Videos <span class="subtitulo">su pasatiempo</span></h2>
 <div class="videos">
@@ -272,35 +256,26 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
   <source src="https://cdn.mp4tourl.com/video/free/7f807305-9310-4e9a-b5b4-eee495321b71.mp4" type="video/mp4">
 </video>
-<button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button></div></div></section>
+<button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
+</div>
+<div class="video-item">
+<video controls preload="auto" playsinline
+  controlslist="nodownload noplaybackrate noremoteplayback nofullscreen"
+  disablepictureinpicture
+  oncontextmenu="return false;"
+ onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
+  <source src="https://cdn.mp4tourl.com/video/free/d3b8d135-069d-4df1-9576-43fb3ee3bda3.mp4" type="video/mp4">
+</video>
+<button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
+</div></div></section>
 <section>
 <h2>Una carta para ti</h2>
 <div class="carta"><p>"Jesús, gracias por cada enseñanza, por cada abrazo y por cada palabra. Nos diste tanto sin pedir nada a cambio. Aunque ya no estés físicamente, tu esencia sigue viva en cada uno de nosotros. Te recordaremos siempre con una sonrisa."</p></div></section>
-<section id="enviar">
-<h2>Envía tu recuerdo</h2>
-<div class="form-wrap">
-<form id="formRecuerdo" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
-<input type="hidden" name="access_key" value="9d5a45aa-efe7-47b2-8371-f1ba03d3a99c">
-<input type="hidden" name="subject" value="Nuevo recuerdo para Jesús Alberto">
-<input type="hidden" name="from_name" value="Memorial Jesús Alberto">
-<input type="hidden" name="redirect" value="https://jesusfierro.vercel.app/#enviar">
-<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
-<label for="nombre">Tu nombre</label>
-<input type="text" id="nombre" name="Nombre" placeholder="¿Cómo te llamas?" required>
-<label for="relacion">Tu relación con Jesús</label>
-<input type="text" id="relacion" name="Relación" placeholder="Familiar, amigo, vecino...">
-<label for="mensaje">Tu recuerdo</label>
-<textarea id="mensaje" name="Recuerdo" placeholder="Escribe aquí lo que quieras compartir..." required></textarea>
-<label for="archivo">Adjuntar foto o video (opcional)</label>
-<input type="file" id="archivo" name="attachment" accept="image/*,video/*">
-<p class="hint">Máximo 10 MB por archivo. Si tu video pesa más, súbelo a Google Drive y pega el enlace en el mensaje.</p>
-<button type="submit" id="btnEnviar">Enviar mi recuerdo ✉</button>
-<p id="estadoForm" style="text-align:center;font-size:.85rem;min-height:1.2em;margin-top:4px;"></p>
-</form>
+<section id="compartir">
 <p class="aviso"><strong>Gracias por compartir este momento con nosotros.</strong></p>
 <div class="compartir-wrap">
 <button type="button" class="btn-compartir" onclick="abrirMenuCompartir()" aria-label="Compartir este memorial">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg> Compartir</button></div></div></section>
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg> Compartir</button></div></section>
 <footer>
 <p>En memoria de <strong>Jesús Alberto Fierro Techera Sampayo</strong></p>
 <p>Un espacio creado con amor por su familia</p>
@@ -340,8 +315,6 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
       <p>Este sitio web es un <strong>espacio creado con amor por la familia de Jesús Alberto Fierro Techera Sampayo</strong>, con el único fin de recordarlo, honrar su memoria y compartir con familiares y amigos los momentos que vivimos junto a él.</p>
 <h4>Sobre las fotografías y videos</h4>
       <p>Todas las fotografías y videos publicados en este sitio fueron <strong>autorizados por sus autores o por las personas que aparecen en ellos</strong>, o pertenecen al archivo personal de la familia. Se incluyen aquí únicamente con fines conmemorativos y sin ningún ánimo de lucro.</p>
-<h4>Sobre el contenido enviado</h4>
-      <p>Al enviar un recuerdo, mensaje, foto o video a través del formulario, confirmas que eres el autor del contenido o cuentas con autorización para compartirlo, y que autorizas a la familia a publicarlo en este memorial. La familia se reserva el derecho de revisar o eliminar cualquier contenido que no considere apropiado.</p>
 <h4>Uso del sitio</h4>
       <p>Te pedimos un uso <strong>respetuoso</strong> de este espacio, acorde con su carácter íntimo y conmemorativo. Queda prohibido el uso comercial del sitio o de sus contenidos, así como la descarga, copia o redistribución de las imágenes y videos sin autorización de la familia.</p>
 <h4>Derechos de imagen</h4>
@@ -370,8 +343,7 @@ document.addEventListener('keyup',e=>{if(e.key==='PrintScreen'||e.key==='Snapsho
 document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key.toLowerCase()==='s'){e.preventDefault();mostrarAviso('🔒 Captura no permitida');}});
 document.addEventListener('mousedown',e=>{if(e.detail>2&&e.target.tagName!=='INPUT'&&e.target.tagName!=='TEXTAREA'){e.preventDefault();}});
 })();
-const observador=new IntersectionObserver((entries)=>{entries.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible');});},{threshold:0.08});
-document.querySelectorAll('section').forEach(s=>observador.observe(s));
+
 const modalVideo = document.getElementById('modalVideo');
 const videoAmpliado = document.getElementById('videoAmpliado');
 function ampliarVideo(btn){
@@ -379,10 +351,11 @@ function ampliarVideo(btn){
   const video = contenedor.querySelector('video');
   const fuente = video.querySelector('source');
   const urlOriginal = fuente ? fuente.src : video.src;
- fetch(urlOriginal, {mode: 'cors'})
+  fetch(urlOriginal, {mode: 'cors'})
     .then(r => {
       if (!r.ok) throw new Error('fetch falló');
-      return r.blob();   })
+      return r.blob();
+    })
     .then(blob => {
       const blobUrl = URL.createObjectURL(blob);
       videoAmpliado.src = blobUrl;
@@ -391,36 +364,46 @@ function ampliarVideo(btn){
     })
     .catch(() => {
       videoAmpliado.src = urlOriginal;
-      prepararVideoAmpliado();   }); }
+      prepararVideoAmpliado();
+    });
+}
 function prepararVideoAmpliado(){
   videoAmpliado.controls = true;
   videoAmpliado.controlsList = 'nodownload noplaybackrate noremoteplayback nofullscreen';
   videoAmpliado.disablePictureInPicture = true;
   videoAmpliado.setAttribute('controlslist', 'nodownload noplaybackrate noremoteplayback nofullscreen');
-videoAmpliado.setAttribute('disablepictureinpicture', '');
+  videoAmpliado.setAttribute('disablepictureinpicture', '');
   videoAmpliado.play().catch(()=>{});
-  modalVideo.classList.add('activo'); }
+  modalVideo.classList.add('activo');
+}
 function cerrarModalVideo(){
   modalVideo.classList.remove('activo');
   videoAmpliado.pause();
   if (videoAmpliado.dataset.blobUrl) {
-URL.revokeObjectURL(videoAmpliado.dataset.blobUrl);
- delete videoAmpliado.dataset.blobUrl;  }
+    URL.revokeObjectURL(videoAmpliado.dataset.blobUrl);
+    delete videoAmpliado.dataset.blobUrl;
+  }
   videoAmpliado.removeAttribute('src');
-  videoAmpliado.load(); }
+  videoAmpliado.load();
+}
 document.querySelectorAll('video').forEach(v =>{
   v.addEventListener('contextmenu', e => e.preventDefault());
   v.addEventListener('dragstart', e => e.preventDefault());
   v.addEventListener('loadedmetadata', () => {
-    v.controlsList = 'nodownload noplaybackrate noremoteplayback nofullscreen'; }); });
+    v.controlsList = 'nodownload noplaybackrate noremoteplayback nofullscreen';
+  });
+});
 document.addEventListener('keydown', e => {
   const hayVideoActivo = modalVideo.classList.contains('activo') ||
-  [...document.querySelectorAll('video')].some(v => !v.paused);
+    [...document.querySelectorAll('video')].some(v => !v.paused);
   if (!hayVideoActivo) return;
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
     e.preventDefault();
     e.stopPropagation();
-    return false;  } }, true);
+    return false;
+  }
+}, true);
+
 const FOTOS = [
 "https://i.ibb.co/Q7kW0t3Z/Screenshot-20261122-022850-Chrome.jpg",
 "https://i.ibb.co/8n4G0ydw/Screenshot-20261110-221539-Whats-App-Business.jpg",
@@ -428,21 +411,14 @@ const FOTOS = [
 "https://i.ibb.co/G3sfJQDD/IMG-20261108-WA0012.jpg",
 "https://i.ibb.co/GQkbfmK1/Screenshot-20261122-023320-Chrome.jpg",
 "https://i.ibb.co/N2DnGXGf/Screenshot-20261122-023356-Chrome.jpg",
-
 "https://i.ibb.co/MDy3kgNt/Screenshot-20261110-144138-Whats-App-Business.jpg",
-
 "https://i.ibb.co/WWXZnFMx/Screenshot-20261109-200937-Instagram.jpg",
-
 "https://i.ibb.co/7tGwXYWk/Screenshot-20261113-170656-Whats-App-Business.jpg",
 "https://i.ibb.co/DftRQr0Q/Screenshot-20261122-023614-Chrome.jpg",
 "https://i.ibb.co/7xcB3813/Screenshot-20261122-023413-Chrome.jpg",
-
 "https://i.ibb.co/Gv8k97nR/IMG-20261108-WA0003.jpg",
-
 "https://i.ibb.co/Wpz0C3rj/Screenshot-20261113-191347-Whats-App-Business.jpg",
-
 "https://i.ibb.co/SX3TWkM1/IMG-20261108-WA0006.jpg",
-
 "https://i.ibb.co/Wp3STtjt/file-000000005bf8820eacd701bfe7112498.png",
 "https://i.ibb.co/hx0LHDcd/Screenshot-20261107-033219-Facebook.jpg",
 "https://i.ibb.co/rKD6yCwC/Screenshot-20261107-014627-Photos.jpg",
@@ -465,38 +441,45 @@ const FOTOS = [
 "https://i.ibb.co/fzZ7YhTf/Screenshot-20261108-102255-Whats-App-Business.jpg",
 "https://i.ibb.co/Y42j04ct/facebook-1794116060458.jpg",
 "https://i.ibb.co/1YX0pxM7/FB-IMG-1794112102489.jpg",
-
 "https://i.ibb.co/m5KxtpfX/IMG-20261108-WA0011.jpg",
 "https://i.ibb.co/VWzgMtg2/IMG-20261108-WA0012.jpg",
 "https://i.ibb.co/GrstMmf/IMG-20261108-WA0009.jpg",
 "https://i.ibb.co/gZFDwYPL/Screenshot-20261108-083253-Gallery.jpg",
 "https://i.ibb.co/3YhDGBFm/facebook-1794116106294.jpg",
-"https://i.ibb.co/0VV6zhdp/Screenshot-20261107-035056-Facebook.jpg", 
+"https://i.ibb.co/0VV6zhdp/Screenshot-20261107-035056-Facebook.jpg",
 "https://i.ibb.co/YB47fP5m/FB-IMG-1794111639094.jpg",
 "https://i.ibb.co/dJPt943D/Screenshot-20261122-023428-Chrome.jpg",
-"https://i.ibb.co/dwmX9G2b/Screenshot-20261114-161246-Instagram.jpg",
+"https://i.ibb.co/dwmX9G2b/Screenshot-20261114-161246-Instagram.jpg"
 ];
+
+const libroWrap = document.getElementById('libroWrap');
 const libroEscenario = document.getElementById('libroEscenario');
 const libroImg = document.getElementById('libroImg');
 const libroHojaActual = document.getElementById('libroHojaActual');
 const libroContador = document.getElementById('libroContador');
 const libroHint = document.getElementById('libroHint');
 const indice = document.getElementById('indice');
+const btnPrevFoto = document.getElementById('btnPrevFoto');
+const btnNextFoto = document.getElementById('btnNextFoto');
+
 let libroActual = 0;
 let animando = false;
-let autoplayTimer = null;
-const AUTOPLAY_INTERVAL = 4000;
-// Precarga de imágenes
+let timerCarrusel = null;
+const INTERVALO_CARRUSEL = 4500;
 const cacheImagenes = {};
+
 function precargarImagen(url){
   if (cacheImagenes[url]) return cacheImagenes[url];
   const p = new Promise((resolve) => {
     const img = new Image();
     img.onload = () => resolve(true);
     img.onerror = () => resolve(false);
-    img.src = url; });
+    img.src = url;
+  });
   cacheImagenes[url] = p;
-  return p; }
+  return p;
+}
+
 FOTOS.forEach((url, i) => {
   const mini = document.createElement('img');
   mini.src = url;
@@ -505,28 +488,56 @@ FOTOS.forEach((url, i) => {
   mini.alt = 'Recuerdo ' + (i+1);
   if (i === 0) mini.classList.add('activa');
   mini.addEventListener('click', () => {
-    detenerAutoplay();
     libroIr(i);
-    reiniciarAutoplayDespuesDeInteraccion(); });
-  indice.appendChild(mini); });
+    reiniciarCarruselAuto();
+  });
+  indice.appendChild(mini);
+});
+
 function libroPintarContador(){
   libroContador.textContent = (libroActual + 1) + ' / ' + FOTOS.length;
   [...indice.children].forEach((m, i) => m.classList.toggle('activa', i === libroActual));
-  const activa = indice.children[libroActual];
-  if (activa) activa.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'}); }
+}
+
+function detenerCarruselAuto(){
+  if (timerCarrusel) {
+    clearInterval(timerCarrusel);
+    timerCarrusel = null;
+  }
+}
+
+function iniciarCarruselAuto(){
+  detenerCarruselAuto();
+  if (FOTOS.length < 2) return;
+  timerCarrusel = setInterval(() => {
+    if (!animando && !dragging && !mouseDown && !document.hidden) {
+      libroMover(1, null, true);
+    }
+  }, INTERVALO_CARRUSEL);
+}
+
+function reiniciarCarruselAuto(){
+  iniciarCarruselAuto();
+}
+
 function libroInit(){
-  // Precargar primeras 2 imágenes
   precargarImagen(FOTOS[0]);
   if (FOTOS.length > 1) precargarImagen(FOTOS[1]);
   libroImg.src = FOTOS[libroActual];
   libroPintarContador();
   setTimeout(() => libroHint.classList.add('oculto'), 4000);
-  iniciarAutoplay();}
+  iniciarCarruselAuto();
+}
+
 function libroIr(index){
   if (animando || index === libroActual) return;
+  const dir = index > libroActual ? 1 : -1;
   libroActual = index;
   libroImg.src = FOTOS[libroActual];
-  libroPintarContador();}
+  libroPintarContador();
+  precargarImagen(FOTOS[(libroActual + (dir > 0 ? 1 : -1) + FOTOS.length) % FOTOS.length]);
+}
+
 function libroCrearHojaEntrante(src, onReady){
   const hoja = document.createElement('div');
   hoja.className = 'libro-hoja-entrante';
@@ -537,74 +548,81 @@ function libroCrearHojaEntrante(src, onReady){
   img.src = src;
   hoja.appendChild(img);
   libroEscenario.appendChild(hoja);
-  return hoja;}
-function libroMover(dir, fromDrag){
+  return hoja;
+}
+
+function libroMover(dir, fromDrag, esAutomatico = false){
   if (animando) return;
   if (FOTOS.length < 2) return;
+  if (!esAutomatico) reiniciarCarruselAuto();
   animando = true;
   const nuevoIndex = (libroActual + dir + FOTOS.length) % FOTOS.length;
   const srcNuevo = FOTOS[nuevoIndex];
-// Precargar la imagen siguiente también
   const siguienteIndex = (nuevoIndex + 1) % FOTOS.length;
   precargarImagen(FOTOS[siguienteIndex]);
- // Crear hoja entrante y esperar a que la imagen cargue antes de animar
+
   let yaAnimado = false;
+  let hojaEntrante = null;
+
   const ejecutarAnimacion = () => {
     if (yaAnimado) return;
     yaAnimado = true;
- hojaEntrante.classList.add(dir > 0 ? 'entrando-der' : 'entrando-izq');
+    if (hojaEntrante) {
+      hojaEntrante.classList.add(dir > 0 ? 'entrando-der' : 'entrando-izq');
+    }
     libroHojaActual.style.transform = '';
-libroHojaActual.classList.remove('arrastrando','completar-izq','completar-der','rebobinar');
+    libroHojaActual.classList.remove('arrastrando','completar-izq','completar-der','rebobinar');
     if (fromDrag) {
       libroHojaActual.style.setProperty('--tx', fromDrag.tx + 'px');
-      libroHojaActual.style.setProperty('--ry', fromDrag.ry + 'deg'); }
+      libroHojaActual.style.setProperty('--ry', fromDrag.ry + 'deg');
+    }
     void libroHojaActual.offsetWidth;
     libroHojaActual.classList.add(dir > 0 ? 'completar-izq' : 'completar-der');
     libroActual = nuevoIndex;
     libroPintarContador();
-setTimeout(() => {
+
+    setTimeout(() => {
       libroImg.src = srcNuevo;
       libroHojaActual.className = 'libro-hoja';
       libroHojaActual.style.transform = '';
-   libroHojaActual.style.removeProperty('--tx');
-   libroHojaActual.style.removeProperty('--ry');
-      hojaEntrante.remove();
-      animando = false; }, 460); };
-const hojaEntrante = libroCrearHojaEntrante(srcNuevo, ejecutarAnimacion);
-// Si la imagen ya estaba cacheada, el onload puede no dispararse;
-  // forzamos con un pequeño timeout por si acaso
+      libroHojaActual.style.removeProperty('--tx');
+      libroHojaActual.style.removeProperty('--ry');
+      if (hojaEntrante) hojaEntrante.remove();
+      animando = false;
+    }, 460);
+  };
+
+  hojaEntrante = libroCrearHojaEntrante(srcNuevo, ejecutarAnimacion);
   setTimeout(() => {
     const img = hojaEntrante.querySelector('img');
     if (img && img.complete) {
-      ejecutarAnimacion();  } }, 50);
-  // Fallback por si tarda demasiado
-  setTimeout(ejecutarAnimacion, 1500);}
-// Autoplay
-function iniciarAutoplay(){
-  detenerAutoplay();
-  autoplayTimer = setInterval(() => {
-    if (!animando && !document.hidden) {
-      libroMover(1); }
-  }, AUTOPLAY_INTERVAL);}
-function detenerAutoplay(){
-  if (autoplayTimer) {
-    clearInterval(autoplayTimer);
-    autoplayTimer = null;  }}
-let reinicioTimer = null;
-function reiniciarAutoplayDespuesDeInteraccion(){ if (reinicioTimer) clearTimeout(reinicioTimer);
-  reinicioTimer = setTimeout(() => {
-    if (!document.hidden) {
-      iniciarAutoplay(); } }, 8000);}
-document.addEventListener('visibilitychange', () => { if (document.hidden) {
-    detenerAutoplay();  } else {
-    iniciarAutoplay(); }});
-// Drag / swipe
+      ejecutarAnimacion();
+    }
+  }, 50);
+  setTimeout(ejecutarAnimacion, 1500);
+}
+
+btnPrevFoto.addEventListener('click', (e) => {
+  e.stopPropagation();
+  libroMover(-1);
+});
+btnNextFoto.addEventListener('click', (e) => {
+  e.stopPropagation();
+  libroMover(1);
+});
+
+libroWrap.addEventListener('mouseenter', detenerCarruselAuto);
+libroWrap.addEventListener('mouseleave', () => {
+  if (!dragging && !mouseDown) iniciarCarruselAuto();
+});
+
 let dragX0 = 0, dragY0 = 0, dragging = false;
 function iniciarDrag(x, y){
   if (animando) return;
+  detenerCarruselAuto();
   dragX0 = x; dragY0 = y; dragging = true;
   libroHojaActual.classList.add('arrastrando');
-  detenerAutoplay();}
+}
 function moverDrag(x, y){
   if (!dragging) return;
   const dx = x - dragX0;
@@ -615,11 +633,12 @@ function moverDrag(x, y){
   const ry = (tx / limit) * 70 * (dx < 0 ? -1 : 1);
   libroHojaActual.style.transform = `translateX(${tx}px) rotateY(${ry}deg)`;
   libroHojaActual.style.setProperty('--tx', tx + 'px');
-  libroHojaActual.style.setProperty('--ry', ry + 'deg');}
+  libroHojaActual.style.setProperty('--ry', ry + 'deg');
+}
 function terminarDrag(x){
   if (!dragging) return;
   dragging = false;
-libroHojaActual.classList.remove('arrastrando');
+  libroHojaActual.classList.remove('arrastrando');
   const dx = x - dragX0;
   const umbral = 60;
   if (Math.abs(dx) > umbral) {
@@ -636,13 +655,16 @@ libroHojaActual.classList.remove('arrastrando');
     libroHojaActual.classList.add('rebobinar');
     setTimeout(() => {
       libroHojaActual.style.transform = '';
-  libroHojaActual.classList.remove('rebobinar');
-   libroHojaActual.style.removeProperty('--tx');
-   libroHojaActual.style.removeProperty('--ry');
-    }, 300); }
-reiniciarAutoplayDespuesDeInteraccion();}
+      libroHojaActual.classList.remove('rebobinar');
+      libroHojaActual.style.removeProperty('--tx');
+      libroHojaActual.style.removeProperty('--ry');
+      iniciarCarruselAuto();
+    }, 300);
+  }
+}
+
 libroEscenario.addEventListener('touchstart', e => {
-  if (e.touches.length !== 1) return;
+  if (e.touches.length !== 1 || e.target.closest('.libro-btn')) return;
   iniciarDrag(e.touches[0].clientX, e.touches[0].clientY);
 }, {passive:true});
 libroEscenario.addEventListener('touchmove', e => {
@@ -653,6 +675,7 @@ libroEscenario.addEventListener('touchend', e => {
   if (e.changedTouches.length !== 1) return;
   terminarDrag(e.changedTouches[0].clientX);
 }, {passive:true});
+
 let mouseDown = false;
 libroEscenario.addEventListener('mousedown', e => {
   if (e.target.closest('button')) return;
@@ -668,29 +691,24 @@ window.addEventListener('mouseup', e => {
   mouseDown = false;
   terminarDrag(e.clientX);
 });
+
 document.addEventListener('keydown', e => {
   if (document.getElementById('modalLegal').classList.contains('activo')) {
     if (e.key === 'Escape') cerrarLegal();
-    return;  }
+    return;
+  }
   if (modalVideo.classList.contains('activo')) {
     if (e.key === 'Escape') cerrarModalVideo();
-    return; }
-  if (e.key === 'ArrowLeft') { detenerAutoplay(); libroMover(-1); reiniciarAutoplayDespuesDeInteraccion(); }
-  if (e.key === 'ArrowRight') { detenerAutoplay(); libroMover(1); reiniciarAutoplayDespuesDeInteraccion(); } });
+    return;
+  }
+  if (e.key === 'ArrowLeft') { libroMover(-1); }
+  if (e.key === 'ArrowRight') { libroMover(1); }
+});
+
 libroInit();
+
 const TEXTO_COMPARTIR='';const URL_SITIO='https://jesusfierro.vercel.app/';
 function abrirMenuCompartir(){const url=URL_SITIO;const texto=encodeURIComponent(TEXTO_COMPARTIR+' '+url);document.getElementById('opWhatsApp').href='https://wa.me/?text='+texto;document.getElementById('opFacebook').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);document.getElementById('opTwitter').href='https://twitter.com/intent/tweet?text='+encodeURIComponent(TEXTO_COMPARTIR)+'&url='+encodeURIComponent(url);document.getElementById('opTelegram').href='https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(TEXTO_COMPARTIR);document.getElementById('opEmail').href='mailto:?subject='+encodeURIComponent('En memoria de Jesús Alberto')+'&body='+texto;document.getElementById('menuAviso').textContent='';document.getElementById('menuCompartir').classList.add('activo');}
 function cerrarMenuCompartir(){document.getElementById('menuCompartir').classList.remove('activo');}
 document.getElementById('opCopiar').addEventListener('click',async()=>{const url=URL_SITIO;const aviso=document.getElementById('menuAviso');try{await navigator.clipboard.writeText(url);aviso.textContent='✓ Enlace copiado al portapapeles';}catch(err){const tmp=document.createElement('textarea');tmp.value=url;document.body.appendChild(tmp);tmp.select();try{document.execCommand('copy');aviso.textContent='✓ Enlace copiado';}catch(e){aviso.textContent='⚠ No se pudo copiar.';}document.body.removeChild(tmp);}setTimeout(()=>{aviso.textContent='';},2500);});
-(function(){
-const form=document.getElementById('formRecuerdo');const btn=document.getElementById('btnEnviar');const estado=document.getElementById('estadoForm');const archivo=document.getElementById('archivo');const MAX_MB=10;const MAX_BYTES=MAX_MB*1024*1024;
-archivo.addEventListener('change',()=>{if(archivo.files[0]&&archivo.files[0].size>MAX_BYTES){estado.textContent=`⚠ Este archivo pesa más de ${MAX_MB} MB. Súbelo a Google Drive y pega el enlace.`;estado.style.color='#e0a96d';archivo.value='';}else{estado.textContent='';estado.style.color='';}});
-form.addEventListener('submit',async function(e){e.preventDefault();
-if(archivo.files[0]&&archivo.files[0].size>MAX_BYTES){estado.textContent=`⚠ El archivo supera los ${MAX_MB} MB.`;estado.style.color='#e0a96d';return;}
-btn.disabled=true;btn.textContent='Enviando...';estado.textContent='';estado.style.color='';
-try{const res=await fetch(form.action,{method:'POST',body:new FormData(form)});const data=await res.json();
-if(data.success){estado.textContent='✓ ¡Gracias! Tu recuerdo fue enviado a la familia.';estado.style.color='#c9a86a';form.reset();}
-else{estado.textContent='⚠ No se pudo enviar. Inténtalo de nuevo.';estado.style.color='#e07a5f';}}
-catch(err){estado.textContent='⚠ Error de conexión. Inténtalo otra vez.';estado.style.color='#e07a5f';}
-finally{btn.disabled=false;btn.textContent='Enviar mi recuerdo ✉';}}); })();
 </script></body></html>
