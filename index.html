@@ -20,9 +20,6 @@
 <meta name="twitter:description" content="Un espacio creado con amor para recordarlo y compartir sus recuerdos.">
 <meta name="twitter:image" content="https://i.ibb.co/ZRMqmpMb/file-00000000e940820e836448998914c1f9.png">
 <meta name="twitter:image:alt" content="En memoria de Jesús Alberto">
-<script>
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-</script>
 <style>
 :root{--fondo:#0f1419;--tarjeta:#1a2129;--texto:#e8e6e3;--suave:#9aa5b1;--acento:#c9a86a;--borde:#2a333d;}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none;}
@@ -38,7 +35,6 @@ body.oculto{background:#000 !important;}
 body.oculto > *:not(#antiCaptura){opacity:0;transition:opacity .05s;}
 html{scroll-behavior:smooth;}
 body{font-family:Georgia,serif;background:var(--fondo);color:var(--texto);line-height:1.6;overflow-x:hidden;}
-body.video-abierto{position:fixed;width:100%;overflow:hidden;}
 header{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0;background:var(--fondo);border-bottom:1px solid var(--borde);overflow:hidden;}
 header .fondo-img{position:absolute;inset:0;background:url('https://i.ibb.co/ZRMqmpMb/file-00000000e940820e836448998914c1f9.png') center center/contain no-repeat;background-color:#0a0f14;z-index:0;}
 header .capa{position:absolute;inset:0;background:linear-gradient(rgba(15,20,25,.35),rgba(15,20,25,.55));z-index:1;}
@@ -86,6 +82,7 @@ section h2 .subtitulo b{font-weight:bold;color:var(--acento);}
 .palabras-track:hover{animation-play-state:paused;}
 .palabra-card{background:var(--tarjeta);border:1px solid var(--borde);border-left:3px solid var(--acento);border-radius:10px;padding:16px 18px;width:300px;flex-shrink:0;display:flex;flex-direction:column;justify-content:space-between;font-size:.92rem;transition:.3s;}
 .palabra-card:hover{transform:translateY(-4px);border-color:var(--acento);box-shadow:0 10px 25px rgba(201,168,106,.15);}
+.palabra-card .palabra-img{width:100%;height:150px;object-fit:cover;border-radius:8px;margin-bottom:12px;border:1px solid var(--borde);background:#0a0f14;display:block;}
 .palabra-card p{font-style:italic;color:var(--texto);line-height:1.5;margin-bottom:12px;}
 .palabra-card .autor{color:var(--acento);font-size:.8rem;letter-spacing:1px;font-style:normal;text-align:right;}
 @keyframes palabrasMov{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
@@ -94,8 +91,7 @@ section h2 .subtitulo b{font-weight:bold;color:var(--acento);}
 .video-item video{width:100%;aspect-ratio:1/1;display:block;background:#000;object-fit:cover;cursor:pointer;border-radius:10px;}
 .video-item .btn-ampliar{position:absolute;top:6px;right:6px;z-index:6;background:rgba(0,0,0,.6);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:5px 9px;font-size:.9rem;line-height:1;cursor:pointer;backdrop-filter:blur(3px);transition:.2s;}
 .video-item .btn-ampliar:hover{background:rgba(201,168,106,.9);color:#0f1419;border-color:var(--acento);}
-
-#modalVideo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:200;justify-content:center;align-items:center;padding:10px;touch-action:none;}
+#modalVideo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:200;justify-content:center;align-items:center;padding:10px;}
 #modalVideo.activo{display:flex;}
 #modalVideo video{width:100%;max-width:1100px;max-height:90vh;background:#000;border-radius:8px;outline:none;}
 #cerrarModal{position:absolute;top:14px;right:16px;background:rgba(255,255,255,.12);color:#fff;border:none;width:42px;height:42px;border-radius:50%;font-size:1.4rem;line-height:1;cursor:pointer;z-index:2;}
@@ -151,7 +147,6 @@ footer .legal-copy{margin-top:12px;font-size:.72rem;opacity:.7;}
 .legal-body::-webkit-scrollbar{width:8px;}
 .legal-body::-webkit-scrollbar-thumb{background:var(--borde);border-radius:4px;}
 .legal-body::-webkit-scrollbar-thumb:hover{background:var(--acento);}
-
 .compartir-wrap{max-width:560px;margin:24px auto 0;text-align:center;}
 .btn-compartir{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:transparent;border:1px solid var(--acento);color:var(--acento);font-family:inherit;font-size:.9rem;font-weight:normal;letter-spacing:2px;text-transform:uppercase;padding:14px 26px;border-radius:8px;cursor:pointer;transition:background .25s,color .25s,transform .15s,box-shadow .25s;}
 .btn-compartir:hover{background:var(--acento);color:#0f1419;box-shadow:0 6px 18px rgba(201,168,106,.35);transform:translateY(-1px);}
@@ -179,6 +174,7 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
   .videos{gap:22px;}
   .video-item video{aspect-ratio:16/10;}
   .palabra-card{width:360px;font-size:1rem;}
+  .palabra-card .palabra-img{height:175px;}
   .palabras-track{animation-duration:50s;}
   #menuCompartir{align-items:center;}
   .legal-body{font-size:.95rem;padding:24px 30px 30px;} }
@@ -196,7 +192,6 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
 <div class="contenido">
 <h1>Jesús Alberto Fierro Techera Sampayo</h1>
 <p>"Tu recuerdo vive en cada uno de nosotros."</p></div></header>
-
 <section>
 <h2>Libro de recuerdos <span class="subtitulo"><b>desliza para pasar hoja</b></span></h2>
 <div class="libro-wrap">
@@ -210,24 +205,22 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
 </div>
 <div class="indice" id="indice"></div>
 </section>
-
 <section>
 <h2>Palabras que lo recuerdan</h2>
 <div class="palabras-wrap">
 <div class="palabras-track" id="palabrasTrack">
-<div class="palabra-card"><p>"Siempre recordaré su forma de reír y de hacer sentir bien a todos."</p><span class="autor">— Familia</span></div>
-<div class="palabra-card"><p>"Un hombre de palabra, con un corazón enorme. Nos enseñó con el ejemplo."</p><span class="autor">— Un amigo</span></div>
-<div class="palabra-card"><p>"Gracias por todo, magibert. Siempre estarás en nuestro corazón."</p><span class="autor">— colegas</span></div>
-<div class="palabra-card"><p>"Su alegría era contagiosa. Cada vez que lo recuerdo, sonrío."</p><span class="autor">— Su amiga</span></div>
-<div class="palabra-card"><p>"Un vecino ejemplar, siempre dispuesto a ayudar sin esperar nada."</p><span class="autor">— Los vecinos</span></div>
-<div class="palabra-card"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div>
-<div class="palabra-card"><p>"Siempre recordaré su forma de reír y de hacer sentir bien a todos."</p><span class="autor">— Familia</span></div>
-<div class="palabra-card"><p>"Un hombre de palabra, con un corazón enorme. Nos enseñó con el ejemplo."</p><span class="autor">— Un amigo</span></div>
-<div class="palabra-card"><p>"Gracias por todo, magibert. Siempre estarás en nuestro corazón."</p><span class="autor">— sus compañeros</span></div>
-<div class="palabra-card"><p>"Su alegría era contagiosa. Cada vez que lo recuerdo, sonrío."</p><span class="autor">— Su hija</span></div>
-<div class="palabra-card"><p>"Un vecino ejemplar, siempre dispuesto a ayudar sin esperar nada."</p><span class="autor">— Los vecinos</span></div>
-<div class="palabra-card"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div></div></div></section>
-
+<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Siempre recordaré su forma de reír y de hacer sentir bien a todos."</p><span class="autor">— Familia</span></div>
+<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Un hombre de palabra, con un corazón enorme. Nos enseñó con el ejemplo."</p><span class="autor">— Un amigo</span></div>
+<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Gracias por todo, magibert. Siempre estarás en nuestro corazón."</p><span class="autor">— colegas</span></div>
+<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Su alegría era contagiosa. Cada vez que lo recuerdo, sonrío."</p><span class="autor">— Su amiga</span></div>
+<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Un vecino ejemplar, siempre dispuesto a ayudar sin esperar nada."</p><span class="autor">— Los vecinos</span></div>
+<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div>
+<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Siempre recordaré su forma de reír y de hacer sentir bien a todos."</p><span class="autor">— Familia</span></div>
+<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Un hombre de palabra, con un corazón enorme. Nos enseñó con el ejemplo."</p><span class="autor">— Un amigo</span></div>
+<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Gracias por todo, magibert. Siempre estarás en nuestro corazón."</p><span class="autor">— sus compañeros</span></div>
+<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Su alegría era contagiosa. Cada vez que lo recuerdo, sonrío."</p><span class="autor">— Su hija</span></div>
+<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Un vecino ejemplar, siempre dispuesto a ayudar sin esperar nada."</p><span class="autor">— Los vecinos</span></div>
+<div class="palabra-card"><img src="https://i.ibb.co/jPLJmktH/Screenshot-20261114-161246-Instagram.jpg" alt="Recuerdo de Jesús Alberto" class="palabra-img" loading="lazy" decoding="async"><p>"Nos dejó tantas enseñanzas que hoy seguimos viviendo con ellas."</p><span class="autor">— Su familia</span></div></div></div></section>
 <section>
 <h2>Videos <span class="subtitulo">su pasatiempo</span></h2>
 <div class="videos">
@@ -236,17 +229,7 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
   controlslist="nodownload noplaybackrate noremoteplayback nofullscreen"
   disablepictureinpicture
   oncontextmenu="return false;"
-  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
-  <source src="https://cdn.mp4tourl.com/video/free/d3b8d135-069d-4df1-9576-43fb3ee3bda3.mp4" type="video/mp4">
-</video>
-<button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
-</div>
-<div class="video-item">
-<video controls preload="auto" playsinline
-  controlslist="nodownload noplaybackrate noremoteplayback nofullscreen"
-  disablepictureinpicture
-  oncontextmenu="return false;"
-  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
+ onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
   <source src="https://cdn.mp4tourl.com/video/free/c23ff2f9-28d8-46d9-8152-6ae6e42a021d.mp4" type="video/mp4">
 </video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
@@ -256,7 +239,7 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
   controlslist="nodownload noplaybackrate noremoteplayback nofullscreen"
   disablepictureinpicture
   oncontextmenu="return false;"
-  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
+ onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
   <source src="https://cdn.mp4tourl.com/video/free/1cdebc6d-b1bf-4406-bea3-fde4e591cf20.mp4" type="video/mp4">
 </video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
@@ -266,7 +249,7 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
   controlslist="nodownload noplaybackrate noremoteplayback nofullscreen"
   disablepictureinpicture
   oncontextmenu="return false;"
-  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
+ onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
   <source src="https://cdn.mp4tourl.com/video/free/007873e4-9d32-4f9e-a7e5-0bbc1eb9ca62.mp4" type="video/mp4">
 </video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
@@ -276,7 +259,7 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
   controlslist="nodownload noplaybackrate noremoteplayback nofullscreen"
   disablepictureinpicture
   oncontextmenu="return false;"
-  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
+ onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
   <source src="https://cdn.mp4tourl.com/video/free/1830d57d-6ef9-4733-84ef-66a21a1ee77a.mp4" type="video/mp4">
 </video>
 <button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
@@ -286,31 +269,44 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
   controlslist="nodownload noplaybackrate noremoteplayback nofullscreen"
   disablepictureinpicture
   oncontextmenu="return false;"
-  onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
+ onloadedmetadata="this.controlsList='nodownload noplaybackrate noremoteplayback nofullscreen';">
   <source src="https://cdn.mp4tourl.com/video/free/7f807305-9310-4e9a-b5b4-eee495321b71.mp4" type="video/mp4">
 </video>
-<button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button>
-</div>
-</div></section>
-
+<button class="btn-ampliar" type="button" onclick="ampliarVideo(this)" aria-label="Ampliar video">⛶</button></div></div></section>
 <section>
 <h2>Una carta para ti</h2>
 <div class="carta"><p>"Jesús, gracias por cada enseñanza, por cada abrazo y por cada palabra. Nos diste tanto sin pedir nada a cambio. Aunque ya no estés físicamente, tu esencia sigue viva en cada uno de nosotros. Te recordaremos siempre con una sonrisa."</p></div></section>
-
-
+<section id="enviar">
+<h2>Envía tu recuerdo</h2>
+<div class="form-wrap">
+<form id="formRecuerdo" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="access_key" value="9d5a45aa-efe7-47b2-8371-f1ba03d3a99c">
+<input type="hidden" name="subject" value="Nuevo recuerdo para Jesús Alberto">
+<input type="hidden" name="from_name" value="Memorial Jesús Alberto">
+<input type="hidden" name="redirect" value="https://jesusfierro.vercel.app/#enviar">
+<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+<label for="nombre">Tu nombre</label>
+<input type="text" id="nombre" name="Nombre" placeholder="¿Cómo te llamas?" required>
+<label for="relacion">Tu relación con Jesús</label>
+<input type="text" id="relacion" name="Relación" placeholder="Familiar, amigo, vecino...">
+<label for="mensaje">Tu recuerdo</label>
+<textarea id="mensaje" name="Recuerdo" placeholder="Escribe aquí lo que quieras compartir..." required></textarea>
+<label for="archivo">Adjuntar foto o video (opcional)</label>
+<input type="file" id="archivo" name="attachment" accept="image/*,video/*">
+<p class="hint">Máximo 10 MB por archivo. Si tu video pesa más, súbelo a Google Drive y pega el enlace en el mensaje.</p>
+<button type="submit" id="btnEnviar">Enviar mi recuerdo ✉</button>
+<p id="estadoForm" style="text-align:center;font-size:.85rem;min-height:1.2em;margin-top:4px;"></p>
+</form>
 <p class="aviso"><strong>Gracias por compartir este momento con nosotros.</strong></p>
 <div class="compartir-wrap">
 <button type="button" class="btn-compartir" onclick="abrirMenuCompartir()" aria-label="Compartir este memorial">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg> Compartir</button></div></div></br>
-
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg> Compartir</button></div></div></section>
 <footer>
 <p>En memoria de <strong>Jesús Alberto Fierro Techera Sampayo</strong></p>
 <p>Un espacio creado con amor por su familia</p>
 <div class="legal-links">
-  <button type="button" onclick="abrirLegal()">Términos y condiciones</button>
-</div>
+  <button type="button" onclick="abrirLegal()">Términos y condiciones</button></div>
 <p class="legal-copy">© <span id="anioActual"></span> Memorial Jesús Alberto — Todos los derechos reservados.</p></footer>
-
 <div id="menuCompartir" onclick="if(event.target.id==='menuCompartir')cerrarMenuCompartir()">
 <div class="menu-card" onclick="event.stopPropagation()">
 <h3>Compartir este memorial</h3>
@@ -331,7 +327,6 @@ header .contenido{min-height:clamp(380px,66vh,620px);padding:60px 20px 55px;}
 <p class="menu-aviso" id="menuAviso"></p>
 <button type="button" class="menu-cerrar" onclick="cerrarMenuCompartir()">Cerrar</button>
 </div></div>
-
 <div id="modalVideo" onclick="if(event.target.id==='modalVideo')cerrarModalVideo()">
 <button id="cerrarModal" onclick="cerrarModalVideo()" aria-label="Cerrar">✕</button>
 <video id="videoAmpliado" controls playsinline controlslist="nodownload noplaybackrate noremoteplayback nofullscreen" disablepictureinpicture oncontextmenu="return false;"></video></div>
@@ -379,21 +374,15 @@ const observador=new IntersectionObserver((entries)=>{entries.forEach(en=>{if(en
 document.querySelectorAll('section').forEach(s=>observador.observe(s));
 const modalVideo = document.getElementById('modalVideo');
 const videoAmpliado = document.getElementById('videoAmpliado');
-let scrollGuardado = 0;
 function ampliarVideo(btn){
-  scrollGuardado = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
   const contenedor = btn.parentElement;
   const video = contenedor.querySelector('video');
   const fuente = video.querySelector('source');
   const urlOriginal = fuente ? fuente.src : video.src;
-  document.body.style.top = '-' + scrollGuardado + 'px';
-  document.body.classList.add('video-abierto');
-  modalVideo.classList.add('activo');
-  fetch(urlOriginal, {mode: 'cors'})
+ fetch(urlOriginal, {mode: 'cors'})
     .then(r => {
       if (!r.ok) throw new Error('fetch falló');
-      return r.blob();
-    })
+      return r.blob();   })
     .then(blob => {
       const blobUrl = URL.createObjectURL(blob);
       videoAmpliado.src = blobUrl;
@@ -402,31 +391,23 @@ function ampliarVideo(btn){
     })
     .catch(() => {
       videoAmpliado.src = urlOriginal;
-      prepararVideoAmpliado();
-    });
-}
+      prepararVideoAmpliado();   }); }
 function prepararVideoAmpliado(){
   videoAmpliado.controls = true;
   videoAmpliado.controlsList = 'nodownload noplaybackrate noremoteplayback nofullscreen';
   videoAmpliado.disablePictureInPicture = true;
   videoAmpliado.setAttribute('controlslist', 'nodownload noplaybackrate noremoteplayback nofullscreen');
-  videoAmpliado.setAttribute('disablepictureinpicture', '');
-}
+videoAmpliado.setAttribute('disablepictureinpicture', '');
+  videoAmpliado.play().catch(()=>{});
+  modalVideo.classList.add('activo'); }
 function cerrarModalVideo(){
   modalVideo.classList.remove('activo');
   videoAmpliado.pause();
   if (videoAmpliado.dataset.blobUrl) {
-    URL.revokeObjectURL(videoAmpliado.dataset.blobUrl);
-    delete videoAmpliado.dataset.blobUrl;
-  }
+URL.revokeObjectURL(videoAmpliado.dataset.blobUrl);
+ delete videoAmpliado.dataset.blobUrl;  }
   videoAmpliado.removeAttribute('src');
-  videoAmpliado.load();
-  document.body.classList.remove('video-abierto');
-  document.body.style.top = '';
-  requestAnimationFrame(function(){
-    window.scrollTo(0, scrollGuardado);
-  });
-}
+  videoAmpliado.load(); }
 document.querySelectorAll('video').forEach(v =>{
   v.addEventListener('contextmenu', e => e.preventDefault());
   v.addEventListener('dragstart', e => e.preventDefault());
@@ -441,41 +422,60 @@ document.addEventListener('keydown', e => {
     e.stopPropagation();
     return false;  } }, true);
 const FOTOS = [
+"https://i.ibb.co/Q7kW0t3Z/Screenshot-20261122-022850-Chrome.jpg",
 "https://i.ibb.co/8n4G0ydw/Screenshot-20261110-221539-Whats-App-Business.jpg",
+"https://i.ibb.co/93y2X7zk/Screenshot-20261122-023243-Chrome.jpg",
 "https://i.ibb.co/G3sfJQDD/IMG-20261108-WA0012.jpg",
+"https://i.ibb.co/GQkbfmK1/Screenshot-20261122-023320-Chrome.jpg",
+"https://i.ibb.co/N2DnGXGf/Screenshot-20261122-023356-Chrome.jpg",
+
 "https://i.ibb.co/MDy3kgNt/Screenshot-20261110-144138-Whats-App-Business.jpg",
+
 "https://i.ibb.co/WWXZnFMx/Screenshot-20261109-200937-Instagram.jpg",
+
+"https://i.ibb.co/7tGwXYWk/Screenshot-20261113-170656-Whats-App-Business.jpg",
+"https://i.ibb.co/DftRQr0Q/Screenshot-20261122-023614-Chrome.jpg",
+"https://i.ibb.co/7xcB3813/Screenshot-20261122-023413-Chrome.jpg",
+
 "https://i.ibb.co/Gv8k97nR/IMG-20261108-WA0003.jpg",
+
+"https://i.ibb.co/Wpz0C3rj/Screenshot-20261113-191347-Whats-App-Business.jpg",
+
 "https://i.ibb.co/SX3TWkM1/IMG-20261108-WA0006.jpg",
+
 "https://i.ibb.co/Wp3STtjt/file-000000005bf8820eacd701bfe7112498.png",
 "https://i.ibb.co/hx0LHDcd/Screenshot-20261107-033219-Facebook.jpg",
 "https://i.ibb.co/rKD6yCwC/Screenshot-20261107-014627-Photos.jpg",
 "https://i.ibb.co/JWjKq0fH/Screenshot-20261107-014605-Photos.jpg",
-  "https://i.ibb.co/zHsgHrmD/file-00000000e940820e836448998914c1f9.png",
-  "https://i.ibb.co/hRsDtRRw/Screenshot-20261107-033111-Facebook.jpg",
-  "https://i.ibb.co/Hph1D7J1/Screenshot-20261107-033139-Facebook.jpg",
-  "https://i.ibb.co/p6V2G1N2/Screenshot-20261107-194654-Whats-App-Business.jpg",
-  "https://i.ibb.co/6qGZMw4/Screenshot-20261107-033257-Facebook.jpg",
-  "https://i.ibb.co/xtbL3zCX/Screenshot-20261107-033234-Facebook.jpg",
-  "https://i.ibb.co/GvC3X88H/Screenshot-20261107-033320-Facebook.jpg",
-  "https://i.ibb.co/1JZcCZvJ/Screenshot-20261107-194627-Whats-App-Business.jpg",
-  "https://i.ibb.co/9myjmW1x/Screenshot-20261107-194636-Whats-App-Business.jpg",
-  "https://i.ibb.co/zhwKsZkj/Screenshot-20261107-194641-Whats-App-Business.jpg",
-  "https://i.ibb.co/gLqSKZyh/IMG-20261107-WA0026.jpg",
-  "https://i.ibb.co/Zz8kPr1b/Screenshot-20261107-014658-Photos.jpg",
-  "https://i.ibb.co/p66fqWC1/Screenshot-20261107-194647-Whats-App-Business.jpg",
-  "https://i.ibb.co/n4Y57x6/FB-IMG-1794111159221.jpg",
-  "https://i.ibb.co/4nrzyG3t/Screenshot-20261108-220334-Whats-App-Business.jpg",
-  "https://i.ibb.co/fzZ7YhTf/Screenshot-20261108-102255-Whats-App-Business.jpg",
+"https://i.ibb.co/zHsgHrmD/file-00000000e940820e836448998914c1f9.png",
+"https://i.ibb.co/hRsDtRRw/Screenshot-20261107-033111-Facebook.jpg",
+"https://i.ibb.co/Hph1D7J1/Screenshot-20261107-033139-Facebook.jpg",
+"https://i.ibb.co/p6V2G1N2/Screenshot-20261107-194654-Whats-App-Business.jpg",
+"https://i.ibb.co/6qGZMw4/Screenshot-20261107-033257-Facebook.jpg",
+"https://i.ibb.co/xtbL3zCX/Screenshot-20261107-033234-Facebook.jpg",
+"https://i.ibb.co/GvC3X88H/Screenshot-20261107-033320-Facebook.jpg",
+"https://i.ibb.co/1JZcCZvJ/Screenshot-20261107-194627-Whats-App-Business.jpg",
+"https://i.ibb.co/9myjmW1x/Screenshot-20261107-194636-Whats-App-Business.jpg",
+"https://i.ibb.co/zhwKsZkj/Screenshot-20261107-194641-Whats-App-Business.jpg",
+"https://i.ibb.co/gLqSKZyh/IMG-20261107-WA0026.jpg",
+"https://i.ibb.co/Zz8kPr1b/Screenshot-20261107-014658-Photos.jpg",
+"https://i.ibb.co/p66fqWC1/Screenshot-20261107-194647-Whats-App-Business.jpg",
+"https://i.ibb.co/n4Y57x6/FB-IMG-1794111159221.jpg",
+"https://i.ibb.co/4nrzyG3t/Screenshot-20261108-220334-Whats-App-Business.jpg",
+"https://i.ibb.co/fzZ7YhTf/Screenshot-20261108-102255-Whats-App-Business.jpg",
 "https://i.ibb.co/Y42j04ct/facebook-1794116060458.jpg",
 "https://i.ibb.co/1YX0pxM7/FB-IMG-1794112102489.jpg",
-"https://i.ibb.co/YB47fP5m/FB-IMG-1794111639094.jpg",
+
 "https://i.ibb.co/m5KxtpfX/IMG-20261108-WA0011.jpg",
 "https://i.ibb.co/VWzgMtg2/IMG-20261108-WA0012.jpg",
 "https://i.ibb.co/GrstMmf/IMG-20261108-WA0009.jpg",
 "https://i.ibb.co/gZFDwYPL/Screenshot-20261108-083253-Gallery.jpg",
 "https://i.ibb.co/3YhDGBFm/facebook-1794116106294.jpg",
-"https://i.ibb.co/0VV6zhdp/Screenshot-20261107-035056-Facebook.jpg", ];
+"https://i.ibb.co/0VV6zhdp/Screenshot-20261107-035056-Facebook.jpg", 
+"https://i.ibb.co/YB47fP5m/FB-IMG-1794111639094.jpg",
+"https://i.ibb.co/dJPt943D/Screenshot-20261122-023428-Chrome.jpg",
+"https://i.ibb.co/dwmX9G2b/Screenshot-20261114-161246-Instagram.jpg",
+];
 const libroEscenario = document.getElementById('libroEscenario');
 const libroImg = document.getElementById('libroImg');
 const libroHojaActual = document.getElementById('libroHojaActual');
@@ -486,6 +486,7 @@ let libroActual = 0;
 let animando = false;
 let autoplayTimer = null;
 const AUTOPLAY_INTERVAL = 4000;
+// Precarga de imágenes
 const cacheImagenes = {};
 function precargarImagen(url){
   if (cacheImagenes[url]) return cacheImagenes[url];
@@ -493,11 +494,9 @@ function precargarImagen(url){
     const img = new Image();
     img.onload = () => resolve(true);
     img.onerror = () => resolve(false);
-    img.src = url;
-  });
+    img.src = url; });
   cacheImagenes[url] = p;
-  return p;
-}
+  return p; }
 FOTOS.forEach((url, i) => {
   const mini = document.createElement('img');
   mini.src = url;
@@ -508,35 +507,26 @@ FOTOS.forEach((url, i) => {
   mini.addEventListener('click', () => {
     detenerAutoplay();
     libroIr(i);
-    reiniciarAutoplayDespuesDeInteraccion();
-  });
+    reiniciarAutoplayDespuesDeInteraccion(); });
   indice.appendChild(mini); });
-
 function libroPintarContador(){
   libroContador.textContent = (libroActual + 1) + ' / ' + FOTOS.length;
   [...indice.children].forEach((m, i) => m.classList.toggle('activa', i === libroActual));
   const activa = indice.children[libroActual];
-  if (activa) {
-    // Solución: Desplaza ÚNICAMENTE las miniaturas de forma horizontal sin mover el scroll de la página
-    const destino = activa.offsetLeft - (indice.clientWidth / 2) + (activa.clientWidth / 2);
-    indice.scrollTo({ left: destino, behavior: 'smooth' });
-  }
-}
-
+  if (activa) activa.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'}); }
 function libroInit(){
+  // Precargar primeras 2 imágenes
   precargarImagen(FOTOS[0]);
   if (FOTOS.length > 1) precargarImagen(FOTOS[1]);
   libroImg.src = FOTOS[libroActual];
   libroPintarContador();
   setTimeout(() => libroHint.classList.add('oculto'), 4000);
-  iniciarAutoplay();
-}
+  iniciarAutoplay();}
 function libroIr(index){
   if (animando || index === libroActual) return;
   libroActual = index;
   libroImg.src = FOTOS[libroActual];
-  libroPintarContador();
-}
+  libroPintarContador();}
 function libroCrearHojaEntrante(src, onReady){
   const hoja = document.createElement('div');
   hoja.className = 'libro-hoja-entrante';
@@ -547,87 +537,74 @@ function libroCrearHojaEntrante(src, onReady){
   img.src = src;
   hoja.appendChild(img);
   libroEscenario.appendChild(hoja);
-  return hoja;
-}
+  return hoja;}
 function libroMover(dir, fromDrag){
   if (animando) return;
   if (FOTOS.length < 2) return;
   animando = true;
   const nuevoIndex = (libroActual + dir + FOTOS.length) % FOTOS.length;
   const srcNuevo = FOTOS[nuevoIndex];
+// Precargar la imagen siguiente también
   const siguienteIndex = (nuevoIndex + 1) % FOTOS.length;
   precargarImagen(FOTOS[siguienteIndex]);
+ // Crear hoja entrante y esperar a que la imagen cargue antes de animar
   let yaAnimado = false;
   const ejecutarAnimacion = () => {
     if (yaAnimado) return;
     yaAnimado = true;
-    hojaEntrante.classList.add(dir > 0 ? 'entrando-der' : 'entrando-izq');
+ hojaEntrante.classList.add(dir > 0 ? 'entrando-der' : 'entrando-izq');
     libroHojaActual.style.transform = '';
-    libroHojaActual.classList.remove('arrastrando','completar-izq','completar-der','rebobinar');
+libroHojaActual.classList.remove('arrastrando','completar-izq','completar-der','rebobinar');
     if (fromDrag) {
       libroHojaActual.style.setProperty('--tx', fromDrag.tx + 'px');
-      libroHojaActual.style.setProperty('--ry', fromDrag.ry + 'deg');
-    }
+      libroHojaActual.style.setProperty('--ry', fromDrag.ry + 'deg'); }
     void libroHojaActual.offsetWidth;
     libroHojaActual.classList.add(dir > 0 ? 'completar-izq' : 'completar-der');
     libroActual = nuevoIndex;
     libroPintarContador();
-    setTimeout(() => {
+setTimeout(() => {
       libroImg.src = srcNuevo;
       libroHojaActual.className = 'libro-hoja';
       libroHojaActual.style.transform = '';
-      libroHojaActual.style.removeProperty('--tx');
-      libroHojaActual.style.removeProperty('--ry');
+   libroHojaActual.style.removeProperty('--tx');
+   libroHojaActual.style.removeProperty('--ry');
       hojaEntrante.remove();
-      animando = false;
-    }, 460);
-  };
-  const hojaEntrante = libroCrearHojaEntrante(srcNuevo, ejecutarAnimacion);
+      animando = false; }, 460); };
+const hojaEntrante = libroCrearHojaEntrante(srcNuevo, ejecutarAnimacion);
+// Si la imagen ya estaba cacheada, el onload puede no dispararse;
+  // forzamos con un pequeño timeout por si acaso
   setTimeout(() => {
     const img = hojaEntrante.querySelector('img');
     if (img && img.complete) {
-      ejecutarAnimacion();
-    }
-  }, 50);
-  setTimeout(ejecutarAnimacion, 1500);
-}
+      ejecutarAnimacion();  } }, 50);
+  // Fallback por si tarda demasiado
+  setTimeout(ejecutarAnimacion, 1500);}
+// Autoplay
 function iniciarAutoplay(){
   detenerAutoplay();
   autoplayTimer = setInterval(() => {
     if (!animando && !document.hidden) {
-      libroMover(1);
-    }
-  }, AUTOPLAY_INTERVAL);
-}
+      libroMover(1); }
+  }, AUTOPLAY_INTERVAL);}
 function detenerAutoplay(){
   if (autoplayTimer) {
     clearInterval(autoplayTimer);
-    autoplayTimer = null;
-  }
-}
+    autoplayTimer = null;  }}
 let reinicioTimer = null;
-function reiniciarAutoplayDespuesDeInteraccion(){
-  if (reinicioTimer) clearTimeout(reinicioTimer);
+function reiniciarAutoplayDespuesDeInteraccion(){ if (reinicioTimer) clearTimeout(reinicioTimer);
   reinicioTimer = setTimeout(() => {
     if (!document.hidden) {
-      iniciarAutoplay();
-    }
-  }, 8000);
-}
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden) {
-    detenerAutoplay();
-  } else {
-    iniciarAutoplay();
-  }
-});
+      iniciarAutoplay(); } }, 8000);}
+document.addEventListener('visibilitychange', () => { if (document.hidden) {
+    detenerAutoplay();  } else {
+    iniciarAutoplay(); }});
+// Drag / swipe
 let dragX0 = 0, dragY0 = 0, dragging = false;
 function iniciarDrag(x, y){
   if (animando) return;
   dragX0 = x; dragY0 = y; dragging = true;
   libroHojaActual.classList.add('arrastrando');
-  detenerAutoplay();
-}
+  detenerAutoplay();}
 function moverDrag(x, y){
   if (!dragging) return;
   const dx = x - dragX0;
@@ -638,12 +615,11 @@ function moverDrag(x, y){
   const ry = (tx / limit) * 70 * (dx < 0 ? -1 : 1);
   libroHojaActual.style.transform = `translateX(${tx}px) rotateY(${ry}deg)`;
   libroHojaActual.style.setProperty('--tx', tx + 'px');
-  libroHojaActual.style.setProperty('--ry', ry + 'deg');
-}
+  libroHojaActual.style.setProperty('--ry', ry + 'deg');}
 function terminarDrag(x){
   if (!dragging) return;
   dragging = false;
-  libroHojaActual.classList.remove('arrastrando');
+libroHojaActual.classList.remove('arrastrando');
   const dx = x - dragX0;
   const umbral = 60;
   if (Math.abs(dx) > umbral) {
@@ -660,13 +636,11 @@ function terminarDrag(x){
     libroHojaActual.classList.add('rebobinar');
     setTimeout(() => {
       libroHojaActual.style.transform = '';
-      libroHojaActual.classList.remove('rebobinar');
-      libroHojaActual.style.removeProperty('--tx');
-      libroHojaActual.style.removeProperty('--ry');
-    }, 300);
-  }
-  reiniciarAutoplayDespuesDeInteraccion();
-}
+  libroHojaActual.classList.remove('rebobinar');
+   libroHojaActual.style.removeProperty('--tx');
+   libroHojaActual.style.removeProperty('--ry');
+    }, 300); }
+reiniciarAutoplayDespuesDeInteraccion();}
 libroEscenario.addEventListener('touchstart', e => {
   if (e.touches.length !== 1) return;
   iniciarDrag(e.touches[0].clientX, e.touches[0].clientY);
@@ -697,15 +671,12 @@ window.addEventListener('mouseup', e => {
 document.addEventListener('keydown', e => {
   if (document.getElementById('modalLegal').classList.contains('activo')) {
     if (e.key === 'Escape') cerrarLegal();
-    return;
-  }
+    return;  }
   if (modalVideo.classList.contains('activo')) {
     if (e.key === 'Escape') cerrarModalVideo();
     return; }
   if (e.key === 'ArrowLeft') { detenerAutoplay(); libroMover(-1); reiniciarAutoplayDespuesDeInteraccion(); }
-  if (e.key === 'ArrowRight') { detenerAutoplay(); libroMover(1); reiniciarAutoplayDespuesDeInteraccion(); }
-});
-
+  if (e.key === 'ArrowRight') { detenerAutoplay(); libroMover(1); reiniciarAutoplayDespuesDeInteraccion(); } });
 libroInit();
 const TEXTO_COMPARTIR='';const URL_SITIO='https://jesusfierro.vercel.app/';
 function abrirMenuCompartir(){const url=URL_SITIO;const texto=encodeURIComponent(TEXTO_COMPARTIR+' '+url);document.getElementById('opWhatsApp').href='https://wa.me/?text='+texto;document.getElementById('opFacebook').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);document.getElementById('opTwitter').href='https://twitter.com/intent/tweet?text='+encodeURIComponent(TEXTO_COMPARTIR)+'&url='+encodeURIComponent(url);document.getElementById('opTelegram').href='https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(TEXTO_COMPARTIR);document.getElementById('opEmail').href='mailto:?subject='+encodeURIComponent('En memoria de Jesús Alberto')+'&body='+texto;document.getElementById('menuAviso').textContent='';document.getElementById('menuCompartir').classList.add('activo');}
